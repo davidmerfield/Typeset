@@ -1,6 +1,6 @@
 # Typeset.js
 
-Typeset helps with server side processing of HTML to make typography easier.
+Typeset helps process HTML to make typesetting easier for the web.
 
 Accepts a HTML string and returns the same HTML with:
 
