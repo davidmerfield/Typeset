@@ -16,7 +16,7 @@ Accepts a HTML string and returns the same HTML with:
 
 Optional extras include classes for:
 
-- Dropcaps class
+- Dropcaps
 
 Things to think about?
 
