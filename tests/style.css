@@ -1,0 +1,19 @@
+body {
+    font-family: "minion-pro";
+    max-width: 600px;
+    margin: 3em auto;
+}
+
+.small-caps {
+    -moz-font-feature-settings: "smcp";
+     -ms-font-feature-settings: "smcp";
+ -webkit-font-feature-settings: "smcp";
+         font-feature-settings: "smcp";
+         font-variant-caps: all-small-caps;
+    -moz-font-feature-settings: "c2sc", "smcp";
+     -ms-font-feature-settings: "c2sc", "smcp";
+ -webkit-font-feature-settings: "c2sc", "smcp";
+         font-feature-settings: "c2sc", "smcp";
+}
+
+h1, h2, h3, h4, h5, h6, b {font-weight: 400}

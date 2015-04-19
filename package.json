@@ -1,0 +1,30 @@
+{
+  "name": "typeset",
+  "version": "0.0.0",
+  "description": "Typesetting for the web",
+  "main": "typeset.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidmerfield/Typeset.js.git"
+  },
+  "keywords": [
+    "type",
+    "typeset",
+    "typography",
+    "dropcap",
+    "smallcap",
+    "hyphenation"
+  ],
+  "author": "David Merfield",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidmerfield/Typeset.js/issues"
+  },
+  "homepage": "https://github.com/davidmerfield/Typeset.js",
+  "dependencies": {
+    "cheerio": "^0.19.0"
+  }
+}
