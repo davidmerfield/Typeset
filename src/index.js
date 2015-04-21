@@ -1,6 +1,7 @@
 var cheerio = require('cheerio');
 var modules = {
-    smartQuotes: require('./smartQuotes')
+    smartQuotes: require('./smartQuotes'),
+    hangingPunctuation: require('./hangingPunctuation')
 };
 
 module.exports = function typeset (html, options) {
