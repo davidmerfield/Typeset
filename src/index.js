@@ -1,6 +1,10 @@
 var cheerio = require('cheerio');
 var modules = {
-    smartQuotes: require('./smartQuotes'),
+    quotes: require('./quotes'),
+    spaces: require('./spaces'),
+    hyphenate: require('./hyphenate'),
+    // smallCaps: require('./smallCaps'),
+    punctuation: require('./punctuation'),
     hangingPunctuation: require('./hangingPunctuation')
 };
 
