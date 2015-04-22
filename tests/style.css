@@ -16,4 +16,9 @@ body {
          font-feature-settings: "c2sc", "smcp";
 }
 
+.hang-me{margin-left:-.38em}
+.space-me{margin-right:.38em}
+
+.large {font-size:24px}
+
 h1, h2, h3, h4, h5, h6, b {font-weight: 400}
