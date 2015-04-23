@@ -1,7 +1,5 @@
 body {
     font-family: "minion-pro";
-    max-width: 600px;
-    margin: 3em auto;
 }
 
 .small-caps {
@@ -15,10 +13,11 @@ body {
  -webkit-font-feature-settings: "c2sc", "smcp";
          font-feature-settings: "c2sc", "smcp";
 }
-
+ul, li {margin:0;padding:0}
+li {list-style-type: none;color: rgb(200, 48, 33);display: block;float:left;margin-right: 1em}
 .hang-me{margin-left:-.38em}
 .space-me{margin-right:.38em}
-
-.large {font-size:24px}
-
+.clear{clear:both;width:100%;display: block}
+.demo {padding:1em 0;background: rgb(252, 238, 213);font-size:24px}
+.container {max-width:600px;margin: 3em auto}
 h1, h2, h3, h4, h5, h6, b {font-weight: 400}
