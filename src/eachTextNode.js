@@ -38,7 +38,5 @@ module.exports = function forEachTextNode (html, doThis) {
 
     });
 
-    console.log('final HTML ----------------');
-    console.log($.html());
     return $.html();
 }
