@@ -3,7 +3,7 @@ var modules = {
     quotes: require('./quotes'),
     spaces: require('./spaces'),
     hyphenate: require('./hyphenate'),
-    // smallCaps: require('./smallCaps'),
+     smallCaps: require('./smallCaps'),
     punctuation: require('./punctuation'),
     hangingPunctuation: require('./hangingPunctuation')
 };
