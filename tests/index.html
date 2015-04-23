@@ -9,25 +9,60 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
+  <div class="container">
     <h1>Typeset.js</h1>
-    <h2><em>A library for processing HTML to make typesetting straightforward. It's designed to run on the server and requires no client-side JavaScript</em></h2>
+    <h2>A library which makes typesetting easy. It's designed to process HTML on the server and uses no client-side JavaScript</h2>
     <p>Accepts a HTML string and returns the same HTML with:</p>
     <ul>
         <li>Hanging punctuation</li>
-        <li>Hyphen substitution</li>
-        <li>Small-caps for acronyms</li>
+        <li>Soft hyphen insertion</li>
+        <li>Small-caps conversion</li>
         <li>Elipses substitution</li>
         <li>Quote substitution</li>
-        <li>Hair spaces between ratios (2:1)</li>
-        <li>Encode hyphenation breakpoints?</li>
-        <li>Range dash for ranges (1990-2000)</li>
+        <li>Hair spaces between ratios</li>
+        <li>Range dash substitution</li>
+        <li>Hyphen substitution</li>
     </ul>
-   <hr/>
-    <div class="large">
-        <p>"Lolita, light of my life, fire of my loins. My sin, my soul. Lo-lee-ta: the tip of the tongue taking a trip of three steps down the palate to tap, at three, on the teeth. Lo. Lee. Ta."</p> 
-        <p>"She was Lo, plain Lo, in the morning, standing four feet ten in one sock."</p> 
-        <p>She was Lola in slacks. She was Dolly at school. She was Dolores on the dotted line. But in my arms she was always Lolita. Did she have a precursor? She did, indeed she did. In point of fact, there might have been no Lolita at all had I not loved, one summer, an initial girl-child. In a princedom by the sea. Oh when? About as many years before Lolita was born as my age was that summer. You can always count on a murderer for a fancy prose style. Ladies and gentlemen of the jury, exhibit number one is what the seraphs, the misinformed, simple, noble-winged seraphs, envied. Look at this tangle of thorns.</p>
-        <p>\"Better than a 65\'6\" whale.\" -> “Better than a 65′6″ whale.”</p>
+    <div class="clear"></div>
+   </div>
+   <div class="demo">
+    <div class="container">
+        <p>The most beautiful sentence ever written was by NABOKOV is "Lolita, light of my life, fire of my loins. My sin, my soul. Lo-lee-ta: the tip of the -- taking a trip of three steps down the palate to tap, at three, on the teeth. Lo. Lee. Ta..."</p> 
+        <p>Thin space for W. A. Dwig­gins. 118° 19′ 43.5″ \"Better than a 65\'6\" whale.\" → “Better than a 65′6″ whale.” 123 x 345 - 678 = 41757      wrong
+        123 × 345 − 678 = 41757 right
+        
+        [Exit Music (For a Film)]       wrong
+        [Exit Music (For a Film)]       right
+        [Exit Music (For a Film)]       wrong
+        [Exit Music (For a Film)]       right
+   
+        The en dash has two uses.
+
+        It in­di­cates a range of val­ues (1880–1912, pages 330–39, Ex­hi­bits A–E). If you open with from, pair it with to in­stead of an en dash (from 1880 to 1912, not from 1880–1912).
+
+        It de­notes a con­nec­tion or con­trast be­tween pairs of words (con­ser­v­a­tive–lib­eral split, Ari­zona–Nevada reci­proc­ity, Sar­banes–Ox­ley Act).
+
+        The em dash is used to make a break be­tween parts of a sen­tence. Use it when a comma is too weak, but a colon, semi­colon, or pair of paren­the­ses is too strong. The em dash puts a nice pause in the text—and it is un­der­used in pro­fes­sional writing.
+
+        (c) 2013 MegaCorp (TM)  wrong
+        © 2013 MegaCorp™        right
+
+        Some word proces­sors au­to­mat­i­cally sub­sti­tute a sym­bol when you type (TM), (R), or (c). Be cau­tious with this fea­ture, be­cause ref­er­ences like Sec­tion 12(c) can be silently con­verted to Sec­tion 12©. Your spelling checker won’t de­tect this er­ror, and it’s easy to over­look while editing.
+        </p>
+    </div>
+</div>
+<div class="container">
+    <h3>How it works?</h3>
+    <p>Typeset is available on npm:</p>
+    <pre>npm install typeset</pre>
+    <p>To process some HTML:</p>
+    <pre><code>
+var typeset = require('typeset');
+var html = '&lt;p&gt;&quot;Hello there,&quot; said the fox's wife.&lt;/p&gt;';
+var processedHTML = typeset(html);
+    </code></pre>
+    <p>You can also pass an options object:</p>
+    <pre><code>typeset(html, {disable: ['smallCaps'], language: 'English'});</code></pre>
     </div>
     </body>
 </html>
