@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
-    <title>Typeset.js – a library for improving your website's typography</title>
+    <title>Typeset.js – an HTML pre-processor for web typography</title>
     <link rel="icon" type="image/png" href="./tests/favicon.png">
     <script src="./tests.js"></script>
     <script src="//use.typekit.net/ryv2pys.js"></script>
@@ -13,18 +13,22 @@
 
     <a class="logo" href="/">Blot</a>
     <h1><span class="small-caps"><aria class="hang-T">T</aria>YPE­SET</span><span></span>.js</h1>
-    <h2><aria class="hang-A">A</aria>n <span class="small-caps">HTML</span> pre-proces­sor for bet­ter<span class="space-w"></span> <aria class="hang-w">w</aria>eb ty­pog­ra­phy. No<span class="space-c"></span> <aria class="hang-c">c</aria>lient-side JavaScript needed.<span class="space-Y"></span> <aria class="hang-Y">Y</aria>ou get all this:</h2>
+    <h2 style="max-width:80%"><aria class="hang-A">A</aria>n <span class="small-caps">HTML</span> pre-proces­sor for<span class="space-w"></span> <aria class="hang-w">w</aria>eb ty­pog­ra­phy. It uses no<span class="space-c"></span> <aria class="hang-c">c</aria>lient-side JavaScript but gives you:</h2>
     <ul>
         <li>Hang­ing punc­tu­a­tion</li>
         <li>Soft hy­phen in­ser­tion</li>
-        <li><aria class="hang-O">O</aria>p­ti­cal mar­gin align­ment</li>
+        <li><aria class="hang-O">O</aria>p­ti­cal mar­gin<span class="space-o"></span> <aria class="hang-o">o</aria>ut­dents</li>
         <li>Small-caps<span class="space-c"></span> <aria class="hang-c">c</aria>on­ver­sion</li>
-        <li>Elipses sub­sti­tu­tion</li>
-        <li>Quote sub­sti­tu­tion</li>
         <li>Hair spaces be­tween ra­tios</li>
         <li>Range dash sub­sti­tu­tion</li>
         <li>Hy­phen sub­sti­tu­tion</li>
+        <li>Quote sub­sti­tu­tion</li>
+        <li>Elipses sub­sti­tu­tion</li>
     </ul>
+    <div class="clear"></div>
+
+    <a class="button" href="https://github.com/davidmerfield/typeset">Get the<span class="space-c"></span> <aria class="hang-c">c</aria>ode<span class="space-o"></span> <aria class="hang-o">o</aria>n GitHub</a>
+
 
 <!--     <p>Accepts an HTML string and returns the same HTML with:</p>
  -->    <!-- <ul>
@@ -37,7 +41,6 @@
         <li>Range dash substitution</li>
         <li>Hyphen substitution</li>
     </ul> -->
-    <div class="clear"></div>
    </div>
    <div class="demo">
     <div class="container" style="padding-bottom:0">
@@ -50,15 +53,19 @@
         <div id="panel-1">
             <p><aria class="hang-Y">Y</aria>jarni Sigurðardót­tir spoke to <span class="small-caps">NATO</span> from Ice­land yes­ter­day:<span class="space-me"></span> <aria class="hang-me">“</aria>Light<span class="space-o"></span> <aria class="hang-o">o</aria>f my life, fire<span class="space-o"></span> <aria class="hang-o">o</aria>f my loins&thinsp;&mdash;&thinsp;my sin, my soul.<span class="space-T"></span> <aria class="hang-T">T</aria>he tip<span class="space-o"></span> <aria class="hang-o">o</aria>f the tongue tak­ing a trip to 118° 19′ 43.5″.”<span class="space-T"></span> <aria class="hang-T">T</aria>he <span class="small-caps">HTML</span> replied:</p>
 
-            <p><aria class="hang-me">“</aria>She’s bet­ter than a 120′4″<span class="space-w"></span> <aria class="hang-w">w</aria>hale.” Piña<span class="space-c"></span> <aria class="hang-c">c</aria>o­ladas<span class="space-w"></span> <aria class="hang-w">w</aria>ere<span class="space-w"></span> <aria class="hang-w">w</aria>idely<span class="space-c"></span> <aria class="hang-c">c</aria>on­sumed<span class="space-o"></span> <aria class="hang-o">o</aria>n Göt­ter­däm­merun straße be­tween 1880–1912.<span class="space-O"></span> <aria class="hang-O">O</aria>pen pages 330–39 from Ex­hi­bits<span class="space-A"></span> <aria class="hang-A">A</aria>–E.
+            <p><aria class="hang-me">“</aria>She’s bet­ter than a 120′4″<span class="space-w"></span> <aria class="hang-w">w</aria>hale.” Piña<span class="space-c"></span> <aria class="hang-c">c</aria>o­ladas<span class="space-w"></span> <aria class="hang-w">w</aria>ere<span class="space-w"></span> <aria class="hang-w">w</aria>idely<span class="space-c"></span> <aria class="hang-c">c</aria>on­sumed<span class="space-o"></span> <aria class="hang-o">o</aria>n Göt­ter­däm­merun straße be­tween 1880–1912.<span class="space-O"></span> <aria class="hang-O">O</aria>pen pages 330-39 from Ex­hi­bits<span class="space-A"></span> <aria class="hang-A">A</aria>-E.
             </p>
+
+            <p>In Los<span class="space-A"></span> <aria class="hang-A">A</aria>n­ge­les<span class="space-o"></span> <aria class="hang-o">o</aria>n Mon­day, Sen­a­tor Bernie Sanders, also a<span class="space-c"></span> <aria class="hang-c">c</aria>an­di­date for the De­mo­c­ra­tic nom­i­na­tion, re­it­er­ated his<span class="space-c"></span> <aria class="hang-c">c</aria>all<span class="space-me"></span> <aria class="hang-me">“</aria>for tu­ition-free pub­lic<span class="space-c"></span> <aria class="hang-c">c</aria>ol­lege.” Gov. John R. Ka­sich<span class="space-o"></span> <aria class="hang-o">o</aria>f<span class="space-O"></span> <aria class="hang-O">O</aria>hio said he planned to repli­cate pro­grams in his state that have held down the price<span class="space-o"></span> <aria class="hang-o">o</aria>f tu­ition&hellip;</p>
         </div>
 
         <div id="panel-2" class="ts-ignore">
-            <p>Yjarni Sigurðardóttir spoke to NATO from Iceland yesterday: "Light of my life, fire of my loins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"." The HTML replied:</p>
+                <p>Yjarni Sigurðardóttir spoke to NATO from Iceland yesterday: "Light of my life, fire of my loins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"." The HTML replied:</p>
 
-            <p>"She's better than a 120'4" whale." Piña co­ladas were widely consumed on Göt­ter­däm­merun straße between 1880–1912. Open pages 330–39 from Ex­hi­bits A–E.
-            </p>
+                            <p>"She's better than a 120'4" whale." Piña co­ladas were widely consumed on Göt­ter­däm­merun straße between 1880–1912. Open pages 330–39 from Ex­hi­bits A–E.
+                            </p>
+
+                            <p>In Los Angeles on Monday, Senator Bernie Sanders, also a candidate for the Democratic nomination, reiterated his call "for tuition-free public college." Gov. John R. Kasich of Ohio said he planned to replicate programs in his state that have held down the price of tuition...</p>
         </div>
 
 
@@ -69,30 +76,20 @@
 </div>
 <div class="container">
 
+    <h3>How to get</h3>
     <pre>npm install typeset</pre>
 
-    <h3>How it<span class="space-w"></span> <aria class="hang-w">w</aria>orks?</h3>
-    <p><aria class="hang-T">T</aria>ype­set is avail­able<span class="space-o"></span> <aria class="hang-o">o</aria>n npm:</p>
-    <p><aria class="hang-T">T</aria>o process some <span class="small-caps">HTML</span>:</p>
+    <h3>How to use</h3>
     <pre>
 var typeset = require('typeset');
 var html = '&lt;p&gt;&quot;Hello there,&quot; said the fox's wife.&lt;/p&gt;';
-var processedHTML = typeset(html);
-    </pre>
+var output = typeset(html);</pre>
 
-<pre>
-
-.small-caps {font-family: 'Charter SC', serif}
-
-/* The proportional width of " in your font*/
-.hang-me {margin-left:-.38em}
-.space-me {margin-right:.38em}
-</pre>
+    <p><aria class="hang-T">T</aria>hen mod­ify <a href="">type­set.css</a> (1kb) to match your font and in­clude<span class="space-o"></span> <aria class="hang-o">o</aria>n your<span class="space-w"></span> <aria class="hang-w">w</aria>eb­site.</p>
 
 
-    <p><aria class="hang-Y">Y</aria>ou<span class="space-c"></span> <aria class="hang-c">c</aria>an also pass an<span class="space-o"></span> <aria class="hang-o">o</aria>p­tions<span class="space-o"></span> <aria class="hang-o">o</aria>b­ject:</p>
-    <pre><code>typeset(html, {disable: ['smallCaps'], language: 'English'});</code></pre>
-    <p>Ideas:<span class="space-w"></span> <aria class="hang-w">w</aria>arn­ings for pos­si­ble er­rors (c) in­stead<span class="space-o"></span> <aria class="hang-o">o</aria>f &copy;, brack­ets in­side styled text&hellip; 123 x 345 - 678 = 41757</p>
+    <h3><aria class="hang-O">O</aria>p­tions</h3>
+    <pre>typeset(html, {disable: ['smallCaps'], language: 'English'});</pre>
 
     </div>
     <script type="text/javascript">

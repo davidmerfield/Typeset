@@ -54,12 +54,16 @@ body {
 }
 
 .hang-O,
-.hang-C {
+.hang-C,
+.hang-o,
+.hang-c {
   margin-left: -0.04em;
 }
 
 .space-O,
-.space-C {
+.space-C,
+.space-o,
+.space-c {
   margin-right: 0.04em
 }
 
@@ -68,37 +72,53 @@ body {
 
 pre {
   font-family: 'Cousine', monospace;
-  font-size: 0.8em;
-  line-height: 120%;
+  line-height: 170%;
 }
 
+h3 {border-bottom: 1px solid #ddd;margin-top: 2em}
 
+.button {
+  position: absolute;
+  bottom: -2.66em;
+  right: 0;
+  z-index: 10;
+  font-size: 1em;
+  float: right;
+  background: #F94141;
+  border-radius: 100%;
+  color: white;
+  text-decoration: none;
+  width: 5.666em;
+  height: 2em;
+  padding: 2.77em 1em;
+  text-align: center;
+}
 
 ul, li {margin:0;padding:0}
 
-li {list-style-type: none;color: rgb(165, 120, 87);display: block;width:40%;float:left;margin-right: 1em}
+li {list-style-type: none;color: #4A3737;display: block;width:40%;float:left;margin-right: 1em;margin-bottom: 0.33em}
 
 .clear{clear:both;width:100%;display: block}
-.demo {background: rgb(252, 238, 213);font-size:22px;line-height: 130%}
-.container {max-width:600px;padding: 1em 0 3em;margin: 0 auto;  position: relative;
+.demo {background: rgb(253, 241, 233);font-size:22px;line-height: 130%}
+.container {max-width:600px;padding: 1em 0 2.33em;margin: 0 auto;  position: relative;
   overflow: visible;
 }
 h1, h2, h3, h4, h5, h6, b {font-weight: 400}
 
-h2 {font-size: 1.33em}
+h2 {font-size: 22px;margin-bottom: 1.15em;color: #4A3737;}
 
 .nav {padding-top: 1.15em}
 .nav a {
-  color: #A58957;
+  color: #A0501B;
   text-decoration: none;margin-right: 0.44em;line-height: 0.8em;
     display: inline-block;}
-.nav a:not(.is-selected) {border-bottom: 1px solid #BFA16A}
+.nav a:not(.is-selected) {border-bottom: 1px solid #A0501B}
 
 a.logo {
   position: absolute;
   overflow: visible;
   left: -7em;
-  top: 2em;
+  top: 2.4em;
   font: 400 1em / 150% 'Helvetica Neue',Helvetica,Arial,Sans-serif;
   border-bottom: none;
   text-decoration: none;
