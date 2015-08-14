@@ -98,6 +98,8 @@ ul, li {margin:0;padding:0}
 
 li {list-style-type: none;color: #4A3737;display: block;width:40%;float:left;margin-right: 1em;margin-bottom: 0.33em}
 
+html, body {margin: 0;padding: 0}
+
 .clear{clear:both;width:100%;display: block}
 .demo {background: rgb(253, 241, 233);font-size:22px;line-height: 130%}
 .container {max-width:600px;padding: 1em 0 2.33em;margin: 0 auto;  position: relative;
