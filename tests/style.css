@@ -112,7 +112,7 @@ h2 {font-size: 22px;margin-bottom: 1.15em;color: #4A3737;}
   color: #A0501B;
   text-decoration: none;margin-right: 0.44em;line-height: 0.8em;
     display: inline-block;}
-.nav a:not(.is-selected) {border-bottom: 1px solid #A0501B}
+.nav a:not(.is-selected) {#A0501Bborder-bottom: 1px solid #A0501B}
 
 a.logo {
   position: absolute;
