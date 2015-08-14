@@ -24,63 +24,19 @@
     font-style: normal;
 }
 
-
 body {
     font-family: 'Charter', serif;
 }
-
-.small-caps {
-  text-transform: lowercase;
-  font-size: 1.025em;
-  line-height: 0em;
-  display: inline;
-  font-family: 'Charter SC', serif;
-}
-
-.hang-A,
-.hang-T,
-.hang-V,
-.hang-W,
-.hang-Y {
-  margin-left: -0.07em;
-}
-
-.space-A,
-.space-T,
-.space-V,
-.space-W,
-.space-Y {
-  margin-right: 0.07em
-}
-
-.hang-O,
-.hang-C,
-.hang-o,
-.hang-c {
-  margin-left: -0.04em;
-}
-
-.space-O,
-.space-C,
-.space-o,
-.space-c {
-  margin-right: 0.04em
-}
-
-.hang-me{margin-left:-.38em}
-.space-me{margin-right:.38em}
 
 pre {
   font-family: 'Cousine', monospace;
   line-height: 170%;
 }
 
-h3 {border-bottom: 1px solid #ddd;margin-top: 2em}
-
 .button {
   position: absolute;
-  bottom: -2.66em;
-  right: 0;
+  bottom: 6em;
+  right: -3.83em;
   z-index: 10;
   font-size: 1em;
   float: right;
@@ -101,31 +57,53 @@ li {list-style-type: none;color: #4A3737;display: block;width:40%;float:left;mar
 html, body {margin: 0;padding: 0}
 
 .clear{clear:both;width:100%;display: block}
-.demo {background: rgb(253, 241, 233);font-size:22px;line-height: 130%}
-.container {max-width:600px;padding: 1em 0 2.33em;margin: 0 auto;  position: relative;
+.left {
+  position: absolute;
+  width: 50%;
+  top: 0;
+  left: 0;
+  padding: 1.5em 2em 0;
+  box-sizing: border-box;
+}
+.demo {
+  box-sizing: border-box;
+  padding: 0 4em;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  padding-top: 4em;
+  bottom: 0;
+  right: 0;
+  background: rgb(253, 241, 233);
+  font-size:22px;line-height: 130%
+}
+.container {
+  max-width:600px;padding: 1em 0 2.33em;margin: 0 auto;  position: relative;
   overflow: visible;
 }
+
 h1, h2, h3, h4, h5, h6, b {font-weight: 400}
 
 h2 {font-size: 22px;margin-bottom: 1.15em;color: #4A3737;}
 
+h3 {border-bottom: 1px solid #ddd;margin-top: 2em}
+
 .nav {padding-top: 1.15em}
+
 .nav a {
   color: #A0501B;
   text-decoration: none;margin-right: 0.44em;line-height: 0.8em;
     display: inline-block;}
-.nav a:not(.is-selected) {#A0501Bborder-bottom: 1px solid #A0501B}
+
+.nav a:not(.is-selected) {border-bottom: 1px solid #A0501B}
 
 a.logo {
-  position: absolute;
-  overflow: visible;
-  left: -7em;
-  top: 2.4em;
   font: 400 1em / 150% 'Helvetica Neue',Helvetica,Arial,Sans-serif;
   border-bottom: none;
   text-decoration: none;
   color: #F03C3C;
   font-size: 1.2em;
+  margin: 0.66em 0 0;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
 }
