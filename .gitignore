@@ -30,3 +30,13 @@ node_modules
 *.swp
 
 tests/index-out.html
+
+*.eot
+
+*.svg
+
+*.ttf
+
+*.woff
+
+*.woff2

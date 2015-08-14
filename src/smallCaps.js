@@ -12,10 +12,11 @@ var onlyNumbers = new RegExp('^\\d+$');
 // uppercase version of the word is indentical, if so it's
 // very probably an acronym
 function isAcronym (word) {
+
   return word.length &&
-         word.length > 1 &&
-         !(onlyNumbers.test(word)) &&
-         word.replace(/[\.,-\/#!$%\^&\*;?:+|@\[\]{}=\-_`~()]/g,"") === word &&
+         word.trim().length > 1 &&
+         !(onlyNumbers.test(word.replace(/[\.,-\/#!–$%°\^&\*;?:+′|@\[\]{}=\-_`~()]/g,""))) &&
+         word.replace(/[\.,-\/#!$%\^&\*;–?:+|@\[\]{}=\-_`~(′°)]/g,"") === word &&
          word.toUpperCase() === word;
 }
 
@@ -33,7 +34,7 @@ function removeCruft (word) {
       leading = '';
 
   for (var i = 0; i < ignore.length; i++) {
-    
+
     var ignoreThis = ignore[i],
         endOfWord = word.slice(-ignoreThis.length);
 
@@ -46,13 +47,13 @@ function removeCruft (word) {
   }
 
   for (var j = 0; j < ignore.length; j++) {
-    
+
     var ignoreThis = ignore[j],
         startOfWord = word.slice(0, ignoreThis.length);
 
     if (startOfWord === ignoreThis) {
       leading += ignoreThis;
-      word = word.slice(ignoreThis.length);    
+      word = word.slice(ignoreThis.length);
       j = 0;continue;
     }
 
@@ -63,7 +64,8 @@ function removeCruft (word) {
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){ 
+    html = eachTextNode(html, function(text, node){
+
         var wordList = text.split(' ');
 
         for (var i in wordList) {
@@ -77,7 +79,7 @@ module.exports = function smallCaps (html, options) {
             wordList[i] = leading + '<span class="small-caps">' + word + '</span>' + trailing;
           }
         }
-      
+
         return  wordList.join(' ');
     });
 
