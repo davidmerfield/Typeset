@@ -2,6 +2,8 @@
 
 Typeset helps process HTML to make typesetting easier for the web. Can be used clientside or server side, though server side is obviously preferable to prevent FOUT.
 
+![](http://i.imgur.com/adsiz94.gif)
+
 Accepts a HTML string and returns the same HTML with:
 
 - Hanging punctuation
