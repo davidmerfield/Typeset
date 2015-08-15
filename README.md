@@ -1,27 +1,15 @@
-# Typeset.js
+# [Typeset](https://blot.im/typeset)
 
-Typeset helps process HTML to make typesetting easier for the web. Can be used clientside or server side, though server side is obviously preferable to prevent FOUT.
+An html pre-proces­sor for web ty­pog­ra­phy. It uses no client-side JavaScript but gives you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion and punctuation substitution. See the results on [the demo](https://blot.im/typeset).
 
-![](http://i.imgur.com/adsiz94.gif)
+[![Demo](http://i.imgur.com/adsiz94.gif)](https://blot.im/typeset)
 
-Accepts a HTML string and returns the same HTML with:
+Typeset is distributed on [npm](https://www.npmjs.org/package/typeset).
 
-- Hanging punctuation
-- Hyphen substitution
-- Small-caps for acronyms
-- "Better than a 65'6" whale." -> “Better than a 65′6″ whale.”
-- ... -> …
-- Hair spaces between rations (2:1)
-- Range dash for ranges (1990-2000)
-- Multiplication sign replacement
-- Typeset math expressions?
+```javascript
+npm install typeset
+```
 
-Optional extras include classes for:
+### Options
 
-- Dropcaps
-
-Things to think about?
-
-- Encode hyphenation breakpoints?
-
-Requires a small CSS file and no client-side JS.
+You can pass an options object to influence how your HTML is typeset.
