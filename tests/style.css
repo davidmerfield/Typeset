@@ -92,10 +92,12 @@ pre {
 }
 
 .button {
+  position: absolute;
+  right: 0;
   float: right;
   z-index: 10;
   font-size: 1em;
-  margin: -0.5em -2.5em -2em 0;
+  margin: 0.5em 0 0;
   float: right;
   background: #F94141;
   border-radius: 100%;
@@ -117,7 +119,8 @@ ul, li {margin:0;padding:0}
 
 li {list-style-type: none;display: block;width:40%;float:left;margin-right: 1em;margin-bottom: 0.33em}
 
-html, body {margin: 0;padding: 0}
+html, body {margin: 0;padding: 0;min-width:320px}
+
 
 .clear{clear:both;width:100%;display: block}
 .left {
@@ -204,4 +207,12 @@ blockquote {
   float:left;
   width:7em;
   margin:0.3em 1em 0em -1.33em;
+}
+
+@media only screen and (max-width: 500px) {
+  .left{padding: 0 1.5em}
+  h1 {font-size: 1.6em}
+  h2 {font-size: 1.15em}
+  .demo {font-size: 1em}
+  li {width: 100%}
 }
