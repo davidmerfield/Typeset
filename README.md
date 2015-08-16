@@ -8,6 +8,16 @@ An html pre-proces­sor for web ty­pog­ra­phy. It uses no client-side JavaScr
 
 [![Demo](http://i.imgur.com/adsiz94.gif)](https://blot.im/typeset)
 
-### Options
+##### Usage
+
+```javascript
+var typeset = require('typeset');
+var html = '<p>"Hello," said the fox.</p>';
+var output = typeset(html);
+```
+
+Then tweak [typeset.css](https://blot.im/typeset/tests/typeset.css) to match the metrics of your font and include it on your page. 
+
+##### Options
 
 You can pass an options object to influence how your HTML is typeset.
