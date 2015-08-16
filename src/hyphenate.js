@@ -1,7 +1,7 @@
 var eachTextNode = require('./eachTextNode');
 
-// User auto language detection
-// https://github.com/richtr/guessLanguage.js
+// User auto language detection if no option
+// specified https://github.com/richtr/guessLanguage.js
 
 var Hypher = require('hypher'),
     english = require('./hypher-patterns/en-us'),
@@ -9,8 +9,8 @@ var Hypher = require('hypher'),
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){ 
-        return h.hyphenateText(text); 
+    html = eachTextNode(html, function(text, node){
+        return h.hyphenateText(text);
     });
 
     return html;

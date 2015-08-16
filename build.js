@@ -25,7 +25,7 @@ function build () {
 
   var html = fs.readFileSync(INPUT, 'utf-8');
 
-  var $ = cheerio.load(html);
+  var $ = cheerio.load(html, {decodeEntities: false});
       $('#panel-2').html($('#panel-1').html());
 
   var options = {};
