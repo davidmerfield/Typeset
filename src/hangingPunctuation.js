@@ -4,7 +4,8 @@ var cheerio = require('cheerio');
 module.exports = function smallCaps (html, options) {
 
 
-    var hangMe = ['&quot;', '"', "“", "„", "”", "&ldquo;", "&OpenCurlyDoubleQuote;", "&#8220;", "&#x0201C;", "&rdquor;", "&rdquo;", '&CloseCurlyDoubleQuote;', '&#8221;', '&ldquor;', '&bdquo;', '&#8222;'];
+    var doubleWidth = ['&quot;', '"', "“", "„", "”", "&ldquo;", "&OpenCurlyDoubleQuote;", "&#8220;", "&#x0201C;", "&rdquor;", "&rdquo;", '&CloseCurlyDoubleQuote;', '&#8221;', '&ldquor;', '&bdquo;', '&#8222;'];
+    var singleWidth = ["'", '&prime;', '&apos;', '&lsquo;'];
 
     var alignMe = "CcOoYTAVvWwY".split('');
 
@@ -21,7 +22,7 @@ module.exports = function smallCaps (html, options) {
           var align = alignMe[j];
 
           if (words[i].slice(0,align.length) === align) {
-            words[i] = '<aria class="hang-' + align +'">' + align + '</aria>' + words[i].slice(align.length);
+            words[i] = '<span class="hang-' + align +'">' + align + '</span>' + words[i].slice(align.length);
 
             if (words[(i-1)]) {
                 words[(i-1)] = words[(i-1)] + '<span class="space-' + align +'"></span>';
@@ -29,16 +30,30 @@ module.exports = function smallCaps (html, options) {
           }
         }
 
-        for (var j in hangMe) {
+        for (var j in singleWidth) {
 
-          var punctuation = hangMe[j];
+          var punctuation = singleWidth[j];
 
           if (words[i].slice(0,punctuation.length) === punctuation) {
 
-              words[i] = '<aria class="hang-me">' + punctuation + '</aria>' + words[i].slice(punctuation.length);
+              words[i] = '<span class="hang-single">' + punctuation + '</span>' + words[i].slice(punctuation.length);
 
               if (words[(i-1)]) {
-                  words[(i-1)] = words[(i-1)] + '<span class="space-me"></span>';
+                  words[(i-1)] = words[(i-1)] + '<span class="space-single"></span>';
+              }
+          }
+        }
+
+        for (var j in doubleWidth) {
+
+          var punctuation = doubleWidth[j];
+
+          if (words[i].slice(0,punctuation.length) === punctuation) {
+
+              words[i] = '<span class="hang-double">' + punctuation + '</span>' + words[i].slice(punctuation.length);
+
+              if (words[(i-1)]) {
+                  words[(i-1)] = words[(i-1)] + '<span class="space-double"></span>';
               }
           }
         }
