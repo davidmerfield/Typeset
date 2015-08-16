@@ -1,6 +1,6 @@
 {
   "name": "typeset",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Typesetting for the web",
   "main": "typeset.js",
   "scripts": {
