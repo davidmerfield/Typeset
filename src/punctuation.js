@@ -3,16 +3,16 @@ var cheerio = require('cheerio');
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){ 
+    html = eachTextNode(html, function(text, node){
 
-      // Smart dashes
+      // Dashes
       text = text.split('--').join('–');
       text = text.split(' – ').join('&thinsp;&mdash;&thinsp;');
-      
-      // Smart elipses
+
+      // Elipses
       text = text.split('...').join("&hellip;");
 
-      // Smart nbsp for punc with spaces
+      // Nbsp for punc with spaces
       var NBSP = '&nbsp;';
       var NBSP_PUNCTUATION_START = /([«¿¡]) /g;
       var NBSP_PUNCTUATION_END = / ([\!\?:;\.,‽»])/g;

@@ -1,42 +1,21 @@
-.small-caps {
-  text-transform: lowercase;
-  font-size: 1.025em;
-  line-height: 0em;
-  display: inline;
-  font-family: 'Charter SC', serif;
-}
+/* Small caps */
+.small-caps {font-family: 'Charter SC', serif}
 
-.hang-T,
-.hang-V,
-.hang-W,
-.hang-Y {
-  margin-left: -0.07em;
-}
+/* Double quote (") marks */
+.hang-double{margin-left:-.38em}
+.space-double{margin-right:.38em}
+
+/* Single quote (') marks */
+.hang-single{margin-left:-.15em}
+.space-single{margin-right:.15em}
+
+/* Optical margin alignment for particular letters */
+.hang-T, .hang-V, .hang-W, .hang-Y {margin-left: -0.07em}
+.space-T, .space-V, .space-W, .space-Y {margin-right: 0.07em}
+
+.hang-O, .hang-C, .hang-o, .hang-c {margin-left: -0.04em}
+.space-O, .space-C, .space-o, .space-c {margin-right: 0.04em}
 
 .hang-A {margin-left: -0.03em}
 .space-A {margin-right: 0.03em}
 
-.space-A,
-.space-T,
-.space-V,
-.space-W,
-.space-Y {
-  margin-right: 0.07em
-}
-
-.hang-O,
-.hang-C,
-.hang-o,
-.hang-c {
-  margin-left: -0.04em;
-}
-
-.space-O,
-.space-C,
-.space-o,
-.space-c {
-  margin-right: 0.04em
-}
-
-.hang-me{margin-left:-.38em}
-.space-me{margin-right:.38em}

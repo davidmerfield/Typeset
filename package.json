@@ -27,6 +27,7 @@
   "dependencies": {
     "cheerio": "^0.19.0",
     "html-entities": "^1.1.2",
+    "html-minifier": "^0.7.2",
     "hypher": "^0.2.3"
   }
 }
