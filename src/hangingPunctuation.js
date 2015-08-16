@@ -5,7 +5,7 @@ module.exports = function smallCaps (html, options) {
 
 
     var doubleWidth = ['&quot;', '"', "“", "„", "”", "&ldquo;", "&OpenCurlyDoubleQuote;", "&#8220;", "&#x0201C;", "&rdquor;", "&rdquo;", '&CloseCurlyDoubleQuote;', '&#8221;', '&ldquor;', '&bdquo;', '&#8222;'];
-    var singleWidth = ["'", '&prime;', '&apos;', '&lsquo;'];
+    var singleWidth = ["'", '&prime;', '&apos;', '&lsquo;', '&rsquo;', '‘', '’'];
 
     var alignMe = "CcOoYTAVvWwY".split('');
 
