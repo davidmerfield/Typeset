@@ -35,3 +35,8 @@ Clone this repo then fetch its dependencies using ```npm install```. You can the
 * Add a build file
 * Make this work as a command line tool
 * Make this work on the client
+
+##### Who uses this library
+
+* [**Blot**](https://blot.im/) - a blogging platform I made, uses this to typeset blog posts
+* **You?** [Contact me](mailto:dmerfield@gmail.com) or submit a pull request to add it here!
