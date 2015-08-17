@@ -27,10 +27,6 @@ var options = {
 };
 ```
 
-#### Building locally
+##### Building locally
 
-Clone this repo then fetch its dependencies using:
-
-```
-npm install
-```
+Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
