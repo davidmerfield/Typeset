@@ -22,8 +22,8 @@ You can pass an options object to influence how your HTML is typeset:
 
 ```javascript
 var options = {
-  ignore: '', // string of a CSS selector to skip
-  only: ''    // string of a CSS selector to only apply typeset
+  ignore: '.skip, #anything, .which-matches', // string of a CSS selector to skip
+  only: '#only-typeset, .these-elements'    // string of a CSS selector to only apply typeset
 };
 ```
 
