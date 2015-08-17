@@ -27,3 +27,10 @@ var options = {
 };
 ```
 
+#### Building locally
+
+Clone this repo then fetch its dependencies using:
+
+```
+npm install
+```
