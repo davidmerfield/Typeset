@@ -218,3 +218,8 @@ blockquote {
   .demo {font-size: 1em}
   li {width: 100%}
 }
+
+
+@media only screen and (max-width: 430px) {
+  .button {margin-right: -1em;margin-top: 1em}
+}
