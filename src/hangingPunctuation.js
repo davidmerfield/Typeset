@@ -4,6 +4,14 @@ var cheerio = require('cheerio');
 module.exports = function smallCaps (html, options) {
 
 
+function pull (className, content) {
+  return '<span class="pull-' + className +'">' + (content || '') + '</span>';
+}
+
+function push (className, content) {
+  return '<span class="push-' + className +'">' + (content || '') + '</span>';
+}
+
     var doubleWidth = ['&quot;', '"', "“", "„", "”", "&ldquo;", "&OpenCurlyDoubleQuote;", "&#8220;", "&#x0201C;", "&rdquor;", "&rdquo;", '&CloseCurlyDoubleQuote;', '&#8221;', '&ldquor;', '&bdquo;', '&#8222;'];
     var singleWidth = ["'", '&prime;', '&apos;', '&lsquo;', '&rsquo;', '‘', '’'];
 
@@ -22,10 +30,10 @@ module.exports = function smallCaps (html, options) {
           var align = alignMe[j];
 
           if (words[i].slice(0,align.length) === align) {
-            words[i] = '<span class="hang-' + align +'">' + align + '</span>' + words[i].slice(align.length);
+            words[i] = pull(align, align) + words[i].slice(align.length);
 
             if (words[(i-1)]) {
-                words[(i-1)] = words[(i-1)] + '<span class="space-' + align +'"></span>';
+                words[(i-1)] = words[(i-1)] + push(align);
             }
           }
         }
@@ -36,10 +44,10 @@ module.exports = function smallCaps (html, options) {
 
           if (words[i].slice(0,punctuation.length) === punctuation) {
 
-              words[i] = '<span class="hang-single">' + punctuation + '</span>' + words[i].slice(punctuation.length);
+              words[i] = pull('single', punctuation) + words[i].slice(punctuation.length);
 
               if (words[(i-1)]) {
-                  words[(i-1)] = words[(i-1)] + '<span class="space-single"></span>';
+                  words[(i-1)] = words[(i-1)] + push('single');
               }
           }
         }
@@ -50,10 +58,10 @@ module.exports = function smallCaps (html, options) {
 
           if (words[i].slice(0,punctuation.length) === punctuation) {
 
-              words[i] = '<span class="hang-double">' + punctuation + '</span>' + words[i].slice(punctuation.length);
+              words[i] = pull('double', punctuation) + words[i].slice(punctuation.length);
 
               if (words[(i-1)]) {
-                  words[(i-1)] = words[(i-1)] + '<span class="space-double"></span>';
+                  words[(i-1)] = words[(i-1)] + push('double');
               }
           }
         }

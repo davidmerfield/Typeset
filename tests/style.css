@@ -60,6 +60,15 @@
     font-style: normal;
 }
 
+body {
+  text-rendering: optimizeLegibility;
+    font-family: 'Charter', Times, Georgia, serif;
+    font-variant-ligatures: common-ligatures;
+    font-feature-settings: "liga", "clig";
+    -moz-font-feature-settings: "liga", "clig";
+    -ms-font-feature-settings: "liga", "clig";
+    -webkit-font-feature-settings: "liga", "clig";
+}
 .handle {
   font-size: 11px;
   text-transform: uppercase;
@@ -77,14 +86,7 @@
   padding: 0.2em 0.66em 0 0;
 }
 
-body {
-    font-family: 'Charter', Times, Georgia, serif;
-    font-variant-ligatures: common-ligatures;
-      -moz-font-feature-settings: "liga", "clig";
-      -ms-font-feature-settings: "liga", "clig";
-      -webkit-font-feature-settings: "liga", "clig";
-      font-feature-settings: "liga", "clig";
-}
+
 
 pre {
   font-family: 'Fira Mono', monospace;
