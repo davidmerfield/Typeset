@@ -28,9 +28,12 @@ function build () {
   var $ = cheerio.load(html, {decodeEntities: false});
       $('#panel-2').html($('#panel-1').html());
 
-  var options = {};
+  var options = {
+    ignore: '.ts-ignore'
+  };
 
   html = typeset($.html(), options);
+  // html = typeset(html, options);
 
   if (html) fs.writeFileSync(OUTPUT, minify(html, minifyOpts));
   console.log('DONE!');

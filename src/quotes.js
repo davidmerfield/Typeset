@@ -1,9 +1,8 @@
 var eachTextNode = require('./eachTextNode');
-var cheerio = require('cheerio');
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){ 
+    html = eachTextNode(html, function(text){
 
       // Revert encoded chars so the regex mystery
       // below works properly
@@ -11,7 +10,7 @@ module.exports = function smallCaps (html, options) {
       text = text.split('&quot;').join('"');
 
       text = text
-        .replace(/(\W|^)"(\S)/g, '$1\u201c$2') // beginning "                                      
+        .replace(/(\W|^)"(\S)/g, '$1\u201c$2') // beginning "
         .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2') // ending "
         .replace(/([^0-9])"/g,'$1\u201d') // remaining " at end of word
         .replace(/(\W|^)'(\S)/g, '$1\u2018$2') // beginning '
@@ -29,7 +28,7 @@ module.exports = function smallCaps (html, options) {
       text = text.split('\\\’').join('\'');
       text = text.split('\\\‘').join('\'');
       return text;
-    });
+    }, options);
 
     return html;
-}
+};

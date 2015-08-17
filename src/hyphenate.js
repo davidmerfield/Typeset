@@ -9,9 +9,9 @@ var Hypher = require('hypher'),
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){
+    html = eachTextNode(html, function(text){
         return h.hyphenateText(text);
-    });
+    }, options);
 
     return html;
-}
+};

@@ -1,16 +1,15 @@
 var eachTextNode = require('./eachTextNode');
-var cheerio = require('cheerio');
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){
+    html = eachTextNode(html, function(text){
 
       // Dashes
       text = text.split('--').join('–');
       text = text.split(' – ').join('&thinsp;&mdash;&thinsp;');
 
       // Elipses
-      text = text.split('...').join("&hellip;");
+      text = text.split('...').join('…');
 
       // Nbsp for punc with spaces
       var NBSP = '&nbsp;';
@@ -21,7 +20,7 @@ module.exports = function smallCaps (html, options) {
                  .replace(NBSP_PUNCTUATION_END, NBSP + '$1');
 
       return text;
-    });
+    }, options);
 
     return html;
-}
+};

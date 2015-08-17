@@ -64,7 +64,7 @@ function removeCruft (word) {
 
 module.exports = function smallCaps (html, options) {
 
-    html = eachTextNode(html, function(text, node){
+    html = eachTextNode(html, function(text){
 
         var wordList = text.split(' ');
 
@@ -81,7 +81,7 @@ module.exports = function smallCaps (html, options) {
         }
 
         return  wordList.join(' ');
-    });
+    }, options);
 
     return html;
-}
+};
