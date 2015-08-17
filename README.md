@@ -30,3 +30,8 @@ var options = {
 ##### Building locally
 
 Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
+
+##### To Do
+* Add a build file
+* Make this work as a command line tool
+* Make this work on the client
