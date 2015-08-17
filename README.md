@@ -36,6 +36,7 @@ Clone this repo then fetch its dependencies using ```npm install```. You can the
 * Make this work as a command line tool
 * Make this work on the client
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)?
+
 ##### Who uses this library
 
 * [**Blot**](https://blot.im/) - a blogging platform I made, uses this to typeset blog posts
