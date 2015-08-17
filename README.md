@@ -1,6 +1,6 @@
 [![Demo](http://i.imgur.com/adsiz94.gif)](https://blot.im/typeset)
 
-**[Typeset](https://blot.im/typeset)** is an html pre-proces­sor for web ty­pog­ra­phy. It uses no client-side JavaScript but gives you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion and punctuation substitution. See the results on [the demo](https://blot.im/typeset). The library is idempotent and works best when run on the server – I'll adapt it to work on the client soon.
+**[Typeset](https://blot.im/typeset)** is an html pre-proces­sor for web ty­pog­ra­phy. It uses no client-side JavaScript but gives you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion and punctuation substitution. See the results on [the demo](https://blot.im/typeset). The library is idempotent and runs on the server using Node – I'll adapt it to work on the client soon.
 
 ```javascript
 npm install typeset
