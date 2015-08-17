@@ -18,4 +18,12 @@ Then tweak [typeset.css](https://blot.im/typeset/tests/typeset.css) to match the
 
 ##### Options
 
-You can pass an options object to influence how your HTML is typeset.
+You can pass an options object to influence how your HTML is typeset:
+
+```javascript
+var options = {
+  ignore: '', // string of a CSS selector to skip typeset
+  only: ''    // string of a CSS selector to unique apply typeset
+};
+```
+
