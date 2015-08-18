@@ -59,6 +59,8 @@ Clone this repo then fetch its dependencies using ```npm install```. You can the
 * Add a build file
 * Make this work on the client
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)?
+* Remove recursion from eachTextNode.js
+* Consolidate functions which use eachTextNode.js
 
 ##### Who uses this library
 
