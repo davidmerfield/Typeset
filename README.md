@@ -14,7 +14,7 @@ var html = '<p>"Hello," said the fox.</p>';
 var output = typeset(html);
 ```
 
-Then tweak [typeset.css](https://blot.im/typeset/demo/typeset.css) to match the metrics of your font and include it on your page. 
+Then tweak [typeset.css](https://blot.im/typeset/demo/typeset.css) to match the metrics of your font and include it on your page.
 
 ##### Options
 
@@ -34,7 +34,7 @@ $ npm install -g typeset
 ```
 
 ```
-Usage: typeset <entry file> [options]
+Usage: typeset-js <entry file> [options]
 
 Options:
 
@@ -48,7 +48,7 @@ Options:
 Example:
 
 ```
-$ typeset inputFile.html -o outputFile.html --ignore ".some-class, h3" 
+$ typeset-js inputFile.html -o outputFile.html --ignore ".some-class, h3"
 ```
 
 ##### Building locally
