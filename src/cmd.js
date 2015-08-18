@@ -7,10 +7,16 @@ var typeset = require('./index.js');
 program
   .version(require('../package.json').version)
   .usage('<entry file> [options]')
-  .option('-o, --outfile <output file>', 'write Typeset output to this file (if unspecified, Typeset will print to stdout)')
-  .option('-i, --ignore <string containing selectors to ignore>', 'string of CSS selector(s) to ignore')
-  .option('-O, --only <string containing selectors to parse>', 'string of CSS selector(s) to exclusively apply typeset to')
-  .parse(process.argv);
+  .option(
+    '-o, --outfile <output file>',
+    'write Typeset output to this file (if unspecified, Typeset will print to stdout)'
+  ).option(
+    '-i, --ignore <string containing selectors to ignore>',
+    'string of CSS selector(s) to ignore'
+  ).option(
+    '-O, --only <string containing selectors to parse>',
+    'string of CSS selector(s) to exclusively apply typeset to'
+  ).parse(process.argv);
 
 if (program.args.length == 0) {
   // display help and exit
