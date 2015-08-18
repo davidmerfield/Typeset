@@ -14,7 +14,7 @@ var html = '<p>"Hello," said the fox.</p>';
 var output = typeset(html);
 ```
 
-Then tweak [typeset.css](https://blot.im/typeset/tests/typeset.css) to match the metrics of your font and include it on your page. 
+Then tweak [typeset.css](https://blot.im/typeset/demo/typeset.css) to match the metrics of your font and include it on your page. 
 
 ##### Options
 
