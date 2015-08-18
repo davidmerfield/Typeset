@@ -27,13 +27,36 @@ var options = {
 };
 ```
 
+##### CLI Usage
+
+```
+$ npm install -g typeset
+```
+
+```
+Usage: typeset <entry file> [options]
+
+Options:
+
+  -h, --help      output usage information
+  -V, --version   output the version number
+  -o, --outfile   write Typeset output to this file (if unspecified, Typeset will print to stdout)
+  -i, --ignore    string of CSS selector(s) to ignore
+  -O, --only      string of CSS selector(s) to exclusively apply typeset to
+```
+
+Example:
+
+```
+$ typeset inputFile.html -o outputFile.html --ignore ".some-class, h3" 
+```
+
 ##### Building locally
 
 Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
 
 ##### To Do
 * Add a build file
-* Make this work as a command line tool
 * Make this work on the client
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)?
 
