@@ -4,7 +4,7 @@
   "description": "Typesetting for the web",
   "main": "src/index.js",
   "bin": {
-    "typeset": "src/cmd.js"
+    "typeset-js": "src/cmd.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
