@@ -3,6 +3,9 @@
   "version": "0.1.4",
   "description": "Typesetting for the web",
   "main": "src/index.js",
+  "bin": {
+    "typeset": "src/cmd.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +29,7 @@
   "homepage": "https://github.com/davidmerfield/Typeset.js",
   "dependencies": {
     "cheerio": "^0.19.0",
+    "commander": "^2.8.1",
     "html-entities": "^1.1.2",
     "hypher": "^0.2.3"
   },
