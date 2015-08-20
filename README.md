@@ -55,6 +55,11 @@ $ typeset-js inputFile.html -o outputFile.html --ignore ".some-class, h3"
 
 Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
 
+##### Gulp integration
+
+You can use Typeset module inside a Gulp build with [gulp-typeset](https://github.com/lucasconstantino/gulp-typeset).
+
+
 ##### To Do
 * Add a build file
 * Make this work on the client
