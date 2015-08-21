@@ -1,14 +1,14 @@
 var eachTextNode = require('./eachTextNode');
 
-module.exports = function smallCaps (html, options) {
+module.exports = function(html, options){
 
-    html = eachTextNode(html, function(text){
+  html = eachTextNode(html, function(text){
 
-      text = text.split('fi').join('ﬁ');
-      text = text.split('fl').join('ﬂ');
+    text = text.split('fi').join('ﬁ');
+    text = text.split('fl').join('ﬂ');
 
-      return text;
-    }, options);
+    return text;
+  }, options);
 
-    return html;
+  return html;
 };

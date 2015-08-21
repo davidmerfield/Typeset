@@ -6,36 +6,36 @@ var cheerio = require('cheerio');
 
 var IGNORE = 'head, code, pre, script, style, [class^="pull-"], [class^="push-"], .small-caps';
 
-module.exports = function forEachTextNode (html, doThis, options) {
+module.exports = function(html, doThis, options){
 
-    var ignore = IGNORE;
-    var only = options.only || ':root';
+  var ignore = IGNORE;
+  var only = options.only || ':root';
 
-    if (options.ignore) ignore += ', ' + options.ignore;
+  if (options.ignore) ignore += ', ' + options.ignore;
 
-    var $ = cheerio.load(html, {decodeEntities: false});
+  var $ = cheerio.load(html, {decodeEntities: false});
 
-    $(only).each(function(){findTextNodes(this);});
+  $(only).each(function(){findTextNodes(this);});
 
-    function findTextNodes(node) {
+  function findTextNodes(node) {
 
-        if ($(node).is(ignore)) return false;
+    if ($(node).is(ignore)) return false;
 
-        $(node).contents().each(function(){
+    $(node).contents().each(function(){
 
-            var childNode = $(this)[0];
+      var childNode = $(this)[0];
 
-            // We've made it to a text node!
-            // apply the function which transforms
-            // its text content (childNode.data)
-            if (childNode.type === 'text') {
-                childNode.data = doThis(childNode.data, childNode);
-            } else {
-                findTextNodes(childNode, doThis);
-            }
-        });
+      // We've made it to a text node!
+      // apply the function which transforms
+      // its text content (childNode.data)
+      if (childNode.type === 'text') {
+        childNode.data = doThis(childNode.data, childNode);
+      } else {
+        findTextNodes(childNode, doThis);
+      }
+    });
 
-    }
+  }
 
-    return $.html();
+  return $.html();
 };

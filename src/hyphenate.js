@@ -4,14 +4,14 @@ var eachTextNode = require('./eachTextNode');
 // specified https://github.com/richtr/guessLanguage.js
 
 var Hypher = require('hypher'),
-    english = require('./hypher-patterns/en-us'),
-    h = new Hypher(english);
+  english = require('./hypher-patterns/en-us'),
+  h = new Hypher(english);
 
-module.exports = function smallCaps (html, options) {
+module.exports = function(html, options){
 
-    html = eachTextNode(html, function(text){
-        return h.hyphenateText(text);
-    }, options);
+  html = eachTextNode(html, function(text){
+    return h.hyphenateText(text);
+  }, options);
 
-    return html;
+  return html;
 };
