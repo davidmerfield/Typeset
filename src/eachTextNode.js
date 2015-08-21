@@ -7,11 +7,10 @@ var cheerio = require('cheerio');
 var IGNORE = 'head, code, pre, script, style, [class^="pull-"], [class^="push-"], .small-caps';
 
 module.exports = function(html, doThis, options){
-
   var ignore = IGNORE;
-  var only = options.only || ':root';
+  var only = (options && options.only) || ':root';
 
-  if (options.ignore) ignore += ', ' + options.ignore;
+  if (options && options.ignore) ignore += ', ' + options.ignore;
 
   var $ = cheerio.load(html, {decodeEntities: false});
 

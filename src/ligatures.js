@@ -4,8 +4,8 @@ module.exports = function(html, options){
 
   html = eachTextNode(html, function(text){
 
-    text = text.split('fi').join('ﬁ');
-    text = text.split('fl').join('ﬂ');
+    text = text.replace(/fi/g, 'ﬁ');
+    text = text.replace(/fl/g, 'ﬂ');
 
     return text;
   }, options);
