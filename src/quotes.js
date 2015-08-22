@@ -7,7 +7,7 @@ module.exports = function(text){
   text = text.replace(/&quot;/g, '"');
 
   text = text
-    .replace(/(\W|^)"(\S+)/g, '$1\u201c$2') // beginning "
+    .replace(/(\W|^)"([^\s\!\?:;\.,‽»])/g, '$1\u201c$2') // beginning "
     .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2') // ending "
     .replace(/([^0-9])"/g,'$1\u201d') // remaining " at end of word
     .replace(/(\W|^)'(\S)/g, '$1\u2018$2') // beginning '
@@ -20,9 +20,9 @@ module.exports = function(text){
     .replace(/'/g, '\u2032');
 
   // Allow escaped quotes
-  text = text.split('\\\“').join('\"');
-  text = text.split('\\\”').join('\"');
-  text = text.split('\\\’').join('\'');
-  text = text.split('\\\‘').join('\'');
+  text = text.replace(/\\“/, '\"');
+  text = text.replace(/\\”/, '\"');
+  text = text.replace(/\\’/, '\'');
+  text = text.replace(/\\‘/, '\'');
   return text;
 };
