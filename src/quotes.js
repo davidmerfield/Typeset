@@ -1,5 +1,3 @@
-var eachTextNode = require('./eachTextNode');
-
 module.exports = function(text){
   // Revert encoded chars so the regex mystery
   // below works properly

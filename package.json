@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch"
+    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch",
+    "clean": "rm -rf build/",
+    "build-dev": "./node_modules/webpack/bin/webpack.js",
+    "build-prod": "PROD=1 ./node_modules/webpack/bin/webpack.js",
+    "build": "npm run clean; npm run build-dev; npm run build-prod"
   },
   "repository": {
     "type": "git",
@@ -37,6 +41,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "html-minifier": "^0.7.2",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "webpack": "^1.11.0"
   }
 }
