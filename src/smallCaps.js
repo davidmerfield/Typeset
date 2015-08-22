@@ -1,5 +1,3 @@
-var eachTextNode = require('./eachTextNode');
-
 var Entities = require('html-entities').AllHtmlEntities;
 var entities = new Entities();
 
@@ -62,26 +60,21 @@ function removeCruft (word) {
   return [leading, word, trailing];
 }
 
-module.exports = function(html, options){
+module.exports = function(text){
 
-  html = eachTextNode(html, function(text){
+  var wordList = text.split(' ');
 
-    var wordList = text.split(' ');
+  for (var i in wordList) {
 
-    for (var i in wordList) {
+    var brokenWord = removeCruft(wordList[i]),
+    word = brokenWord[1],
+    leading = brokenWord[0],
+    trailing = brokenWord[2];
 
-      var brokenWord = removeCruft(wordList[i]),
-      word = brokenWord[1],
-      leading = brokenWord[0],
-      trailing = brokenWord[2];
-
-      if (isAcronym(word)) {
-        wordList[i] = leading + '<span class="small-caps">' + word + '</span>' + trailing;
-      }
+    if (isAcronym(word)) {
+      wordList[i] = leading + '<span class="small-caps">' + word + '</span>' + trailing;
     }
+  }
 
-    return  wordList.join(' ');
-  }, options);
-
-  return html;
+  return  wordList.join(' ');
 };

@@ -1,16 +1,13 @@
 var eachTextNode = require('./eachTextNode');
 
-module.exports = function(html, options){
+module.exports = function(text){
+  // Revert encoded chars so the regex mystery
+  // below works properly
+  text = text.replace(/&#39;/g, "'");
+  text = text.replace(/&quot;/g, '"');
 
-  html = eachTextNode(html, function(text){
-
-    // Revert encoded chars so the regex mystery
-    // below works properly
-    text = text.split('&#39;').join("'");
-    text = text.split('&quot;').join('"');
-
-    text = text
-    .replace(/(\W|^)"([^"]*)/g, '$1\u201c$2') // beginning "
+  text = text
+    .replace(/(\W|^)"(\S+)/g, '$1\u201c$2') // beginning "
     .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2') // ending "
     .replace(/([^0-9])"/g,'$1\u201d') // remaining " at end of word
     .replace(/(\W|^)'(\S)/g, '$1\u2018$2') // beginning '
@@ -22,13 +19,10 @@ module.exports = function(html, options){
     .replace(/("|'')/g, '\u2033') // double prime
     .replace(/'/g, '\u2032');
 
-    // Allow escaped quotes
-    text = text.split('\\\“').join('\"');
-    text = text.split('\\\”').join('\"');
-    text = text.split('\\\’').join('\'');
-    text = text.split('\\\‘').join('\'');
-    return text;
-  }, options);
-
-  return html;
+  // Allow escaped quotes
+  text = text.split('\\\“').join('\"');
+  text = text.split('\\\”').join('\"');
+  text = text.split('\\\’').join('\'');
+  text = text.split('\\\‘').join('\'');
+  return text;
 };

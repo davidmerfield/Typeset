@@ -25,4 +25,9 @@ describe('Quotes', function() {
     expect(quotes(html)).to.equal('<p>“Hello,”. said the “fox”.</p>');
   });
 
+  it('multiple differents kinds quotations marks', function() {
+    var html = '<p>"She\'s faster than a 120\' 4" whale." </p>';
+    expect(quotes(html)).to.equal('<p>“She’s faster than a 120′ 4″ whale.” </p>');
+  });
+
 });

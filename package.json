@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "watch": "mocha -u bdd -R spec -t 500 --recursive --watch"
+    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch"
   },
   "repository": {
     "type": "git",

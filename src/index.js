@@ -8,13 +8,15 @@ var modules = {
   spaces: require('./spaces')
 };
 
+var eachTextNode = require('./eachTextNode');
+
 module.exports = function(html, options){
 
   options = options || {};
 
   // Pass the HTML to each module
   for (var i in modules)
-    html = modules[i](html, options);
+    html = eachTextNode(html, modules[i], options);
 
   return html;
 };
