@@ -1,20 +1,22 @@
 var modules = {
-    quotes: require('./quotes'),
-    hyphenate: require('./hyphenate'),
-    ligatures: require('./ligatures'),
-    smallCaps: require('./smallCaps'),
-    punctuation: require('./punctuation'),
-    hangingPunctuation: require('./hangingPunctuation'),
-    spaces: require('./spaces')
+  quotes: require('./quotes'),
+  hyphenate: require('./hyphenate'),
+  ligatures: require('./ligatures'),
+  smallCaps: require('./smallCaps'),
+  punctuation: require('./punctuation'),
+  hangingPunctuation: require('./hangingPunctuation'),
+  spaces: require('./spaces')
 };
 
-module.exports = function typeset (html, options) {
+var eachTextNode = require('./eachTextNode');
 
-    options = options || {};
+module.exports = function(html, options){
 
-    // Pass the HTML to each module
-    for (var i in modules)
-        html = modules[i](html, options);
+  options = options || {};
 
-    return html;
+  // Pass the HTML to each module
+  for (var i in modules)
+    html = eachTextNode(html, modules[i], options);
+
+  return html;
 };
