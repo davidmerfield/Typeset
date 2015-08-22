@@ -16,6 +16,8 @@ var output = typeset(html);
 
 Then tweak [typeset.css](https://blot.im/typeset/demo/typeset.css) to match the metrics of your font and include it on your page.
 
+Typeset.js is available as a plugin for [grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
+
 ##### Options
 
 You can pass an options object to influence how your HTML is typeset:
@@ -54,11 +56,6 @@ $ typeset-js inputFile.html -o outputFile.html --ignore ".some-class, h3"
 ##### Building locally
 
 Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
-
-##### Gulp integration
-
-You can use Typeset module inside a Gulp build with [gulp-typeset](https://github.com/lucasconstantino/gulp-typeset).
-
 
 ##### To Do
 * Add a build file
