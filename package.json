@@ -1,13 +1,18 @@
 {
   "name": "typeset",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Typesetting for the web",
   "main": "src/index.js",
   "bin": {
     "typeset-js": "src/cmd.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u bdd -R spec -t 500 --recursive",
+    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch",
+    "clean": "rm -rf build/",
+    "build-dev": "./node_modules/webpack/bin/webpack.js",
+    "build-prod": "PROD=1 ./node_modules/webpack/bin/webpack.js",
+    "build": "npm run clean; npm run build-dev; npm run build-prod"
   },
   "repository": {
     "type": "git",
@@ -34,6 +39,9 @@
     "hypher": "^0.2.3"
   },
   "devDependencies": {
-    "html-minifier": "^0.7.2"
+    "chai": "^3.2.0",
+    "html-minifier": "^0.7.2",
+    "mocha": "^2.2.5",
+    "webpack": "^1.11.0"
   }
 }

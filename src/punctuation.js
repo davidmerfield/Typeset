@@ -1,26 +1,19 @@
-var eachTextNode = require('./eachTextNode');
+module.exports = function(text){
 
-module.exports = function smallCaps (html, options) {
+  // Dashes
+  text = text.replace(/--/g, '–');
+  text = text.replace(/ – /g,'&thinsp;&mdash;&thinsp;');
 
-    html = eachTextNode(html, function(text){
+  // Elipses
+  text = text.replace(/\.\.\./g,'…');
 
-      // Dashes
-      text = text.split('--').join('–');
-      text = text.split(' – ').join('&thinsp;&mdash;&thinsp;');
+  // Nbsp for punc with spaces
+  var NBSP = '&nbsp;';
+  var NBSP_PUNCTUATION_START = /([«¿¡]) /g;
+  var NBSP_PUNCTUATION_END = / ([\!\?:;\.,‽»])/g;
 
-      // Elipses
-      text = text.split('...').join('…');
+  text = text.replace(NBSP_PUNCTUATION_START, '$1' + NBSP);
+  text = text.replace(NBSP_PUNCTUATION_END, NBSP + '$1');
 
-      // Nbsp for punc with spaces
-      var NBSP = '&nbsp;';
-      var NBSP_PUNCTUATION_START = /([«¿¡]) /g;
-      var NBSP_PUNCTUATION_END = / ([\!\?:;\.,‽»])/g;
-
-      text = text.replace(NBSP_PUNCTUATION_START, '$1' + NBSP)
-                 .replace(NBSP_PUNCTUATION_END, NBSP + '$1');
-
-      return text;
-    }, options);
-
-    return html;
+  return text;
 };

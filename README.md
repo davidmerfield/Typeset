@@ -36,7 +36,7 @@ $ npm install -g typeset
 ```
 
 ```
-Usage: typeset-js <entry file> [options]
+Usage: typeset-js [options] [<infile> [<outfile>]]
 
 Options:
 
@@ -86,4 +86,3 @@ Clone this repo then fetch its dependencies using ```npm install```. You can the
 
 * [**Blot**](https://blot.im/) - a blogging platform I made, uses this to typeset blog posts
 * **You?** [Contact me](mailto:dmerfield@gmail.com) or submit a pull request to add it here!
-

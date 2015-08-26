@@ -1,5 +1,3 @@
-var eachTextNode = require('./eachTextNode');
-
 var Entities = require('html-entities').AllHtmlEntities;
 var entities = new Entities();
 
@@ -14,10 +12,10 @@ var onlyNumbers = new RegExp('^\\d+$');
 function isAcronym (word) {
 
   return word.length &&
-         word.trim().length > 1 &&
-         !(onlyNumbers.test(word.replace(/[\.,-\/#!–$%°\^&\*;?:+′|@\[\]{}=\-_`~()]/g,""))) &&
-         word.replace(/[\.,-\/#!$%\^&\*;–?:+|@\[\]{}=\-_`~(′°)]/g,"") === word &&
-         word.toUpperCase() === word;
+    word.trim().length > 1 &&
+    !(onlyNumbers.test(word.replace(/[\.,-\/#!–$%°\^&\*;?:+′|@\[\]{}=\-_`~()]/g,""))) &&
+    word.replace(/[\.,-\/#!$%\^&\*;–?:+|@\[\]{}=\-_`~(′°)]/g,"") === word &&
+    word.toUpperCase() === word;
 }
 
 function removeCruft (word) {
@@ -31,12 +29,12 @@ function removeCruft (word) {
   ignore = ignore.concat(encodedIgnore);
 
   var trailing = '',
-      leading = '';
+  leading = '';
 
   for (var i = 0; i < ignore.length; i++) {
 
     var ignoreThis = ignore[i],
-        endOfWord = word.slice(-ignoreThis.length);
+    endOfWord = word.slice(-ignoreThis.length);
 
     if (endOfWord === ignoreThis) {
       trailing = ignoreThis + trailing;
@@ -49,7 +47,7 @@ function removeCruft (word) {
   for (var j = 0; j < ignore.length; j++) {
 
     var ignoreThis = ignore[j],
-        startOfWord = word.slice(0, ignoreThis.length);
+    startOfWord = word.slice(0, ignoreThis.length);
 
     if (startOfWord === ignoreThis) {
       leading += ignoreThis;
@@ -62,26 +60,21 @@ function removeCruft (word) {
   return [leading, word, trailing];
 }
 
-module.exports = function smallCaps (html, options) {
+module.exports = function(text){
 
-    html = eachTextNode(html, function(text){
+  var wordList = text.split(' ');
 
-        var wordList = text.split(' ');
+  for (var i in wordList) {
 
-        for (var i in wordList) {
+    var brokenWord = removeCruft(wordList[i]),
+    word = brokenWord[1],
+    leading = brokenWord[0],
+    trailing = brokenWord[2];
 
-          var brokenWord = removeCruft(wordList[i]),
-              word = brokenWord[1],
-              leading = brokenWord[0],
-              trailing = brokenWord[2];
+    if (isAcronym(word)) {
+      wordList[i] = leading + '<span class="small-caps">' + word + '</span>' + trailing;
+    }
+  }
 
-          if (isAcronym(word)) {
-            wordList[i] = leading + '<span class="small-caps">' + word + '</span>' + trailing;
-          }
-        }
-
-        return  wordList.join(' ');
-    }, options);
-
-    return html;
+  return  wordList.join(' ');
 };

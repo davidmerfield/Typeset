@@ -18,8 +18,6 @@ program
 var inputFile = program.args[0] || null;
 var outputFile = program.args[1] || null;
 
-console.log(inputFile);
-
 var options = {
   ignore: program.ignore || '',
   only: program.only || '',
