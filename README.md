@@ -46,7 +46,7 @@ Options:
   -O, --only      string of CSS selector(s) to exclusively apply typeset to
 ```
 
-Example:
+Examples:
 
 Compile a file and print it to stdout:
 
@@ -54,10 +54,10 @@ Compile a file and print it to stdout:
 $ typeset-js inputFile.html
 ```
 
-To create an output file, add a second argument:
+To create an output file, just add a second argument:
 
 ```
-$ typeset-js inputFile.html outputFile.html"
+$ typeset-js inputFile.html outputFile.html
 ```
 
 Use the `--ignore` option to ignore specific CSS selectors:
