@@ -16,6 +16,8 @@ var output = typeset(html);
 
 Then tweak [typeset.css](https://blot.im/typeset/demo/typeset.css) to match the metrics of your font and include it on your page.
 
+Typeset.js is available as a plugin for [grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
+
 ##### Options
 
 You can pass an options object to influence how your HTML is typeset:
@@ -40,34 +42,48 @@ Options:
 
   -h, --help      output usage information
   -V, --version   output the version number
-  -o, --outfile   write Typeset output to this file (if unspecified, Typeset will print to stdout)
   -i, --ignore    string of CSS selector(s) to ignore
   -O, --only      string of CSS selector(s) to exclusively apply typeset to
 ```
 
 Example:
 
+Compile a file and print it to stdout:
+
 ```
-$ typeset-js inputFile.html -o outputFile.html --ignore ".some-class, h3"
+$ typeset-js inputFile.html
+```
+
+To create an output file, add a second argument:
+
+```
+$ typeset-js inputFile.html outputFile.html"
+```
+
+Use the `--ignore` option to ignore specific CSS selectors:
+
+```
+$ typeset-js inputFile.html outputFile.html --ignore ".some-class, h3"
+```
+
+CLI redirections:
+
+```
+$ cat index.html | typeset-js > outputFile.html
 ```
 
 ##### Building locally
 
 Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
 
-##### Gulp integration
-
-You can use Typeset module inside a Gulp build with [gulp-typeset](https://github.com/lucasconstantino/gulp-typeset).
-
-
 ##### To Do
 * Add a build file
 * Make this work on the client
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)?
 * Remove recursion from eachTextNode.js
-* Consolidate functions which use eachTextNode.js
 
 ##### Who uses this library
 
 * [**Blot**](https://blot.im/) - a blogging platform I made, uses this to typeset blog posts
 * **You?** [Contact me](mailto:dmerfield@gmail.com) or submit a pull request to add it here!
+
