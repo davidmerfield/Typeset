@@ -7,12 +7,15 @@
     "typeset-js": "src/cmd.js"
   },
   "scripts": {
-    "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch",
     "clean": "rm -rf build/",
-    "build-dev": "./node_modules/webpack/bin/webpack.js",
-    "build-prod": "PROD=1 ./node_modules/webpack/bin/webpack.js",
-    "build": "npm run clean; npm run build-dev; npm run build-prod"
+    "test:node": "node_modules/mocha/bin/mocha -u bdd -R spec -t 500 --recursive",
+    "test:browser": "echo not implemented yet",
+    "test": "npm run test:node && npm run test:browser",
+    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch",
+    "build:dev": "./node_modules/webpack/bin/webpack.js",
+    "build:prod": "PROD=1 ./node_modules/webpack/bin/webpack.js",
+    "prebuild": "npm run clean",
+    "build": "npm run build:dev && npm run build:prod"
   },
   "repository": {
     "type": "git",
