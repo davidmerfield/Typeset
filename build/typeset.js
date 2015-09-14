@@ -1008,10 +1008,10 @@ var typeset =
 
 	var cheerio, jquery;
 	
-	if (({"browser":true}) && (true)) {
+	if (true) {
 	  jquery = __webpack_require__(15);
 	} else {
-	  cheerio = __webpack_require__(15);
+	  cheerio = require('cheerio');
 	}
 	
 	// An easy way to apply a function to each text node
@@ -1036,13 +1036,13 @@ var typeset =
 	
 	    $(node).contents().each(function(){
 	
-	      var childNode = $(this)[0];
+	      var childNode = this;
 	
 	      // We've made it to a text node!
 	      // apply the function which transforms
 	      // its text content (childNode.data)
-	      if (childNode.type === 'text' || !childNode.type) {
-	        childNode.data = doThis(childNode.data, childNode);
+	      if (childNode.nodeType === 3) {
+	        $(childNode).replaceWith(doThis(childNode.data, childNode));
 	      } else {
 	        findTextNodes(childNode, doThis);
 	      }

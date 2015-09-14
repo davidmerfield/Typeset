@@ -1,7 +1,6 @@
-var ENV = ENV || undefined;
 var cheerio, jquery;
 
-if (ENV && ENV.browser) {
+if (typeof ENV !== 'undefined' && ENV.browser) {
   jquery = require('jquery');
 } else {
   cheerio = require('cheerio');
@@ -29,13 +28,13 @@ module.exports = function(html, doThis, options){
 
     $(node).contents().each(function(){
 
-      var childNode = $(this)[0];
+      var childNode = this;
 
       // We've made it to a text node!
       // apply the function which transforms
       // its text content (childNode.data)
-      if (childNode.type === 'text' || !childNode.type) {
-        childNode.data = doThis(childNode.data, childNode);
+      if (childNode.nodeType === 3) {
+        $(childNode).replaceWith(doThis(childNode.data, childNode));
       } else {
         findTextNodes(childNode, doThis);
       }
