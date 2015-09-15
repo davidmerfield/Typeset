@@ -1,7 +1,10 @@
-var cheerio, jquery;
+var cheerio, jquery, escape;
 
 if (typeof ENV !== 'undefined' && ENV.browser) {
   jquery = require('jquery');
+  escape = function(text) {
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
 } else {
   cheerio = require('cheerio');
 }
@@ -34,7 +37,8 @@ module.exports = function(html, doThis, options){
       // apply the function which transforms
       // its text content (childNode.data)
       if (childNode.nodeType === 3) {
-        $(childNode).replaceWith(doThis(childNode.data, childNode));
+        var text = escape ? escape(childNode.data) : childNode.data;
+        $(childNode).replaceWith(doThis(text, childNode));
       } else {
         findTextNodes(childNode, doThis);
       }

@@ -1006,10 +1006,13 @@ var typeset =
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cheerio, jquery;
+	var cheerio, jquery, escape;
 	
 	if (true) {
 	  jquery = __webpack_require__(15);
+	  escape = function(text) {
+	    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	  };
 	} else {
 	  cheerio = require('cheerio');
 	}
@@ -1042,7 +1045,8 @@ var typeset =
 	      // apply the function which transforms
 	      // its text content (childNode.data)
 	      if (childNode.nodeType === 3) {
-	        $(childNode).replaceWith(doThis(childNode.data, childNode));
+	        var text = escape ? escape(childNode.data) : childNode.data;
+	        $(childNode).replaceWith(doThis(text, childNode));
 	      } else {
 	        findTextNodes(childNode, doThis);
 	      }
