@@ -29,6 +29,26 @@ var options = {
 };
 ```
 
+##### Browser version
+
+If jQuery is available, `typeset(obj)` will modify and return `$(obj)`. In other
+words, you may pass a string of HTML, a DOM element or a jQuery object.
+
+If jQuery isn’t available, you should pass a DOM element, which will be modified
+and returned.
+
+The `only` options is not available in the browser. If you’re using jQuery,
+simply pass do `typeset($(only))` instead. Otherwise get a list of nodes any way
+you feel like and call `typeset(element)` for each element in that list.
+
+Regarding the `ignore` option: With jQuery it works just the same as in Node.js.
+Otherwise it requires the [`.matches(selector)`][matches] method. Polyfill it if
+needed. You may also pass a function instead of a string of CSS selectors. It
+receives the node to test, as well as the default `ignore` CSS selector string.
+Return `true` if the node should be ignored, and `false` otherwise.
+
+[matches]: https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+
 ##### CLI Usage
 
 ```
