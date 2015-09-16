@@ -36,21 +36,40 @@ $ npm install -g typeset
 ```
 
 ```
-Usage: typeset-js <entry file> [options]
+Usage: typeset-js [options] [<infile> [<outfile>]]
 
 Options:
 
   -h, --help      output usage information
   -V, --version   output the version number
-  -o, --outfile   write Typeset output to this file (if unspecified, Typeset will print to stdout)
   -i, --ignore    string of CSS selector(s) to ignore
   -O, --only      string of CSS selector(s) to exclusively apply typeset to
 ```
 
-Example:
+Examples:
+
+Compile a file and print it to stdout:
 
 ```
-$ typeset-js inputFile.html -o outputFile.html --ignore ".some-class, h3"
+$ typeset-js inputFile.html
+```
+
+To create an output file, just add a second argument:
+
+```
+$ typeset-js inputFile.html outputFile.html
+```
+
+Use the `--ignore` option to ignore specific CSS selectors:
+
+```
+$ typeset-js inputFile.html outputFile.html --ignore ".some-class, h3"
+```
+
+CLI redirections:
+
+```
+$ cat index.html | typeset-js > outputFile.html
 ```
 
 ##### Building locally

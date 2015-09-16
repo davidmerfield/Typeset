@@ -6,11 +6,8 @@ var typeset = require('./index.js');
 // CLI
 program
   .version(require('../package.json').version)
-  .usage('<entry file> [options]')
+  .usage('[options] [<infile> [<outfile>]]')
   .option(
-    '-o, --outfile <output file>',
-    'write Typeset output to this file (if unspecified, Typeset will print to stdout)'
-  ).option(
     '-i, --ignore <string containing selectors to ignore>',
     'string of CSS selector(s) to ignore'
   ).option(
@@ -18,34 +15,45 @@ program
     'string of CSS selector(s) to exclusively apply typeset to'
   ).parse(process.argv);
 
-if (program.args.length == 0) {
-  // display help and exit
-  program.help();
-}
-
-var inputFile = program.args[0];
-var outputFile = program.outfile || false;
+var inputFile = program.args[0] || null;
+var outputFile = program.args[1] || null;
 
 var options = {
   ignore: program.ignore || '',
   only: program.only || '',
 };
 
-fs.readFile(inputFile, function(err, data) {
+if (inputFile) {
+  fs.readFile(inputFile, function(err, data) {
 
-  if (err) throw err;
+    if (err) throw err;
 
-  var outputHTML = typeset(data, options);
+    var outputHTML = typeset(data, options);
 
-  if (outputFile) {
+    if (outputFile) {
 
-    fs.writeFile(outputFile, outputHTML, function(err) {
-      if (err) throw err;
-    });
+      fs.writeFile(outputFile, outputHTML, function(err) {
+        if (err) throw err;
+        process.exit(0);
+      });
 
-  } else {
-    // print output to stdout by default
-    console.log(outputHTML);
-  }
+    } else {
+      // print output to stdout by default
+      console.log(outputHTML);
+      process.exit(0);
+    }
 
+  });
+}
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+// Process input from stdin
+process.stdin.on('data', function(data) {
+  process.stdout.write(typeset(data, options));
+});
+
+process.stdin.on('end', function(data) {
+  process.exit(0);
 });
