@@ -72,6 +72,10 @@ CLI redirections:
 $ cat index.html | typeset-js > outputFile.html
 ```
 
+##### License
+
+This software is dedicated to the public domain and licensed under [CC0](https://github.com/davidmerfield/Typeset/blob/master/LICENSE).
+
 ##### Building locally
 
 Clone this repo then fetch its dependencies using ```npm install```. You can then edit the code in ```/src```.
