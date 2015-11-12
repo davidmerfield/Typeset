@@ -12,20 +12,12 @@ var banner = [
 
 var devPlugins = [
   new webpack.BannerPlugin(banner),
-  new webpack.DefinePlugin({
-    'ENV': {
-      browser: true
-    }
-  })
+  new webpack.DefinePlugin({ 'IS_BROWSER': true })
 ];
 
 var prodPlugins = [
   new webpack.BannerPlugin(banner),
-  new webpack.DefinePlugin({
-    'ENV': {
-      browser: true
-    }
-  }),
+  new webpack.DefinePlugin({ 'IS_BROWSER': true }),
   new webpack.optimize.UglifyJsPlugin({minimize: true})
 ]
 
@@ -41,8 +33,7 @@ module.exports = {
     filename: PROD ? "typeset.min.js" : 'typeset.js'
   },
   externals: {
-    cheerio: 'jQuery', //TODO I think there should be another way to avoid require cheerio
-    jquery: 'jQuery'
+    'cheerio': 'window.jQuery' // require jQuery instead of cheerio
   },
   plugins: PROD && prodPlugins || devPlugins
 }

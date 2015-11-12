@@ -1,10 +1,11 @@
-var ENV = ENV || undefined;
-var cheerio, jquery;
+var $ = require('cheerio');
 
-if (ENV && ENV.browser) {
-  jquery = require('jquery');
-} else {
-  cheerio = require('cheerio');
+function isBrowser() {
+  try {
+    return IS_BROWSER === true;
+  } catch(e) {
+    return false;
+  }
 }
 
 // An easy way to apply a function to each text node
@@ -14,34 +15,50 @@ if (ENV && ENV.browser) {
 var IGNORE = 'head, code, pre, script, style, [class^="pull-"], [class^="push-"], .small-caps';
 
 module.exports = function(html, doThis, options){
+  var $processedText;
   var ignore = IGNORE;
-  var only = (jquery && html) || (options && options.only) || ':root';
+  var only = (isBrowser() && html) || (options && options.only) || ':root';
 
   if (options && options.ignore) ignore += ', ' + options.ignore;
 
-  var $ = jquery || cheerio.load(html, {decodeEntities: false});
+  $ = (isBrowser() && $) || $.load(html, {decodeEntities: false});
 
-  var processedText = $(only).each(function(){findTextNodes(this);});
+
+  var TEXT_NODE = (isBrowser() && window.Node.TEXT_NODE) || 3;
 
   function findTextNodes(node) {
-
-    if ($(node).is(ignore)) return false;
-
-    $(node).contents().each(function(){
-
-      var childNode = $(this)[0];
-
-      // We've made it to a text node!
-      // apply the function which transforms
-      // its text content (childNode.data)
-      if (childNode.type === 'text' || !childNode.type) {
-        childNode.data = doThis(childNode.data, childNode);
-      } else {
-        findTextNodes(childNode, doThis);
-      }
-    });
-
+    return $(node)
+      .contents()
+      .filter(function(){
+        return !$(this).is(ignore);
+      })
+      .each(function(){
+        // We've made it to a text node!
+        // apply the function which transforms
+        // its text content (childNode.data)
+        if (this.nodeType === TEXT_NODE) {
+          this.data = doThis(this.data);
+        } else {
+          findTextNodes(this);
+        }
+      });
   }
 
-  return (jquery && processedText[0]) || $.html();
+  $processedText = $(only).each(function(){ return findTextNodes(this);});
+
+  function getProcessedText() {
+    function decodeEntities(str) {
+      return String(str).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot/g, '"');
+    }
+
+    var text = '';
+
+    $processedText.each(function () {
+      text += this.outerHTML;
+    });
+
+    return decodeEntities(text);
+  }
+
+  return isBrowser() ? getProcessedText() : $.html();
 };
