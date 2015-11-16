@@ -1008,10 +1008,52 @@ var typeset =
 
 	var cheerio, jquery;
 	
-	if (({"browser":true}) && (true)) {
-	  jquery = __webpack_require__(15);
+	if (true) {
+	  jquery = window.jQuery;
 	} else {
-	  cheerio = __webpack_require__(15);
+	  cheerio = require('cheerio');
+	}
+	
+	var eachChildNode, replaceNode, defaultFilter;
+	
+	if (cheerio || jquery) {
+	  eachChildNode = function(node, fn, $) {
+	    $(node).contents().each(function() { fn(this); });
+	  };
+	  replaceNode = function(parentNode, node, html, $) {
+	    $(node).replaceWith(html);
+	  };
+	  defaultFilter = function(node, selector, $) {
+	    return $(node).is(selector);
+	  };
+	} else {
+	  eachChildNode = function(node, fn) {
+	    node.normalize();
+	    var i = node.childNodes.length - 1;
+	    while (i >= 0) {
+	      fn(node.childNodes[i]);
+	      i--;
+	    }
+	  };
+	  replaceNode = function(parentNode, node, html) {
+	    var prevNode = node.previousSibling;
+	    if (prevNode) {
+	      prevNode.insertAdjacentHTML('afterend', html);
+	    } else {
+	      parentNode.insertAdjacentHTML('afterbegin', html);
+	    }
+	    parentNode.removeChild(node);
+	  };
+	  defaultFilter = function(node, selector) {
+	    return node.matches(selector);
+	  };
+	}
+	
+	function escape(text) {
+	  return text
+	    .replace(/&/g, '&amp;')
+	    .replace(/</g, '&lt;')
+	    .replace(/>/g, '&gt;');
 	}
 	
 	// An easy way to apply a function to each text node
@@ -1020,45 +1062,51 @@ var typeset =
 	
 	var IGNORE = 'head, code, pre, script, style, [class^="pull-"], [class^="push-"], .small-caps';
 	
-	module.exports = function(html, doThis, options){
+	module.exports = function(obj, doThis, options) {
 	  var ignore = IGNORE;
-	  var only = (jquery && html) || (options && options.only) || ':root';
+	  var filter = defaultFilter;
+	  if (options.ignore) {
+	    if (typeof options.ignore === 'string') {
+	      ignore += ', ' + options.ignore;
+	    } else {
+	      filter = options.ignore;
+	    }
+	  }
 	
-	  if (options && options.ignore) ignore += ', ' + options.ignore;
+	  var nodes, $;
+	  if (cheerio) {
+	    $ = cheerio.load(obj, {decodeEntities: false});
+	    nodes = $(options.only || ':root');
+	  } else if (jquery) {
+	    $ = jquery;
+	    nodes = $(obj);
+	  } else {
+	    nodes = [obj];
+	  }
 	
-	  var $ = jquery || cheerio.load(html, {decodeEntities: false});
+	  for (var i = 0; i < nodes.length; i++) {
+	    walkTextNodes(nodes[i]);
+	  }
 	
-	  var processedText = $(only).each(function(){findTextNodes(this);});
+	  return cheerio ? $.html() : jquery ? nodes : nodes[0];
 	
-	  function findTextNodes(node) {
+	  function walkTextNodes(node) {
+	    if (filter(node, ignore, $)) return false;
 	
-	    if ($(node).is(ignore)) return false;
-	
-	    $(node).contents().each(function(){
-	
-	      var childNode = $(this)[0];
-	
+	    eachChildNode(node, function(childNode){
 	      // We've made it to a text node!
 	      // apply the function which transforms
 	      // its text content (childNode.data)
-	      if (childNode.type === 'text' || !childNode.type) {
-	        childNode.data = doThis(childNode.data, childNode);
+	      if (childNode.nodeType === 3) {
+	        var text = cheerio ? childNode.data : escape(childNode.data);
+	        replaceNode(node, childNode, doThis(text, childNode), $);
 	      } else {
-	        findTextNodes(childNode, doThis);
+	        walkTextNodes(childNode, doThis);
 	      }
-	    });
-	
+	    }, $);
 	  }
-	
-	  return (jquery && processedText[0]) || $.html();
 	};
 
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	module.exports = jQuery;
 
 /***/ }
 /******/ ]);
