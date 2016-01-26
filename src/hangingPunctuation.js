@@ -25,7 +25,7 @@ var diacriticMap = {
 
 var alignMe = "CcOoYTAVvWw".split('');
 
-module.exports = function(text){
+module.exports = function(text, node, $){
 
   if (text.length < 2) return text;
 
@@ -41,11 +41,17 @@ module.exports = function(text){
       var letter = words[i].slice(0,align.length);
 
       if (letter === align || diacriticMap[align] && diacriticMap[align].test(letter)) {
-        words[i] = pull(align, letter) + words[i].slice(align.length);
+
+        var insert = pull(align, letter);
 
         if (words[(i-1)]) {
           words[(i-1)] = words[(i-1)] + push(align);
+        } else if (hasAdjacentText($, node)) {
+          insert = push('double') + insert;
         }
+
+        words[i] = insert + words[i].slice(align.length);
+
       }
     }
 
@@ -55,11 +61,16 @@ module.exports = function(text){
 
       if (words[i].slice(0,punctuation.length) === punctuation) {
 
-        words[i] = pull('single', punctuation) + words[i].slice(punctuation.length);
+        var insert = pull('single', punctuation);
 
         if (words[(i-1)]) {
           words[(i-1)] = words[(i-1)] + push('single');
+        } else if (hasAdjacentText($, node)) {
+          insert = push('single') + insert;
         }
+
+        words[i] = insert + words[i].slice(punctuation.length);
+
       }
     }
 
@@ -69,11 +80,15 @@ module.exports = function(text){
 
       if (words[i].slice(0,punctuation.length) === punctuation) {
 
-        words[i] = pull('double', punctuation) + words[i].slice(punctuation.length);
+        var insert = pull('double', punctuation);
 
         if (words[(i-1)]) {
           words[(i-1)] = words[(i-1)] + push('double');
+        } else if (hasAdjacentText($, node)) {
+          insert = push('double') + insert;
         }
+
+        words[i] = insert + words[i].slice(punctuation.length);
       }
     }
   }
@@ -82,3 +97,36 @@ module.exports = function(text){
 
   return text;
 };
+
+
+function hasAdjacentText ($, node) {
+
+  // the nearest sibling to this text node
+  // you can have two adjacent text nodes
+  // since they'd jsut be one node.
+
+  // however, the previous sibling could end with a text node
+  // if so, we need to add the spacer to prevent overlap
+  if (node.prev && node.prev.children && node.prev.children.length) {
+
+    var lastChild = node.prev.children.slice(-1)[0];
+
+    if (lastChild && lastChild.type === 'text') {
+      return true;
+    }
+  }
+
+  if (!$(node).parent() || !$(node).parent().length)
+    return false;
+
+  var parentPrev = $(node).parent()[0].prev;
+
+  // Ensure the parent has text content
+  // and is not simply a newline seperating tags
+  if (parentPrev && parentPrev.type === 'text' && parentPrev.data.trim()) {
+    return true;
+  }
+
+  return false;
+
+}
