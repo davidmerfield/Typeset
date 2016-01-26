@@ -16,6 +16,7 @@ if (typeof ENV !== 'undefined' && ENV.browser) {
 var IGNORE = 'head, code, pre, script, style, [class^="pull-"], [class^="push-"], .small-caps';
 
 module.exports = function(html, doThis, options){
+
   var ignore = IGNORE;
   var only = (jquery && html) || (options && options.only) || ':root';
 
@@ -33,17 +34,16 @@ module.exports = function(html, doThis, options){
 
       var childNode = this;
 
-      // We've made it to a text node!
-      // apply the function which transforms
-      // its text content (childNode.data)
       if (childNode.nodeType === 3) {
+
         var text = escape ? escape(childNode.data) : childNode.data;
-        $(childNode).replaceWith(doThis(text, childNode));
+
+        $(childNode).replaceWith(doThis(text, childNode, $));
+
       } else {
-        findTextNodes(childNode, doThis);
+        findTextNodes(childNode);
       }
     });
-
   }
 
   return (jquery && processedText[0]) || $.html();
