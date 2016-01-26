@@ -11,3 +11,5 @@ build
 *.ttf
 *.woff
 *.woff2
+
+tests/*
