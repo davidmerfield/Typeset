@@ -25,9 +25,22 @@ You can pass an options object to influence how your HTML is typeset:
 ```javascript
 var options = {
   ignore: '.skip, #anything, .which-matches', // string of a CSS selector to skip
-  only: '#only-typeset, .these-elements'    // string of a CSS selector to only apply typeset
+  only: '#only-typeset, .these-elements'    // string of a CSS selector to only apply typeset,
+  disable: ['hyphenate'], // array of features to disable
 };
 ```
+
+##### Disableable features
+
+The following features may be disabled:
+
+- `quotes`
+- `hyphenate`
+- `ligatures`
+- `smallCaps`
+- `punctuation`
+- `hangingPunctuation`
+- `spaces`
 
 ##### CLI Usage
 
@@ -44,6 +57,7 @@ Options:
   -V, --version   output the version number
   -i, --ignore    string of CSS selector(s) to ignore
   -O, --only      string of CSS selector(s) to exclusively apply typeset to
+  --disable,      string of typeset feature(s) to disable, separated by commas
 ```
 
 Examples:
@@ -64,6 +78,12 @@ Use the `--ignore` option to ignore specific CSS selectors:
 
 ```
 $ typeset-js inputFile.html outputFile.html --ignore ".some-class, h3"
+```
+
+Use the `--disable` option to disable typeset features:
+
+```
+$ typeset-js inputFile.html outputFile.html --disable "hyphenate,ligatures"
 ```
 
 CLI redirections:

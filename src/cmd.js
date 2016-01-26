@@ -3,6 +3,11 @@ var fs = require('fs');
 var program = require('commander');
 var typeset = require('./index.js');
 
+// Convert comma-separated string into an array of strings
+function list(val) {
+  return val.split(',').map(function(s) { return s.trim(); });
+}
+
 // CLI
 program
   .version(require('../package.json').version)
@@ -13,6 +18,10 @@ program
   ).option(
     '-O, --only <string containing selectors to parse>',
     'string of CSS selector(s) to exclusively apply typeset to'
+  ).option(
+    '--disable <list of typeset feature(s) to disable>',
+    'string of typeset feature(s) to disable, separated by commas',
+    list
   ).parse(process.argv);
 
 var inputFile = program.args[0] || null;
@@ -21,6 +30,7 @@ var outputFile = program.args[1] || null;
 var options = {
   ignore: program.ignore || '',
   only: program.only || '',
+  disable: program.disable || [],
 };
 
 if (inputFile) {
