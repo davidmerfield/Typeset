@@ -1,8 +1,10 @@
-var ENV = ENV || undefined;
-var cheerio, jquery;
+var cheerio, jquery, escape;
 
-if (ENV && ENV.browser) {
+if (typeof ENV !== 'undefined' && ENV.browser) {
   jquery = require('jquery');
+  escape = function(text) {
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
 } else {
   cheerio = require('cheerio');
 }
@@ -29,13 +31,14 @@ module.exports = function(html, doThis, options){
 
     $(node).contents().each(function(){
 
-      var childNode = $(this)[0];
+      var childNode = this;
 
       // We've made it to a text node!
       // apply the function which transforms
       // its text content (childNode.data)
-      if (childNode.type === 'text' || !childNode.type) {
-        childNode.data = doThis(childNode.data, childNode);
+      if (childNode.nodeType === 3) {
+        var text = escape ? escape(childNode.data) : childNode.data;
+        $(childNode).replaceWith(doThis(text, childNode));
       } else {
         findTextNodes(childNode, doThis);
       }
