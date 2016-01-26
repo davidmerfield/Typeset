@@ -6,5 +6,18 @@ var Hypher = require('hypher'),
   h = new Hypher(english);
 
 module.exports = function(text){
-    return h.hyphenateText(text);
+
+  var words = text.split(' ');
+
+  for (var i in words) {
+
+    var word = words[i];
+
+    if (word.slice(0, 1).toUpperCase() === word.slice(0, 1))
+      continue;
+
+    words[i] = h.hyphenateText(word);
+  }
+
+  return words.join(' ');
 };
