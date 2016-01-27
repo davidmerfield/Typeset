@@ -1,4 +1,8 @@
-var quotes = require('../src/quotes');
+var typeset = require('../src');
+
+function quotes (html) {
+  return typeset(html, {enable: ['quotes']})
+};
 
 var expect = require('chai').expect;
 
