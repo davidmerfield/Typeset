@@ -41,6 +41,7 @@ module.exports = function(html, doThis, options){
         text = text.replace(/&#39;/g, "'");
         text = text.replace(/&quot;/g, '"');
 
+        childNode.data = text;
 
         $(childNode).replaceWith(doThis(text, childNode, $));
 
