@@ -1,4 +1,8 @@
-var spaces = require('../src/spaces');
+var typeset = require('../src');
+
+function spaces (html) {
+  return typeset(html, {enable: ['spaces']});
+};
 
 var expect = require('chai').expect;
 

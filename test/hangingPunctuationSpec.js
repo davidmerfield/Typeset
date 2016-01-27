@@ -13,18 +13,27 @@ describe('Hanging Punctuation', function() {
     expect(hang(html)).to.equal('<p>En un lugar de la mancha</p>');
   });
 
-
-  it('should hang punctuation', function() {
+  it('should hang punctuation in middle.', function() {
     var html = '<p>Hello, "Mr" Fox.</p>';
     expect(hang(html)).to.equal('<p>Hello,<span class="push-double"></span> <span class="pull-double">"</span>Mr" Fox.</p>');
   });
 
-  it('should add a spacer', function(){
+  it('should hang punctuation at start.', function() {
+    var html = '<p>"Hello, Mr Fox."</p>';
+    expect(hang(html)).to.equal('<p><span class="pull-double">"</span>Hello, Mr Fox."</p>');
+  });
+
+  it('should add a spacer when wrapping a node containing a text node', function(){
     var html = '<p>X "<em>O</em>" X</p>';
     expect(hang(html)).to.equal('<p>X<span class="push-double"></span> <span class="pull-double">"</span><em>O</em><span class="push-double"></span><span class="pull-double">"</span> X</p>');
   });
 
-  it('should add a spacer', function(){
+  it('should hang single punction at start.', function() {
+    var html = '<p>\'Hello, Mr Fox.\'</p>';
+    expect(hang(html)).to.equal('<p><span class="pull-single">\'</span>Hello, Mr Fox.\'</p>');
+  });
+
+  it('should add a spacer when inside a node next to a text node', function(){
     var html = '<p>X <em>"O"</em> X</p>';
     expect(hang(html)).to.equal('<p>X <em><span class="push-double"></span><span class="pull-double">"</span>O"</em> X</p>');
   });
@@ -34,7 +43,6 @@ describe('Hanging Punctuation', function() {
                '<p>"Hello Fox."</p>';
     expect(hang(html)).to.equal('<p><span class="pull-A">A</span>BC</p>\n'+
                                 '<p><span class="pull-double">"</span>Hello Fox."</p>');
-
-  })
+  });
 
 });
