@@ -3,6 +3,9 @@ module.exports = function(text, node, $){
   // This helps resolve substitution issues
   // when a next node is adjacent to another text node,
   // e.g. a link tag or emphasis tag.
+
+  // this only works if replace does not modify the length
+  // of the string it is passed. therefore the
   if ($(node).parent().is('p, blockquote') && $(node).parent().text() !== text) {
 
     var parentText = replace($(node).parent().text());
@@ -21,12 +24,10 @@ module.exports = function(text, node, $){
   return replace(text);
 };
 
-function replace(text) {
+function replace (text) {
 
   // Revert encoded chars so the regex mystery
   // below works properly
-  text = text.replace(/&#39;/g, "'");
-  text = text.replace(/&quot;/g, '"');
 
   text = text
     .replace(/(\W|^)"([^\s\!\?:;\.,‽»])/g, '$1\u201c$2') // beginning "
