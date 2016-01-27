@@ -38,6 +38,10 @@ module.exports = function(html, doThis, options){
 
         var text = escape ? escape(childNode.data) : childNode.data;
 
+        text = text.replace(/&#39;/g, "'");
+        text = text.replace(/&quot;/g, '"');
+
+
         $(childNode).replaceWith(doThis(text, childNode, $));
 
       } else {
