@@ -47,7 +47,7 @@ module.exports = function(text, node, $){
         if (words[(i-1)]) {
           words[(i-1)] = words[(i-1)] + push(align);
         } else if (hasAdjacentText($, node)) {
-          insert = push('double') + insert;
+          insert = push(align) + insert;
         }
 
         words[i] = insert + words[i].slice(align.length);
