@@ -1,4 +1,28 @@
-module.exports = function(text){
+module.exports = function(text, node, $){
+
+  // This helps resolve substitution issues
+  // when a next node is adjacent to another text node,
+  // e.g. a link tag or emphasis tag.
+  if ($(node).parent().is('p, blockquote') && $(node).parent().text() !== text) {
+
+    var parentText = replace($(node).parent().text());
+    var start = 0;
+
+    $(node).parent().contents().each(function(){
+
+      if (this === node) return false;
+
+      start += $(this).text().length;
+    });
+
+    return parentText.slice(start, start + text.length);
+  }
+
+  return replace(text);
+};
+
+function replace(text) {
+
   // Revert encoded chars so the regex mystery
   // below works properly
   text = text.replace(/&#39;/g, "'");
@@ -22,5 +46,6 @@ module.exports = function(text){
   text = text.replace(/\\”/, '\"');
   text = text.replace(/\\’/, '\'');
   text = text.replace(/\\‘/, '\'');
+
   return text;
-};
+}
