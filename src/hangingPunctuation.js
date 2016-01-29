@@ -33,27 +33,27 @@ module.exports = function(text, node, $){
   // array of distinct words.
   var words = text.split(' ').join(' ').split(' ');
 
-  for (var i in words) {
+  // for (var i in words) {
 
-    for (var a in alignMe) {
+  //   for (var a in alignMe) {
 
-      var align = alignMe[a];
-      var letter = words[i].slice(0,align.length);
+  //     var align = alignMe[a];
+  //     var letter = words[i].slice(0,align.length);
 
-      if (letter === align || diacriticMap[align] && diacriticMap[align].test(letter)) {
+  //     if (letter === align || diacriticMap[align] && diacriticMap[align].test(letter)) {
 
-        var insert = pull(align, letter);
+  //       var insert = pull(align, letter);
 
-        if (words[(i-1)]) {
-          words[(i-1)] = words[(i-1)] + push(align);
-        } else if (hasAdjacentText($, node)) {
-          insert = push(align) + insert;
-        }
+  //       if (words[(i-1)]) {
+  //         words[(i-1)] = words[(i-1)] + push(align);
+  //       } else if (hasAdjacentText($, node)) {
+  //         insert = push(align) + insert;
+  //       }
 
-        words[i] = insert + words[i].slice(align.length);
+  //       words[i] = insert + words[i].slice(align.length);
 
-      }
-    }
+  //     }
+  //   }
 
     for (var b in singleWidth) {
 
