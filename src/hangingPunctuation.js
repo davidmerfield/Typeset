@@ -35,6 +35,11 @@ module.exports = function(text, node, $){
 
   for (var i in words) {
 
+    // This is the code to do
+    // optical margin alignment.
+
+    // It's disabled for now due to accessibility issues.
+
     // for (var a in alignMe) {
 
     //   var align = alignMe[a];

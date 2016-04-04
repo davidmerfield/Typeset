@@ -41,7 +41,7 @@ describe('Hanging Punctuation', function() {
   it('should hang punctuation with two p', function(){
     var html = '<p>ABC</p>\n' +
                '<p>"Hello Fox."</p>';
-    expect(hang(html)).to.equal('<p><span class="pull-A">A</span>BC</p>\n'+
+    expect(hang(html)).to.equal('<p>ABC</p>\n'+
                                 '<p><span class="pull-double">"</span>Hello Fox."</p>');
   });
 

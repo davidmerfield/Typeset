@@ -44,4 +44,8 @@ describe('Quotes', function() {
     expect(quotes(html)).to.equal('<p>“She’s faster than a 120′ 4″ whale.” </p>');
   });
 
+  it('nodes', function(){
+
+
+  })
 });
