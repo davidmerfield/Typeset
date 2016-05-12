@@ -9,7 +9,7 @@ module.exports = function(text){
 
   var words = text.split(' ');
 
-  for (var i in words) {
+  for (var i = 0; i < words.length; i++) {
 
     var word = words[i];
 

@@ -1,6 +1,6 @@
 /*!
  * typeset - Typesetting for the web
- * @version v0.1.6
+ * @version v0.2.2
  * @link https://github.com/davidmerfield/Typeset.js
  * @author David Merfield
  * @license MIT
@@ -68,23 +68,57 @@ var typeset =
 	
 	  options = options || {};
 	
-	  // Pass the HTML to each module
-	  for (var i in modules)
+	  for (var i in modules) {
+	
+	    // Check against enable list
+	    if (options.enable && options.enable.indexOf(i) === -1)
+	      continue;
+	
+	    // Check against disable list
+	    if (options.disable && options.disable.indexOf(i) !== -1)
+	      continue;
+	
+	    // Pass the HTML to each module
 	    html = eachTextNode(html, modules[i], options);
+	  }
 	
 	  return html;
 	};
-
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = function(text){
+	module.exports = function(text, node, $){
+	
+	  // This helps resolve substitution issues
+	  // when a next node is adjacent to another text node,
+	  // e.g. a link tag or emphasis tag.
+	
+	  // this only works if replace does not modify the length
+	  // of the string it is passed. therefore the
+	  if ($(node).parent().is('p, blockquote') && $(node).parent().text() !== text) {
+	
+	    var parentText = replace($(node).parent().text());
+	    var start = 0;
+	
+	    $(node).parent().contents().each(function(){
+	
+	      if (this === node) return false;
+	
+	      start += $(this).text().length;
+	    });
+	
+	    return parentText.slice(start, start + text.length);
+	  }
+	
+	  return replace(text);
+	};
+	
+	function replace (text) {
+	
 	  // Revert encoded chars so the regex mystery
 	  // below works properly
-	  text = text.replace(/&#39;/g, "'");
-	  text = text.replace(/&quot;/g, '"');
 	
 	  text = text
 	    .replace(/(\W|^)"([^\s\!\?:;\.,‽»])/g, '$1\u201c$2') // beginning "
@@ -104,9 +138,9 @@ var typeset =
 	  text = text.replace(/\\”/, '\"');
 	  text = text.replace(/\\’/, '\'');
 	  text = text.replace(/\\‘/, '\'');
+	
 	  return text;
-	};
-
+	}
 
 /***/ },
 /* 2 */
@@ -120,7 +154,20 @@ var typeset =
 	  h = new Hypher(english);
 	
 	module.exports = function(text){
-	    return h.hyphenateText(text);
+	
+	  var words = text.split(' ');
+	
+	  for (var i = 0; i < words.length; i++) {
+	
+	    var word = words[i];
+	
+	    if (word.slice(0, 1).toUpperCase() === word.slice(0, 1))
+	      continue;
+	
+	    words[i] = h.hyphenateText(word);
+	  }
+	
+	  return words.join(' ');
 	};
 
 
@@ -234,7 +281,7 @@ var typeset =
 	    // any special cases for those characters. Unfortunately
 	    // it does not support unicode word boundaries, so
 	    // we implement it manually.
-	    var words = str.split(/([a-zA-Z0-9_\u0027\u00DF-\u00EA\u00EC-\u00EF\u00F1-\u00F6\u00F8-\u00FD\u0101\u0103\u0105\u0107\u0109\u010D\u010F\u0111\u0113\u0117\u0119\u011B\u011D\u011F\u0123\u0125\u012B\u012F\u0131\u0135\u0137\u013C\u013E\u0142\u0144\u0146\u0148\u0151\u0153\u0155\u0159\u015B\u015D\u015F\u0161\u0165\u016B\u016D\u016F\u0171\u0173\u017A\u017C\u017E\u017F\u0219\u021B\u02BC\u0390\u03AC-\u03CE\u03F2\u0401\u0410-\u044F\u0451\u0454\u0456\u0457\u045E\u0491\u0531-\u0556\u0561-\u0587\u0902\u0903\u0905-\u090B\u090E-\u0910\u0912\u0914-\u0928\u092A-\u0939\u093E-\u0943\u0946-\u0948\u094A-\u094D\u0982\u0983\u0985-\u098B\u098F\u0990\u0994-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BE-\u09C3\u09C7\u09C8\u09CB-\u09CD\u09D7\u0A02\u0A03\u0A05-\u0A0A\u0A0F\u0A10\u0A14-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A82\u0A83\u0A85-\u0A8B\u0A8F\u0A90\u0A94-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABE-\u0AC3\u0AC7\u0AC8\u0ACB-\u0ACD\u0B02\u0B03\u0B05-\u0B0B\u0B0F\u0B10\u0B14-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3E-\u0B43\u0B47\u0B48\u0B4B-\u0B4D\u0B57\u0B82\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB5\u0BB7-\u0BB9\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C02\u0C03\u0C05-\u0C0B\u0C0E-\u0C10\u0C12\u0C14-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3E-\u0C43\u0C46-\u0C48\u0C4A-\u0C4D\u0C82\u0C83\u0C85-\u0C8B\u0C8E-\u0C90\u0C92\u0C94-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBE-\u0CC3\u0CC6-\u0CC8\u0CCA-\u0CCD\u0D02\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D28\u0D2A-\u0D39\u0D3E-\u0D43\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D60\u0D61\u0D7A-\u0D7F\u1F00-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97\u1FA0-\u1FA7\u1FB2-\u1FB4\u1FB6\u1FB7\u1FBD\u1FBF\u1FC2-\u1FC4\u1FC6\u1FC7\u1FD2\u1FD3\u1FD6\u1FD7\u1FE2-\u1FE7\u1FF2-\u1FF4\u1FF6\u1FF7\u200D\u2019]+)/g);
+	    var words = str.split(/([a-zA-Z0-9_\u0027\u00DF-\u00EA\u00EB\u00EC-\u00EF\u00F1-\u00F6\u00F8-\u00FD\u0101\u0103\u0105\u0107\u0109\u010D\u010F\u0111\u0113\u0117\u0119\u011B\u011D\u011F\u0123\u0125\u012B\u012F\u0131\u0135\u0137\u013C\u013E\u0142\u0144\u0146\u0148\u0151\u0153\u0155\u0159\u015B\u015D\u015F\u0161\u0165\u016B\u016D\u016F\u0171\u0173\u017A\u017C\u017E\u017F\u0219\u021B\u02BC\u0390\u03AC-\u03CE\u03F2\u0401\u0410-\u044F\u0451\u0454\u0456\u0457\u045E\u0491\u0531-\u0556\u0561-\u0587\u0902\u0903\u0905-\u090B\u090E-\u0910\u0912\u0914-\u0928\u092A-\u0939\u093E-\u0943\u0946-\u0948\u094A-\u094D\u0982\u0983\u0985-\u098B\u098F\u0990\u0994-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BE-\u09C3\u09C7\u09C8\u09CB-\u09CD\u09D7\u0A02\u0A03\u0A05-\u0A0A\u0A0F\u0A10\u0A14-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A82\u0A83\u0A85-\u0A8B\u0A8F\u0A90\u0A94-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABE-\u0AC3\u0AC7\u0AC8\u0ACB-\u0ACD\u0B02\u0B03\u0B05-\u0B0B\u0B0F\u0B10\u0B14-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3E-\u0B43\u0B47\u0B48\u0B4B-\u0B4D\u0B57\u0B82\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB5\u0BB7-\u0BB9\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C02\u0C03\u0C05-\u0C0B\u0C0E-\u0C10\u0C12\u0C14-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3E-\u0C43\u0C46-\u0C48\u0C4A-\u0C4D\u0C82\u0C83\u0C85-\u0C8B\u0C8E-\u0C90\u0C92\u0C94-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBE-\u0CC3\u0CC6-\u0CC8\u0CCA-\u0CCD\u0D02\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D28\u0D2A-\u0D39\u0D3E-\u0D43\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D60\u0D61\u0D7A-\u0D7F\u1F00-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97\u1FA0-\u1FA7\u1FB2-\u1FB4\u1FB6\u1FB7\u1FBD\u1FBF\u1FC2-\u1FC4\u1FC6\u1FC7\u1FD2\u1FD3\u1FD6\u1FD7\u1FE2-\u1FE7\u1FF2-\u1FF4\u1FF6\u1FF7\u200D\u2019]+)/g);
 	
 	    for (var i = 0; i < words.length; i += 1) {
 	        if (words[i].indexOf('/') !== -1) {
@@ -391,7 +438,7 @@ var typeset =
 	  var ignore = "{}()-‘’[]!#$*&;:,.“”″′‘’\"'".split('').concat(['&quot;', "'s", "’s", '&#39;s']);
 	  var encodedIgnore = ignore.slice(0);
 	
-	  for (var x in encodedIgnore)
+	  for (var x = 0 ; x < encodedIgnore.length; x++)
 	    encodedIgnore[x] = entities.encode(encodedIgnore[x]);
 	
 	  ignore = ignore.concat(encodedIgnore);
@@ -432,7 +479,7 @@ var typeset =
 	
 	  var wordList = text.split(' ');
 	
-	  for (var i in wordList) {
+	  for (var i = 0; i < wordList.length; i++) {
 	
 	    var brokenWord = removeCruft(wordList[i]),
 	    word = brokenWord[1],
@@ -515,6 +562,14 @@ var typeset =
 	 * @param {String} str
 	 * @returns {String}
 	 */
+	 XmlEntities.encode = function(str) {
+	    return new XmlEntities().encode(str);
+	 };
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
 	XmlEntities.prototype.decode = function(str) {
 	    if (str.length === 0) {
 	        return '';
@@ -533,6 +588,14 @@ var typeset =
 	        return ALPHA_INDEX[s] || s;
 	    });
 	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	 XmlEntities.decode = function(str) {
+	    return new XmlEntities().decode(str);
+	 };
 	
 	/**
 	 * @param {String} str
@@ -567,6 +630,14 @@ var typeset =
 	 * @param {String} str
 	 * @returns {String}
 	 */
+	 XmlEntities.encodeNonUTF = function(str) {
+	    return new XmlEntities().encodeNonUTF(str);
+	 };
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
 	XmlEntities.prototype.encodeNonASCII = function(str) {
 	    var strLenght = str.length;
 	    if (strLenght === 0) {
@@ -585,6 +656,14 @@ var typeset =
 	    }
 	    return result;
 	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	 XmlEntities.encodeNonASCII = function(str) {
+	    return new XmlEntities().encodeNonASCII(str);
+	 };
 	
 	module.exports = XmlEntities;
 
@@ -643,6 +722,14 @@ var typeset =
 	 * @param {String} str
 	 * @returns {String}
 	 */
+	Html4Entities.decode = function(str) {
+	    return new Html4Entities().decode(str);
+	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
 	Html4Entities.prototype.encode = function(str) {
 	    var strLength = str.length;
 	    if (strLength === 0) {
@@ -656,6 +743,14 @@ var typeset =
 	        i++;
 	    }
 	    return result;
+	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	Html4Entities.encode = function(str) {
+	    return new Html4Entities().encode(str);
 	};
 	
 	/**
@@ -688,6 +783,14 @@ var typeset =
 	 * @param {String} str
 	 * @returns {String}
 	 */
+	Html4Entities.encodeNonUTF = function(str) {
+	    return new Html4Entities().encodeNonUTF(str);
+	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
 	Html4Entities.prototype.encodeNonASCII = function(str) {
 	    var strLength = str.length;
 	    if (strLength === 0) {
@@ -705,6 +808,14 @@ var typeset =
 	        i++;
 	    }
 	    return result;
+	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	Html4Entities.encodeNonASCII = function(str) {
+	    return new Html4Entities().encodeNonASCII(str);
 	};
 	
 	module.exports = Html4Entities;
@@ -735,21 +846,29 @@ var typeset =
 	        return '';
 	    }
 	    return str.replace(/&(#?[\w\d]+);?/g, function(s, entity) {
-	        var char;
+	        var chr;
 	        if (entity.charAt(0) === "#") {
 	            var code = entity.charAt(1) === 'x' ?
 	                parseInt(entity.substr(2).toLowerCase(), 16) :
 	                parseInt(entity.substr(1));
 	
 	            if (!(isNaN(code) || code < -32768 || code > 65535)) {
-	                char = String.fromCharCode(code);
+	                chr = String.fromCharCode(code);
 	            }
 	        } else {
-	            char = alphaIndex[entity];
+	            chr = alphaIndex[entity];
 	        }
-	        return char || s;
+	        return chr || s;
 	    });
 	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	 Html5Entities.decode = function(str) {
+	    return new Html5Entities().decode(str);
+	 };
 	
 	/**
 	 * @param {String} str
@@ -782,6 +901,14 @@ var typeset =
 	    }
 	    return result;
 	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	 Html5Entities.encode = function(str) {
+	    return new Html5Entities().encode(str);
+	 };
 	
 	/**
 	 * @param {String} str
@@ -824,6 +951,14 @@ var typeset =
 	 * @param {String} str
 	 * @returns {String}
 	 */
+	 Html5Entities.encodeNonUTF = function(str) {
+	    return new Html5Entities().encodeNonUTF(str);
+	 };
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
 	Html5Entities.prototype.encodeNonASCII = function(str) {
 	    var strLength = str.length;
 	    if (strLength === 0) {
@@ -842,6 +977,14 @@ var typeset =
 	    }
 	    return result;
 	};
+	
+	/**
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	 Html5Entities.encodeNonASCII = function(str) {
+	    return new Html5Entities().encodeNonASCII(str);
+	 };
 	
 	/**
 	 * @param {Object} alphaIndex Passed by reference.
@@ -930,7 +1073,7 @@ var typeset =
 	
 	var alignMe = "CcOoYTAVvWw".split('');
 	
-	module.exports = function(text){
+	module.exports = function(text, node, $){
 	
 	  if (text.length < 2) return text;
 	
@@ -938,21 +1081,32 @@ var typeset =
 	  // array of distinct words.
 	  var words = text.split(' ').join(' ').split(' ');
 	
-	  for (var i in words) {
+	  for (var i = 0; i < words.length; i++) {
 	
-	    for (var a in alignMe) {
+	    // This is the code to do
+	    // optical margin alignment.
 	
-	      var align = alignMe[a];
-	      var letter = words[i].slice(0,align.length);
+	    // It's disabled for now due to accessibility issues.
 	
-	      if (letter === align || diacriticMap[align] && diacriticMap[align].test(letter)) {
-	        words[i] = pull(align, letter) + words[i].slice(align.length);
+	    // for (var a in alignMe) {
 	
-	        if (words[(i-1)]) {
-	          words[(i-1)] = words[(i-1)] + push(align);
-	        }
-	      }
-	    }
+	    //   var align = alignMe[a];
+	    //   var letter = words[i].slice(0,align.length);
+	
+	    //   if (letter === align || diacriticMap[align] && diacriticMap[align].test(letter)) {
+	
+	    //     var insert = pull(align, letter);
+	
+	    //     if (words[(i-1)]) {
+	    //       words[(i-1)] = words[(i-1)] + push(align);
+	    //     } else if (hasAdjacentText($, node)) {
+	    //       insert = push(align) + insert;
+	    //     }
+	
+	    //     words[i] = insert + words[i].slice(align.length);
+	
+	    //   }
+	    // }
 	
 	    for (var b in singleWidth) {
 	
@@ -960,11 +1114,16 @@ var typeset =
 	
 	      if (words[i].slice(0,punctuation.length) === punctuation) {
 	
-	        words[i] = pull('single', punctuation) + words[i].slice(punctuation.length);
+	        var insert = pull('single', punctuation);
 	
 	        if (words[(i-1)]) {
 	          words[(i-1)] = words[(i-1)] + push('single');
+	        } else if (hasAdjacentText($, node)) {
+	          insert = push('single') + insert;
 	        }
+	
+	        words[i] = insert + words[i].slice(punctuation.length);
+	
 	      }
 	    }
 	
@@ -974,11 +1133,15 @@ var typeset =
 	
 	      if (words[i].slice(0,punctuation.length) === punctuation) {
 	
-	        words[i] = pull('double', punctuation) + words[i].slice(punctuation.length);
+	        var insert = pull('double', punctuation);
 	
 	        if (words[(i-1)]) {
 	          words[(i-1)] = words[(i-1)] + push('double');
+	        } else if (hasAdjacentText($, node)) {
+	          insert = push('double') + insert;
 	        }
+	
+	        words[i] = insert + words[i].slice(punctuation.length);
 	      }
 	    }
 	  }
@@ -987,7 +1150,39 @@ var typeset =
 	
 	  return text;
 	};
-
+	
+	
+	function hasAdjacentText ($, node) {
+	
+	  // the nearest sibling to this text node
+	  // you can have two adjacent text nodes
+	  // since they'd jsut be one node.
+	
+	  // however, the previous sibling could end with a text node
+	  // if so, we need to add the spacer to prevent overlap
+	  if (node.prev && node.prev.children && node.prev.children.length) {
+	
+	    var lastChild = node.prev.children.slice(-1)[0];
+	
+	    if (lastChild && lastChild.type === 'text') {
+	      return true;
+	    }
+	  }
+	
+	  if (!$(node).parent() || !$(node).parent().length)
+	    return false;
+	
+	  var parentPrev = $(node).parent()[0].prev;
+	
+	  // Ensure the parent has text content
+	  // and is not simply a newline seperating tags
+	  if (parentPrev && parentPrev.type === 'text' && parentPrev.data.trim()) {
+	    return true;
+	  }
+	
+	  return false;
+	
+	}
 
 /***/ },
 /* 13 */
@@ -1024,6 +1219,7 @@ var typeset =
 	var IGNORE = 'head, code, pre, script, style, [class^="pull-"], [class^="push-"], .small-caps';
 	
 	module.exports = function(html, doThis, options){
+	
 	  var ignore = IGNORE;
 	  var only = (jquery && html) || (options && options.only) || ':root';
 	
@@ -1041,17 +1237,21 @@ var typeset =
 	
 	      var childNode = this;
 	
-	      // We've made it to a text node!
-	      // apply the function which transforms
-	      // its text content (childNode.data)
 	      if (childNode.nodeType === 3) {
+	
 	        var text = escape ? escape(childNode.data) : childNode.data;
-	        $(childNode).replaceWith(doThis(text, childNode));
+	
+	        text = text.replace(/&#39;/g, "'");
+	        text = text.replace(/&quot;/g, '"');
+	
+	        childNode.data = text;
+	
+	        $(childNode).replaceWith(doThis(text, childNode, $));
+	
 	      } else {
-	        findTextNodes(childNode, doThis);
+	        findTextNodes(childNode);
 	      }
 	    });
-	
 	  }
 	
 	  return (jquery && processedText[0]) || $.html();
