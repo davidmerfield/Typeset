@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typeset.js – an HTML pre-processor for web typography</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>    
+<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Cousine|Cutive+Mono|Fira+Mono|IBM+Plex+Mono|Inconsolata|Nanum+Gothic+Coding|Nova+Mono|Overpass+Mono|Oxygen+Mono|PT+Mono|Roboto+Mono|Share+Tech+Mono|Source+Code+Pro|Space+Mono|Ubuntu+Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=PT+Serif&amp;subset=latin-ext" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&amp;subset=latin-ext" rel="stylesheet">
+
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/typeset.css">
+</head>
+<body class="f4 lh-copy" >
+
+<div class="w-50 fl ph5 pv5 bg-black-05">
+    <div class="measure-narrow fr pr4">
+<h1 class="mt0 mb5">Typeset.js</h1>
+<p class="mt4">A typographic pre-processor for your website's HTML which offers:</p>
+
+<ul>
+    <li>Real hanging punctuation</li>
+    <li>Soft hyphen insertion</li>
+    <li>Optical margin alignment</li>
+    <li>Small caps detection</li>
+    <li>Punctuation substitution</li>
+</ul>
+
+<a class="mv4 db mono pa3 bg-white black no-underline" href="https://github.com/davidmerfield/typeset">
+   Get the code on GitHub  <span class="fr">></span>
+</a>
+
+<pre class="bg-black-05 pa3 mono">>  npm install typeset</pre>
+
+<div class=" cf"></div>
+
+
+
+<h2 class="f4 fw4 mt5">How to use it</h2>
+<pre class="bg-black-05  pa3 mono">
+var typeset = require('typeset');
+var html = '&lt;p&gt;&quot;Hello World&quot;&lt;/p&gt;';
+var output = typeset(html);</pre>
+
+
+<p>The library does not require any client-side JavaScript. You can run it on the client if circumstances dictate but try to avoid it if you can. </p>
+
+<p>Hanging punctuation and optical margin alignment features require a few lines of CSS, which you'll need to modify based on the metrics of the typeface you use.</p>
+
+<p>Modify <a href="https://s3-us-west-1.amazonaws.com/blot-dump/typeset/typeset.css">typeset.css</a> (1k) to match the metrics of your font and include it on your page. Learn more about the options <a href="https://github.com/davidmerfield/typeset">on Github</a>.</p>
+
+
+<h3 class="mt6">Found a bug?</h3>
+<p>Please file an issue <a href="https://github.com/davidmerfield/typeset">on Github</a>. Feel free to <a href="https://blot.im/contact">contact me</a> with any questions.</p>
+
+<h3>About</h3>
+<p>This project started as a collection of libraries used by <a href="https://blot.im">Blot</a> for typesetting blog posts. This would not be possible without the work of <a href="https://github.com/bramstein">Bram Stein</a> and <a href="http://leancrew.com/all-this/2010/11/smart-quotes-in-javascript/">Dr. Drang</a>. This page is set in <a href="https://en.wikipedia.org/wiki/Bitstream_Charter">Charter</a> by Matthew Carter and <a href="https://en.wikipedia.org/wiki/Fira_Sans">Fira Mono</a> by Erik Spiekermann.</p>
+</div>
+</div>
+
+
+
+<div class="w-50 fl pa5" style="background: #fff">
+
+<div class="measure-narrow fl pl4 pb5">
+    <div  data-directive="tabs" class=" ">
+    <a href="#panel-1" class="tc br2 br--left ba brn black b--black-10 db fl w-50 pv2 ph4  no-underline" data-behaviour="tab" aria-selected="true">AFTER</a>
+    <a href="#panel-2" style=" margin-left:-1px" class="tc black br2 w-50 br--right ba bln b--black-10 db fl pv2 ph4 no-underline" data-behaviour="tab">BEFORE</a>
+    <div class="cf"></div>
+</div>
+
+    <div class="cf pv3"></div>
+
+    <div id="panel-1" class="">
+
+        <p><span>Y</span>jarni Sigurðardóttir spoke to NATO from Iceland yesterday: "Light of my life, fire of my florins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"."</p>
+
+        <p>"She's faster than a 120' 4" whale." <em>Piña co­ladas</em> were widely consumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E... Then the <em>duplex</em> came forward. "Thrice the tower, he mounted the round gunrest, 'awaking' HTML. He can print a fixed num­ber of dots in a square inch (for in­stance, 600 × 600)."
+        </p>
+    </div>
+
+    <div id="panel-2" class="ts-ignore" style="display:none">
+
+
+    </div>
+</div>
+</div>
+
+
+</div>
+
+</div>
+    <script type="text/javascript" src="/tabs.js"></script>
+</body>
+</html>

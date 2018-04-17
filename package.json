@@ -35,8 +35,9 @@
   "dependencies": {
     "cheerio": "^0.19.0",
     "commander": "^2.8.1",
-    "html-entities": "^1.1.2",
-    "hypher": "^0.2.3"
+    "html-entities": "^1.2.1",
+    "html-minifier": "^3.5.14",
+    "hypher": "^0.2.5"
   },
   "devDependencies": {
     "chai": "^3.2.0",

@@ -1,5 +1,5 @@
 /* Small caps */
-.small-caps {font-family: 'Charter SC', serif}
+/*.small-caps {font-variant: small-cap/*s;}*/
 
 /* Double quote (") marks */
 .pull-double{margin-left:-.38em}
