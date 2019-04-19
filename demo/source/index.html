@@ -1,96 +1,273 @@
-<!DOCTYPE html>
-<head>
+<html>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Typeset.js – an HTML pre-processor for web typography</title>
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>    
-<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Cousine|Cutive+Mono|Fira+Mono|IBM+Plex+Mono|Inconsolata|Nanum+Gothic+Coding|Nova+Mono|Overpass+Mono|Oxygen+Mono|PT+Mono|Roboto+Mono|Share+Tech+Mono|Source+Code+Pro|Space+Mono|Ubuntu+Mono" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=PT+Serif&amp;subset=latin-ext" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&amp;subset=latin-ext" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/typeset.css">
+<head>
+  <style type="text/css">
+  @font-face {
+    font-family: 'Plex Sans';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/plex/sans/regular.eot');
+    /* IE9 Compat Modes */
+    src: url('/fonts/plex/sans/regular.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */
+      url('/fonts/plex/sans/regular.woff') format('woff'),
+      /* Pretty Modern Browsers */
+      url('/fonts/plex/sans/regular.woff2') format('woff2');
+    /* Very modern */
+  }
 
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/typeset.css">
+    @font-face {
+    font-family: 'Plex Sans';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/fonts/plex/sans/bold.eot');
+    /* IE9 Compat Modes */
+    src: url('/fonts/plex/sans/bold.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */
+      url('/fonts/plex/sans/bold.woff') format('woff'),
+      /* Pretty Modern Browsers */
+      url('/fonts/plex/sans/bold.woff2') format('woff2');
+    /* Very modern */
+  }
+
+  @font-face {
+    font-family: 'Plex Mono';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/plex/mono/regular.eot');
+    /* IE9 Compat Modes */
+    src: url('/fonts/plex/mono/regular.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */
+      url('/fonts/plex/mono/regular.woff') format('woff'),
+      /* Pretty Modern Browsers */
+      url('/fonts/plex/mono/regular.woff2') format('woff2');
+    /* Very modern */
+  }
+
+  @font-face {
+    font-family: 'Plex Serif';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/plex/serif/regular.eot');
+    /* IE9 Compat Modes */
+    src: url('/fonts/plex/serif/regular.eot?#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */
+      url('/fonts/plex/serif/regular.woff') format('woff'),
+      /* Pretty Modern Browsers */
+      url('/fonts/plex/serif/regular.woff2') format('woff2');
+    /* Very modern */
+  }
+
+  pre {background: rgba(0,0,0,0.05)}
+  body {
+    font-family: 'Plex Sans';
+    line-height: 1.4;
+  }
+
+  demo content {font-size: 1.5em}
+  content {
+    display: block;
+    max-width: 40em;
+    margin: 0 auto
+  }
+
+  code {
+    font-family: 'Plex Mono'
+  }
+
+  a {color: #001aff
+  }
+
+
+  pre, .button {
+        padding: 1em 1.5em;
+
+  }
+  .button {background: #001aff;
+    color: white;border-radius:2em;text-decoration: none;}
+  blockquote {
+    font-family: 'Plex Serif';
+    padding: 0;
+    margin: 1em 0
+  }
+
+  a[href^="#tab-"] {
+    display: inline-block;
+    padding: 0;
+    color: blue;
+    flex-basis:50%;
+    padding: 0.5em 1.4em;
+    text-decoration: underline;
+            border: 1px solid transparent;
+    margin-bottom: -1px;
+
+  }
+  
+  demo {
+    display: block;
+    padding: 1em 0;
+  }
+
+  a[href^="#tab-"][data-active="false"]:hover {
+  }
+
+  a[href^="#tab-"][data-active="true"] {
+    color: inherit;
+                border: 1px solid;
+    border-bottom: 1px solid #fff;                
+    text-decoration: none;
+  }
+
+  demo p:first-child {
+    margin-top: 0
+  }
+
+  h2 {font-size: 1em;margin: 2em 0 1em}
+  h1, h2 {font-weight: 400}
+  body {display: flex;padding:0;margin:0;}
+  h1, .tabs, h2 {margin: 0;font-size: 1em;padding: 1em 0;border-bottom: 1px solid}
+  .tabs {padding-bottom: 0}
+  body > * {width:50%;padding:0 2em;box-sizing:border-box;}
+  ul, li {padding: 0;margin:0;padding-left: 1.2em}
+  li {padding-left: 1em}
+  </style>
 </head>
-<body class="f4 lh-copy" >
+<!-- 
+<ul>
+    <li>Hang­ing punc­tu­a­tion</li>
+    <li>Op­ti­cal mar­gin out­dents</li>
+    <li></li>
+    <li>Small-caps detection</li>
+    <li>Punctuation substitution and soft hy­phen in­ser­tion</li>
+  </ul>
+   -->
+<body>
+  <section>
+  <content>
+    <h1>Typeset</h1>
+    <p>An HTML pre-proces­sor for web ty­pog­ra­phy. Typeset provides typographic features used traditionally in fine printing which remain unavailable to browser layout engines. Typeset's processing brings the following to your webpages: </p>
 
-<div class="w-50 fl ph5 pv5 bg-black-05">
-    <div class="measure-narrow fr pr4">
-<h1 class="mt0 mb5">Typeset.js</h1>
-<p class="mt4">A typographic pre-processor for your website's HTML which offers:</p>
 
 <ul>
-    <li>Real hanging punctuation</li>
-    <li>Soft hyphen insertion</li>
-    <li>Optical margin alignment</li>
-    <li>Small caps detection</li>
-    <li>Punctuation substitution</li>
+    <li>Real hang­ing punc­tu­a­tion</li>
+    <li>Optical mar­gin align­ment</li>
+    <li>Soft hy­phen in­ser­tion</li>
+    <li>Small caps de­tec­tion</li>
+    <li>Punctuation sub­sti­tu­tion</li>
 </ul>
 
-<a class="mv4 db mono pa3 bg-white black no-underline" href="https://github.com/davidmerfield/typeset">
-   Get the code on GitHub  <span class="fr">></span>
-</a>
+    <br><Br><br>
+    <p><a href="https://github.com/davidmerfield/typeset" style="" class="button">Get the code on GitHub</a></p>
+    <br><BR><br><br>
 
-<pre class="bg-black-05 pa3 mono">>  npm install typeset</pre>
-
-<div class=" cf"></div>
-
+<h2>How?</h2>
+                <p>Typeset does not require any client-side JavaScript and uses less than a kilobyte of CSS. Processed HTML &amp; CSS <a href="http://i.imgur.com/vVGtD3V.png">renders correctly in Internet Explorer 5</a> and <a href="http://i.imgur.com/ITM0bcG.png">without any CSS</a>. Typeset is available as a plugin for <a href="https://github.com/mobinni/grunt-typeset">grunt</a> and <a href="https://github.com/lucasconstantino/gulp-typeset">gulp</a> or you can include it manually.</p>
 
 
-<h2 class="f4 fw4 mt5">How to use it</h2>
-<pre class="bg-black-05  pa3 mono">
-var typeset = require('typeset');
-var html = '&lt;p&gt;&quot;Hello World&quot;&lt;/p&gt;';
-var output = typeset(html);</pre>
+    <p><pre><code>npm install typeset</code></pre></p>
+    <!-- <p>Typeset is an attempt to bring these features to the web.</p>
+    <p>Benefits:</p>
+
+    <ul>
+      <li>No client-side JavaScript required. Processsing should be done on the server</li>
+      <li></li>
+      <li>The entire source code is dedicated to the public domain under the CC0 license</li>
+    </ul> -->
+    
+
+    <h2>Usage</h2>
+    <pre><code>var typeset = require('typeset');
+var html = "&lt;p&gt;"Hello," said the world!&lt;/p&gt;";
+
+html = typeset(html);</code></pre>
+<p>Then tweak <a href="/typeset.css">Typeset.css</a> to match the metrics of your font and include it on your page.</p>
 
 
-<p>The library does not require any client-side JavaScript. You can run it on the client if circumstances dictate but try to avoid it if you can. </p>
+<h2>Options</h2>
+<p>Typeset accepts an optional second argument containing configuration:</p>
+<ul>
+  <li><b>ignore</b> <em>&lt;string&gt;</em><br> CSS selector to which Typeset will not process. Example: <pre><code>typeset(html, { ignore: '.skip' });</code></pre>
+</li>
+  <li><b>only</b> <em>&lt;string&gt;</em><br> CSS selector to only apply Typeset to. Example:  <pre><code>typeset(html, {
+    ignore: '.skip'
+});</code></pre></li>
+  <li><b>disable</b> <em>&lt;array&gt;</em><br> List of typeset features to disable. The following features may be disabled:
+<ul>
+<li><code>quotes</code></li>
+<li><code>hyphenate</code></li>
+<li><code>ligatures</code></li>
+<li><code>smallCaps</code>r</li>
+<li><code>punctuation</code></li>
+<li><code>hangingPunctuation</code></li>
+<li><code>spaces</code></li>
+</ul>
+<p>Example: </p>
+</li>
+</ul>
+<h2 id="cli-usage"><span class="small-caps">CLI</span></h2>
+<pre><code>npm install -g typeset</code></pre>
+<!-- <pre><code>Usage: typeset-js [options] [&lt;infile&gt; [&lt;outfile&gt;]]
 
-<p>Hanging punctuation and optical margin alignment features require a few lines of CSS, which you'll need to modify based on the metrics of the typeface you use.</p>
+Options:
 
-<p>Modify <a href="https://s3-us-west-1.amazonaws.com/blot-dump/typeset/typeset.css">typeset.css</a> (1k) to match the metrics of your font and include it on your page. Learn more about the options <a href="https://github.com/davidmerfield/typeset">on Github</a>.</p>
-
-
-<h3 class="mt6">Found a bug?</h3>
-<p>Please file an issue <a href="https://github.com/davidmerfield/typeset">on Github</a>. Feel free to <a href="https://blot.im/contact">contact me</a> with any questions.</p>
-
-<h3>About</h3>
+  -h, --help      output usage information
+  -V, --version   output the version number
+  -i, --ignore    string of CSS selector(s) to ignore
+  -O, --only      string of CSS selector(s) to exclusively apply typeset to
+  --disable,      string of typeset feature(s) to disable, separated by commas</code></pre>
+<p>Examples:</p> -->
+<p>Compile a file and print it to stdout:</p>
+<pre><code>typeset-js input.html</code></pre>
+<p>To create an output file, just add a second argument:</p>
+<pre><code>typeset-js input.html output.html</code></pre>
+<p>Use the <code>--ignore</code> option to ignore specific <span class="small-caps">CSS</span> selectors:</p>
+<pre><code>typeset-js input.html output.html --ignore ".skip"</code></pre>
+<h2>About</h2>
 <p>This project started as a collection of libraries used by <a href="https://blot.im">Blot</a> for typesetting blog posts. This would not be possible without the work of <a href="https://github.com/bramstein">Bram Stein</a> and <a href="http://leancrew.com/all-this/2010/11/smart-quotes-in-javascript/">Dr. Drang</a>. This page is set in <a href="https://en.wikipedia.org/wiki/Bitstream_Charter">Charter</a> by Matthew Carter and <a href="https://en.wikipedia.org/wiki/Fira_Sans">Fira Mono</a> by Erik Spiekermann.</p>
-</div>
-</div>
+<h2 id="license">License</h2>
+<p>This software is dedicated to the public domain and licensed under <a href="https://github.com/davidmerfield/Typeset/blob/master/LICENSE"><span class="small-caps">CC0</span></a>.</p>
 
 
-
-<div class="w-50 fl pa5" style="background: #fff">
-
-<div class="measure-narrow fl pl4 pb5">
-    <div  data-directive="tabs" class=" ">
-    <a href="#panel-1" class="tc br2 br--left ba brn black b--black-10 db fl w-50 pv2 ph4  no-underline" data-behaviour="tab" aria-selected="true">AFTER</a>
-    <a href="#panel-2" style=" margin-left:-1px" class="tc black br2 w-50 br--right ba bln b--black-10 db fl pv2 ph4 no-underline" data-behaviour="tab">BEFORE</a>
-    <div class="cf"></div>
-</div>
-
-    <div class="cf pv3"></div>
-
-    <div id="panel-1" class="">
-
-        <p><span>Y</span>jarni Sigurðardóttir spoke to NATO from Iceland yesterday: "Light of my life, fire of my florins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"."</p>
-
-        <p>"She's faster than a 120' 4" whale." <em>Piña co­ladas</em> were widely consumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E... Then the <em>duplex</em> came forward. "Thrice the tower, he mounted the round gunrest, 'awaking' HTML. He can print a fixed num­ber of dots in a square inch (for in­stance, 600 × 600)."
+    
+    </content>
+  </section>
+    <demo>
+    <div class="tabs">
+    <a href="#tab-after" data-active="true">After</a> <a href="#tab-before" data-active="false">Before </a> 
+  </div>
+    <content style="max-width:25em;margin:0 0">
+      <blockquote id="tab-after" >
+        <p><span>Y</span>jarni Sigurðardóttir spoke to the <span class="small-caps">EFF</span> from Iceland yes­ter­day:<span class="push-double"></span> <span class="pull-double">“</span>Light of my life, ﬁre of my ﬂorins — my sin, my soul. The tip of the tongue tak­ing a trip to 118° 19′ 43.5″.”</p>
+        <p><span class="pull-double">“</span>She’s faster than a 120′ 4″ whale.” <em>Piña co­ladas</em> were widely con­sumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E… Then the <em>du­plex</em> came for­ward.<span class="push-double"></span> <span class="pull-double">“</span>Thrice the tower, he mounted the round gun­rest,<span class="push-single"></span> <span class="pull-single">‘</span>awaking’ <span class="small-caps">HTML</span>. He can print a ﬁxed num­ber of dots in a square inch (for in­stance, 600 × 600).”
         </p>
-    </div>
+      </blockquote>
+      <blockquote id="tab-before" style="display:none">
+        <p><span>Y</span>jarni Sigurðardóttir spoke to the EFF from Iceland yesterday: "Light of my life, fire of my florins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"."</p>
 
-    <div id="panel-2" class="ts-ignore" style="display:none">
+       <p>"She's faster than a 120' 4" whale." <em>Piña co­ladas</em> were widely consumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E... Then the <em>duplex</em> came forward. "Thrice the tower, he mounted the round gunrest, 'awaking' HTML. He can print a fixed num­ber of dots in a square inch (for in­stance, 600 × 600)."
+        </p>
+      </blockquote>
+    </content>
+  </demo>
 
-
-    </div>
-</div>
-</div>
-
-
-</div>
-
-</div>
-    <script type="text/javascript" src="/tabs.js"></script>
+<script type="text/javascript">
+    // Tabs
+    document
+      .querySelectorAll('[href^="#tab-"]')
+      .forEach(function(node) {
+        node.onclick = function(e) {
+          var id = node.getAttribute('href').slice(1);
+          document.querySelectorAll('[id^="tab-"]')
+            .forEach(function(node) {
+              document.querySelector('[href="#' + node.getAttribute('id') + '"]').setAttribute('data-active', node.getAttribute('id') === id)
+              node.style.display = node.getAttribute('id') === id ? 'block' : 'none';
+            });
+          e.preventDefault();
+          return false;
+        }
+      });
+    </script>
 </body>
+
 </html>
