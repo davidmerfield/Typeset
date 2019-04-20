@@ -2,12 +2,12 @@
 /*.small-caps {font-variant: small-cap/*s;}*/
 
 /* Double quote (") marks */
-.pull-double{margin-left:-.38em}
-.push-double{margin-right:.38em}
+.pull-double{margin-left:-.46em}
+.push-double{margin-right:.46em}
 
 /* Single quote (') marks */
-.pull-single{margin-left:-.15em}
-.push-single{margin-right:.15em}
+.pull-single{margin-left:-.27em}
+.push-single{margin-right:.27em}
 
 /* Optical margin alignment for particular letters */
 .pull-T, .pull-V, .pull-W, .pull-Y {margin-left: -0.07em}

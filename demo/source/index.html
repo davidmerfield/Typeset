@@ -65,7 +65,7 @@
     line-height: 1.4;
   }
 
-  demo content {font-size: 1.5em}
+  demo content {font-size: 20px}
   content {
     display: block;
     max-width: 40em;
@@ -76,16 +76,15 @@
     font-family: 'Plex Mono'
   }
 
-  a {color: #001aff
+  a {color: blue
   }
 
 
   pre, .button {
-        padding: 1em 1.5em;
+        padding: 1em 1.4em;
 
   }
-  .button {background: #001aff;
-    color: white;border-radius:2em;text-decoration: none;}
+  .button {border: 1px solid;border-radius:2em;text-decoration: none;}
   blockquote {
     font-family: 'Plex Serif';
     padding: 0;
@@ -96,7 +95,6 @@
     display: inline-block;
     padding: 0;
     color: blue;
-    flex-basis:50%;
     padding: 0.5em 1.4em;
     text-decoration: underline;
             border: 1px solid transparent;
@@ -126,11 +124,119 @@
   h2 {font-size: 1em;margin: 2em 0 1em}
   h1, h2 {font-weight: 400}
   body {display: flex;padding:0;margin:0;}
+  .tabs {display: flex;}
+  .tabs > * {flex-basis:50%;max-width:12.5em;}
   h1, .tabs, h2 {margin: 0;font-size: 1em;padding: 1em 0;border-bottom: 1px solid}
   .tabs {padding-bottom: 0}
-  body > * {width:50%;padding:0 2em;box-sizing:border-box;}
+  body > * {width:50%;padding:1.4em 2.8em 10em;box-sizing:border-box;min-width: 30em;flex-shrink:0;}
   ul, li {padding: 0;margin:0;padding-left: 1.2em}
   li {padding-left: 1em}
+
+  /*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+pre {     background: #f6f8fa;
+
+
+}
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+.hljs {
+  display: block;
+  overflow-x: auto;
+  color: #333;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #d73a49;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #032f62;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #005cc5;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
   </style>
 </head>
 <!-- 
@@ -143,7 +249,7 @@
   </ul>
    -->
 <body>
-  <section>
+  <section style="">
   <content>
     <h1>Typeset</h1>
     <p>An HTML pre-proces­sor for web ty­pog­ra­phy. Typeset provides typographic features used traditionally in fine printing which remain unavailable to browser layout engines. Typeset's processing brings the following to your webpages: </p>
@@ -152,17 +258,17 @@
 <ul>
     <li>Real hang­ing punc­tu­a­tion</li>
     <li>Optical mar­gin align­ment</li>
-    <li>Soft hy­phen in­ser­tion</li>
     <li>Small caps de­tec­tion</li>
+    <li>Soft hy­phen in­ser­tion</li>
     <li>Punctuation sub­sti­tu­tion</li>
 </ul>
 
     <br><Br><br>
-    <p><a href="https://github.com/davidmerfield/typeset" style="" class="button">Get the code on GitHub</a></p>
+    <p><a href="https://github.com/davidmerfield/typeset" style="" class="button">Get the code on GitHub &nbsp;&nbsp;&rarr;</a></p>
     <br><BR><br><br>
 
 <h2>How?</h2>
-                <p>Typeset does not require any client-side JavaScript and uses less than a kilobyte of CSS. Processed HTML &amp; CSS <a href="http://i.imgur.com/vVGtD3V.png">renders correctly in Internet Explorer 5</a> and <a href="http://i.imgur.com/ITM0bcG.png">without any CSS</a>. Typeset is available as a plugin for <a href="https://github.com/mobinni/grunt-typeset">grunt</a> and <a href="https://github.com/lucasconstantino/gulp-typeset">gulp</a> or you can include it manually.</p>
+                <p>Typeset does not require any client-side JavaScript and uses less than a kilobyte of CSS. Processed HTML &amp; CSS <a href="/ie5.png">works in Internet Explorer 5</a> and <a href="/css.png">without any CSS</a>. Typeset can be used manually or as a plugin for <a href="https://github.com/mobinni/grunt-typeset">grunt</a> and <a href="https://github.com/lucasconstantino/gulp-typeset">gulp</a>.</p>
 
 
     <p><pre><code>npm install typeset</code></pre></p>
@@ -178,7 +284,7 @@
 
     <h2>Usage</h2>
     <pre><code>var typeset = require('typeset');
-var html = "&lt;p&gt;"Hello," said the world!&lt;/p&gt;";
+var html = '<p>"Hello," said the world!</p>';
 
 html = typeset(html);</code></pre>
 <p>Then tweak <a href="/typeset.css">Typeset.css</a> to match the metrics of your font and include it on your page.</p>
@@ -187,22 +293,20 @@ html = typeset(html);</code></pre>
 <h2>Options</h2>
 <p>Typeset accepts an optional second argument containing configuration:</p>
 <ul>
-  <li><b>ignore</b> <em>&lt;string&gt;</em><br> CSS selector to which Typeset will not process. Example: <pre><code>typeset(html, { ignore: '.skip' });</code></pre>
+  <li><b>ignore</b> <em>&lt;string&gt;</em><br> Typeset will not process elements matching this CSS selector. Example: <pre><code>typeset(html, { ignore: '.skip' });</code></pre>
 </li>
-  <li><b>only</b> <em>&lt;string&gt;</em><br> CSS selector to only apply Typeset to. Example:  <pre><code>typeset(html, {
-    ignore: '.skip'
-});</code></pre></li>
-  <li><b>disable</b> <em>&lt;array&gt;</em><br> List of typeset features to disable. The following features may be disabled:
+  <li><b>only</b> <em>&lt;string&gt;</em><br> Typeset will only process elements matching this CSS selector. Example:  <pre><code>typeset(html, { only: '.typeset' });</code></pre></li>
+  <li><b>disable</b> <em>&lt;array&gt;</em><br> List of Typeset features to disable. The following features may be disabled:
 <ul>
 <li><code>quotes</code></li>
 <li><code>hyphenate</code></li>
 <li><code>ligatures</code></li>
-<li><code>smallCaps</code>r</li>
+<li><code>smallCaps</code></li>
 <li><code>punctuation</code></li>
 <li><code>hangingPunctuation</code></li>
 <li><code>spaces</code></li>
 </ul>
-<p>Example: </p>
+<p>Example: <pre><code>typeset(html, { disable: ['hyphenate'] });</code></pre></p>
 </li>
 </ul>
 <h2 id="cli-usage"><span class="small-caps">CLI</span></h2>
@@ -217,14 +321,14 @@ Options:
   -O, --only      string of CSS selector(s) to exclusively apply typeset to
   --disable,      string of typeset feature(s) to disable, separated by commas</code></pre>
 <p>Examples:</p> -->
-<p>Compile a file and print it to stdout:</p>
+<p>Compiles a file to stdout:</p>
 <pre><code>typeset-js input.html</code></pre>
-<p>To create an output file, just add a second argument:</p>
+<p>Pass an output file as a second argument:</p>
 <pre><code>typeset-js input.html output.html</code></pre>
 <p>Use the <code>--ignore</code> option to ignore specific <span class="small-caps">CSS</span> selectors:</p>
 <pre><code>typeset-js input.html output.html --ignore ".skip"</code></pre>
 <h2>About</h2>
-<p>This project started as a collection of libraries used by <a href="https://blot.im">Blot</a> for typesetting blog posts. This would not be possible without the work of <a href="https://github.com/bramstein">Bram Stein</a> and <a href="http://leancrew.com/all-this/2010/11/smart-quotes-in-javascript/">Dr. Drang</a>. This page is set in <a href="https://en.wikipedia.org/wiki/Bitstream_Charter">Charter</a> by Matthew Carter and <a href="https://en.wikipedia.org/wiki/Fira_Sans">Fira Mono</a> by Erik Spiekermann.</p>
+<p>This project started as a collection of libraries I gathered for <a href="https://blot.im">Blot</a>. Typeset still runs there in production. This was made possible by the work of <a href="https://github.com/bramstein">Bram Stein</a> and <a href="http://leancrew.com/all-this/2010/11/smart-quotes-in-javascript/">Dr. Drang</a>. This page is set in the <a href="https://en.wikipedia.org/wiki/IBM_Plex">Plex</a> family by <a href="https://www.mikeabbink.com/">Mike Abbink</a>. Thanks to <a href="https://mbtype.com/bio.html">Matthew Butterick</a> and <a href="https://chriscoyier.net/">Chris Coyier</a> for their help and feedback.</p>
 <h2 id="license">License</h2>
 <p>This software is dedicated to the public domain and licensed under <a href="https://github.com/davidmerfield/Typeset/blob/master/LICENSE"><span class="small-caps">CC0</span></a>.</p>
 
@@ -238,9 +342,7 @@ Options:
   </div>
     <content style="max-width:25em;margin:0 0">
       <blockquote id="tab-after" >
-        <p><span>Y</span>jarni Sigurðardóttir spoke to the <span class="small-caps">EFF</span> from Iceland yes­ter­day:<span class="push-double"></span> <span class="pull-double">“</span>Light of my life, ﬁre of my ﬂorins — my sin, my soul. The tip of the tongue tak­ing a trip to 118° 19′ 43.5″.”</p>
-        <p><span class="pull-double">“</span>She’s faster than a 120′ 4″ whale.” <em>Piña co­ladas</em> were widely con­sumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E… Then the <em>du­plex</em> came for­ward.<span class="push-double"></span> <span class="pull-double">“</span>Thrice the tower, he mounted the round gun­rest,<span class="push-single"></span> <span class="pull-single">‘</span>awaking’ <span class="small-caps">HTML</span>. He can print a ﬁxed num­ber of dots in a square inch (for in­stance, 600 × 600).”
-        </p>
+        
       </blockquote>
       <blockquote id="tab-before" style="display:none">
         <p><span>Y</span>jarni Sigurðardóttir spoke to the EFF from Iceland yesterday: "Light of my life, fire of my florins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"."</p>

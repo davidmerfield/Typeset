@@ -59,9 +59,9 @@ function build_index (from, to) {
   var html = fs.readFileSync(from, 'utf-8');
   var $ = cheerio.load(html, {decodeEntities: false});
   
-  $('#panel-2').html($('#panel-1').html());
+  $('#tab-after').html($('#tab-before').html());
 
-  $('code').each(function(){
+  $('pre code').each(function(){
 
     var newHTML = hljs.highlight('js', $(this).html()).value;
 
@@ -69,7 +69,7 @@ function build_index (from, to) {
     $(this).html(newHTML);
   });
 
-  html = typeset($.html(), {ignore: '.ts-ignore'});
+  html = typeset($.html(), {ignore: '#tab-before, pre'});
   html = minify(html, minifyOpts);
 
   fs.writeFileSync(to, html);
