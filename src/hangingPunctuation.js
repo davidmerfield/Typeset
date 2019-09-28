@@ -33,7 +33,7 @@ module.exports = (text, node, $) => {
     // array of distinct words.
     const words = text.split(' ').join(' ').split(' ');
 
-    for (const i = 0; i < words.length; i++) {
+    for (const i in words) {
 
         // This is the code to do
         // optical margin alignment.
@@ -60,10 +60,12 @@ module.exports = (text, node, $) => {
         //   }
         // }
 
-        for (const b = 0; b < singleWidth.length; b++) {
+        for (const b in singleWidth) {
+
             var punctuation = singleWidth[b];
 
             if (words[i].slice(0, punctuation.length) === punctuation) {
+
                 var insert = pull('single', punctuation);
 
                 if (words[(i - 1)]) {
@@ -73,13 +75,16 @@ module.exports = (text, node, $) => {
                 }
 
                 words[i] = insert + words[i].slice(punctuation.length);
+
             }
         }
 
-        for (var c = 0; c < doubleWidth.length; c++) {
+        for (const c in doubleWidth) {
+
             var punctuation = doubleWidth[c];
 
             if (words[i].slice(0, punctuation.length) === punctuation) {
+
                 var insert = pull('double', punctuation);
 
                 if (words[(i - 1)]) {
