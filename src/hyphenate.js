@@ -7,7 +7,7 @@ const h = new Hypher(english);
 module.exports = text => {
     const words = text.split(' ');
 
-    for (const i in words) {
+    for (const i = 0; i < words.length; i++) {
         const word = words[i];
 
         if (word.slice(0, 1).toUpperCase() === word.slice(0, 1))

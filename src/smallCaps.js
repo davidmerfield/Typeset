@@ -22,7 +22,8 @@ function removeCruft(word) {
     let ignore = "{}()-‘’[]!#$*&;:,.“”″′‘’\"'".split('').concat(['&quot;', "'s", "’s", '&#39;s']);
     const encodedIgnore = ignore.slice(0);
 
-    for (const x in encodedIgnore)
+    // for (const x in encodedIgnore)
+    for (const x = 0 ; x < encodedIgnore.length; x++)
         encodedIgnore[x] = entities.encode(encodedIgnore[x]);
 
     ignore = ignore.concat(encodedIgnore);
@@ -61,7 +62,7 @@ module.exports = text => {
 
     const wordList = text.split(' ');
 
-    for (const i in wordList) {
+    for (const i = 0; i < wordList.length; i++) {
         const brokenWord = removeCruft(wordList[i]);
         const word = brokenWord[1];
         const leading = brokenWord[0];
