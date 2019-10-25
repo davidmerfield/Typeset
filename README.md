@@ -53,9 +53,14 @@ You can pass an options object to influence how your HTML is typeset:
 
 ```js
 const options = {
-  ignore: '.skip, #anything, .which-matches', // string of a CSS selector to skip
-  only: '#only-typeset, .these-elements'    // string of a CSS selector to only apply typeset,
-  disable: ['hyphenate'], // array of features to disable
+  // string of a CSS selector to skip
+  ignore: '.skip, #anything, .which-matches',
+
+  // string of a CSS selector to only apply typeset,
+  only: '#only-typeset, .these-elements',
+
+  // array of features to disable
+  disable: ['hyphenate'],
 };
 ```
 
@@ -121,7 +126,8 @@ If you don't find the answer to your problem in our docs, ask us for help.
 
 ## License
 
-This software is dedicated to the public domain and licensed under Creative Commons Zero - see the [LICENSE](LICENSE) file for details.
+This software is dedicated to the public domain and licensed under Creative Commons Zero.
+See the [LICENSE](LICENSE) file for details.
 
 ## To Do:
 
