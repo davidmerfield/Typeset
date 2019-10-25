@@ -113,16 +113,16 @@ CLI redirections:
 $ cat index.html | typeset-js > outputFile.html
 ```
 
-#### Building locally
-Clone this repo then fetch its dependencies using `npm install`. You can then edit the code in `/src`.
-
 ## Need help?
+
 If you don't find the answer to your problem in our docs, ask us for help.
 
-#### License
+## License
+
 This software is dedicated to the public domain and licensed under [CC0](https://github.com/davidmerfield/Typeset/blob/master/LICENSE).
 
-#### To Do:
+## To Do:
+
 * Develop a React, and Svelte plugins
 * Develop a client-side plugin
 * Add a build file
@@ -130,7 +130,7 @@ This software is dedicated to the public domain and licensed under [CC0](https:/
 * Feature to [avoid widows](https://github.com/davidmerfield/Typeset/issues/34).
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
 
-#### Who uses Typeset?
+## Who uses Typeset?
 
 * [**Blot**](https://blot.im/) - A blogging platform with no interface
 * **You?** Submit a pull request to add it here!
