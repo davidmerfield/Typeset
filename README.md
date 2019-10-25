@@ -1,10 +1,12 @@
 # Typeset
 
-**[Typeset](https://typeset.lllllllllllllllll.com/)** is an HTML pre-proces­sor for web ty­pog­ra­phy. It uses no client-side JavaScript and gives you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion, and punctuation substitution.
+**[Typeset](https://typeset.lllllllllllllllll.com/)** is an HTML pre-proces­sor for web ty­pog­ra­phy, giving you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion, and punctuation substitution.
 
 Typeset.js is available as a plugin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
 
 [![Demo](http://i.imgur.com/adsiz94.gif)](https://typeset.lllllllllllllllll.com/)
+
+------------
 
 ## Getting Started
 
@@ -119,7 +121,7 @@ If you don't find the answer to your problem in our docs, ask us for help.
 
 ## License
 
-This software is dedicated to the public domain and licensed under [CC0](https://github.com/davidmerfield/Typeset/blob/master/LICENSE).
+This software is dedicated to the public domain and licensed under Creative Commons Zero - see the [LICENSE](LICENSE) file for details.
 
 ## To Do:
 
