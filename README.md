@@ -1,19 +1,18 @@
-[![Demo](http://i.imgur.com/adsiz94.gif)](https://typeset.lllllllllllllllll.com/)
-
 # Typeset
 
 **[Typeset](https://typeset.lllllllllllllllll.com/)** is an HTML pre-proces­sor for web ty­pog­ra­phy. It uses no client-side JavaScript and gives you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion, and punctuation substitution.
 
 Typeset.js is available as a plugin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
 
+[![Demo](http://i.imgur.com/adsiz94.gif)](https://typeset.lllllllllllllllll.com/)
 
-## Install
+## Getting Started
 
 ```js
 npm install typeset
 ```
 
-### Usage
+## Use
 
 ```js
 const typeset = require('typeset');
@@ -46,7 +45,7 @@ Then tweak the CSS to match the metrics of your font and include it on your page
 .push-A {margin-right: 0.03em}
 ```
 
-### Options
+## Options
 
 You can pass an options object to influence how your HTML is typeset:
 
@@ -58,7 +57,7 @@ const options = {
 };
 ```
 
-#### Disableable features
+### Disableable features
 The following features may be disabled:
 
 - `quotes`
@@ -69,7 +68,7 @@ The following features may be disabled:
 - `hangingPunctuation`
 - `spaces`
 
-#### CLI Usage
+### CLI Usage
 
 ```
 $ npm install -g typeset
@@ -87,47 +86,43 @@ Options:
   --disable,      string of typeset feature(s) to disable, separated by commas
 ```
 
-### Examples:
+## Examples:
 
 Compile a file and print it to stdout:
-
 ```js
 $ typeset-js inputFile.html
 ```
 
 To create an output file, just add a second argument:
-
 ```js
 $ typeset-js inputFile.html outputFile.html
 ```
 
 Use the `--ignore` option to ignore specific CSS selectors:
-
 ```js
 $ typeset-js inputFile.html outputFile.html --ignore ".some-class, h3"
 ```
 
 Use the `--disable` option to disable typeset features:
-
 ```js
 $ typeset-js inputFile.html outputFile.html --disable "hyphenate,ligatures"
 ```
 
 CLI redirections:
-
 ```js
 $ cat index.html | typeset-js > outputFile.html
 ```
 
-#### License
-
-This software is dedicated to the public domain and licensed under [CC0](https://github.com/davidmerfield/Typeset/blob/master/LICENSE).
-
 #### Building locally
-
 Clone this repo then fetch its dependencies using `npm install`. You can then edit the code in `/src`.
 
-##### To Do:
+## Need help?
+If you don't find the answer to your problem in our docs, ask us for help.
+
+#### License
+This software is dedicated to the public domain and licensed under [CC0](https://github.com/davidmerfield/Typeset/blob/master/LICENSE).
+
+#### To Do:
 * Develop a React, and Svelte plugins
 * Develop a client-side plugin
 * Add a build file
@@ -135,7 +130,7 @@ Clone this repo then fetch its dependencies using `npm install`. You can then ed
 * Feature to [avoid widows](https://github.com/davidmerfield/Typeset/issues/34).
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
 
-##### Who uses Typeset
+#### Who uses Typeset?
 
 * [**Blot**](https://blot.im/) - A blogging platform with no interface
 * **You?** Submit a pull request to add it here!
