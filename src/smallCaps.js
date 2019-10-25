@@ -48,12 +48,12 @@ function removeCruft(word) {
   }
 
   for (let j = 0; j < ignore.length; j++) {
-    var ignoreThis = ignore[j];
-    const startOfWord = word.slice(0, ignoreThis.length);
+    var ignoreThat = ignore[j];
+    const startOfWord = word.slice(0, ignoreThat.length);
 
-    if (startOfWord === ignoreThis) {
-      leading += ignoreThis;
-      word = word.slice(ignoreThis.length);
+    if (startOfWord === ignoreThat) {
+      leading += ignoreThat;
+      word = word.slice(ignoreThat.length);
       j = 0;
       continue;
     }

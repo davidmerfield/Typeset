@@ -6,6 +6,7 @@ function push(className, content) {
   return '<span class="push-' + className + '">' + (content || "") + "</span>";
 }
 
+
 const doubleWidth = [
   "&quot;",
   '"',
@@ -24,7 +25,16 @@ const doubleWidth = [
   "&bdquo;",
   "&#8222;"
 ];
-const singleWidth = ["'", "&prime;", "&apos;", "&lsquo;", "&rsquo;", "‘", "’"];
+
+const singleWidth = [
+  "'",
+  "&prime;",
+  "&apos;",
+  "&lsquo;",
+  "&rsquo;",
+  "‘",
+  "’"
+];
 
 const diacriticMap = {
   A: /[\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F]/g,
@@ -53,16 +63,15 @@ module.exports = (text, node, $) => {
     .split(" ");
 
   for (const i in words) {
+
     // This is the code to do
     // optical margin alignment.
-
     // It's disabled for now due to accessibility issues.
-
-    // for (var a in alignMe) {
-    //   var align = alignMe[a];
-    //   var letter = words[i].slice(0,align.length);
+    // for (const a in alignMe) {
+    //   const align = alignMe[a];
+    //   const letter = words[i].slice(0,align.length);
     //   if (letter === align || diacriticMap[align] && diacriticMap[align].test(letter)) {
-    //     var insert = pull(align, letter);
+    //     let insert = pull(align, letter);
     //     if (words[(i-1)]) {
     //       words[(i-1)] = words[(i-1)] + push(align);
     //     } else if (hasAdjacentText($, node)) {
@@ -73,10 +82,10 @@ module.exports = (text, node, $) => {
     // }
 
     for (const b in singleWidth) {
-      var punctuation = singleWidth[b];
+      const punctuation = singleWidth[b];
 
       if (words[i].slice(0, punctuation.length) === punctuation) {
-        var insert = pull("single", punctuation);
+        let insert = pull("single", punctuation);
 
         if (words[i - 1]) {
           words[i - 1] = words[i - 1] + push("single");
@@ -89,10 +98,10 @@ module.exports = (text, node, $) => {
     }
 
     for (const c in doubleWidth) {
-      var punctuation = doubleWidth[c];
+      const punctuation = doubleWidth[c];
 
       if (words[i].slice(0, punctuation.length) === punctuation) {
-        var insert = pull("double", punctuation);
+        let insert = pull("double", punctuation);
 
         if (words[i - 1]) {
           words[i - 1] = words[i - 1] + push("double");
