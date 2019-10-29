@@ -12,7 +12,7 @@
     "clean": "rm -rf build/",
     "build-dev": "./node_modules/webpack/bin/webpack.js",
     "build-prod": "PROD=1 ./node_modules/webpack/bin/webpack.js",
-    "build": "npm run clean; npm run build-dev; npm run build-prod",
+    "build": "npm run clean && npm run build-dev && npm run build-prod",
     "jshint": "jshint ./src"
   },
   "repository": {
