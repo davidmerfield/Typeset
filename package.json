@@ -20,9 +20,9 @@
     "url": "https://github.com/davidmerfield/Typeset.js.git"
   },
   "keywords": [
-    "type",
     "typeset",
     "typography",
+    "type",
     "dropcap",
     "smallcap",
     "hyphenation"
