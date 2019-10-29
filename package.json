@@ -1,6 +1,6 @@
 {
   "name": "typeset",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Typesetting for the web",
   "main": "src/index.js",
   "bin": {
@@ -8,20 +8,21 @@
   },
   "scripts": {
     "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "watch": "mocha src/ test/ -u bdd -R spec -t 500 --recursive --watch",
+    "watch": "mocha test -u bdd -R spec -t 500 --recursive --watch || true",
     "clean": "rm -rf build/",
     "build-dev": "./node_modules/webpack/bin/webpack.js",
     "build-prod": "PROD=1 ./node_modules/webpack/bin/webpack.js",
-    "build": "npm run clean; npm run build-dev; npm run build-prod"
+    "build": "npm run clean && npm run build-dev && npm run build-prod",
+    "jshint": "jshint ./src"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/davidmerfield/Typeset.js.git"
   },
   "keywords": [
-    "type",
     "typeset",
     "typography",
+    "type",
     "dropcap",
     "smallcap",
     "hyphenation"
@@ -32,17 +33,19 @@
     "url": "https://github.com/davidmerfield/Typeset.js/issues"
   },
   "homepage": "https://github.com/davidmerfield/Typeset.js",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "chai": "^4.2.0",
     "cheerio": "^0.22.0",
     "commander": "^3.0.2",
     "html-entities": "^1.2.1",
     "html-minifier": "^4.0.0",
     "hypher": "^0.2.5",
-    "mocha": "^6.2.0",
-    "terser-webpack-plugin": "^2.1.1",
-    "webpack": "^4.41.0",
+    "mocha": "^6.2.2",
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
+  },
+  "devDependencies": {
+    "jshint": "^2.10.2"
   }
 }
