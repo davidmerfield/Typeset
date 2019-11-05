@@ -20,6 +20,11 @@
   },
   "license": "MIT",
   "author": "David Merfield",
+  "contributors": {
+    "name": "Daniel Haim",
+    "email": "danielhaim1@mac.com",
+    "url": "https://danielhaim.com"
+  },
   "main": "src/index.js",
   "bin": {
     "typeset-js": "src/cmd.js"
@@ -42,10 +47,10 @@
   "devDependencies": {
     "chai": "4.2.0",
     "cheerio": "0.22.0",
+    "jshint": "2.10.2",
     "mocha": "6.2.2",
-    "webpack": "4.41.2",
-    "webpack-cli": "3.3.10",
     "terser-webpack-plugin": "2.2.1",
-    "jshint": "2.10.2"
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10"
   }
 }
