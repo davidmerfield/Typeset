@@ -10,8 +10,8 @@ Typeset.js is available as a plugin for [Grunt](https://github.com/mobinni/grunt
 
 ## Getting Started
 
-```js
-npm install typeset
+```shell
+$ npm i typeset
 ```
 
 ## Use
@@ -56,14 +56,9 @@ You can pass an options object to influence how your HTML is typeset:
 
 ```js
 const options = {
-  // string of a CSS selector to skip
-  ignore: '.skip, #anything, .which-matches',
-
-  // string of a CSS selector to only apply typeset,
-  only: '#only-typeset, .these-elements',
-
-  // array of features to disable
-  disable: ['hyphenate'],
+  ignore: '.skip, #anything, .which-matches', // string of a CSS selector to skip
+  only: '#only-typeset, .these-elements', // string of a CSS selector to only apply typeset
+  disable: ['hyphenate'] // array of features to disable
 };
 ```
 
@@ -78,10 +73,10 @@ The following features may be disabled:
 - `hangingPunctuation`
 - `spaces`
 
-### CLI Usage
+## CLI Usage
 
-```
-$ npm install -g typeset
+```shell
+$ npm i -g typeset
 ```
 
 ```
@@ -96,30 +91,30 @@ Options:
   --disable,      string of typeset feature(s) to disable, separated by commas
 ```
 
-## Examples:
+### Examples:
 
 Compile a file and print it to stdout:
-```js
+```shell
 $ typeset-js inputFile.html
 ```
 
 To create an output file, just add a second argument:
-```js
+```shell
 $ typeset-js inputFile.html outputFile.html
 ```
 
 Use the `--ignore` option to ignore specific CSS selectors:
-```js
+```shell
 $ typeset-js inputFile.html outputFile.html --ignore ".some-class, h3"
 ```
 
 Use the `--disable` option to disable typeset features:
-```js
+```shell
 $ typeset-js inputFile.html outputFile.html --disable "hyphenate,ligatures"
 ```
 
 CLI redirections:
-```js
+```shell
 $ cat index.html | typeset-js > outputFile.html
 ```
 
