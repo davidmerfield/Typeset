@@ -36,6 +36,9 @@ Then tweak the CSS to match the metrics of your font and include it on your page
 .pull-single{margin-left:-.27em}
 .push-single{margin-right:.27em}
 
+.pull-double, .push-double,
+.pull-single, .push-single {display: inline-block}
+
 /* Optical margin alignment for particular letters */
 .pull-T, .pull-V, .pull-W, .pull-Y {margin-left: -0.07em}
 .push-T, .push-V, .push-W, .push-Y {margin-right: 0.07em}
