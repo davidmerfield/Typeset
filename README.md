@@ -129,12 +129,10 @@ See the [LICENSE](LICENSE) file for details.
 
 ## To Do:
 
-* Develop a React, and Svelte plugins
-* Develop a client-side plugin
-* Add a build file
 * Remove recursion from eachTextNode.js
 * Feature to [avoid widows](https://github.com/davidmerfield/Typeset/issues/34).
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
+* Develop extension plugins for React, Svelte, jQuery
 
 ## Who uses Typeset?
 
