@@ -10,8 +10,8 @@ Typeset.js is available as a plugin for [Grunt](https://github.com/mobinni/grunt
 
 ## Getting Started
 
-```js
-npm install typeset
+```shell
+$ npm i typeset
 ```
 
 ## Use
@@ -36,6 +36,9 @@ Then tweak the CSS to match the metrics of your font and include it on your page
 .pull-single{margin-left:-.27em}
 .push-single{margin-right:.27em}
 
+.pull-double, .push-double,
+.pull-single, .push-single {display: inline-block}
+
 /* Optical margin alignment for particular letters */
 .pull-T, .pull-V, .pull-W, .pull-Y {margin-left: -0.07em}
 .push-T, .push-V, .push-W, .push-Y {margin-right: 0.07em}
@@ -53,14 +56,9 @@ You can pass an options object to influence how your HTML is typeset:
 
 ```js
 const options = {
-  // string of a CSS selector to skip
-  ignore: '.skip, #anything, .which-matches',
-
-  // string of a CSS selector to only apply typeset,
-  only: '#only-typeset, .these-elements',
-
-  // array of features to disable
-  disable: ['hyphenate'],
+  ignore: '.skip, #anything, .which-matches', // string of a CSS selector to skip
+  only: '#only-typeset, .these-elements', // string of a CSS selector to only apply typeset
+  disable: ['hyphenate'] // array of features to disable
 };
 ```
 
@@ -75,10 +73,10 @@ The following features may be disabled:
 - `hangingPunctuation`
 - `spaces`
 
-### CLI Usage
+## CLI Usage
 
-```
-$ npm install -g typeset
+```shell
+$ npm i -g typeset
 ```
 
 ```
@@ -93,30 +91,30 @@ Options:
   --disable,      string of typeset feature(s) to disable, separated by commas
 ```
 
-## Examples:
+### Examples:
 
 Compile a file and print it to stdout:
-```js
+```shell
 $ typeset-js inputFile.html
 ```
 
 To create an output file, just add a second argument:
-```js
+```shell
 $ typeset-js inputFile.html outputFile.html
 ```
 
 Use the `--ignore` option to ignore specific CSS selectors:
-```js
+```shell
 $ typeset-js inputFile.html outputFile.html --ignore ".some-class, h3"
 ```
 
 Use the `--disable` option to disable typeset features:
-```js
+```shell
 $ typeset-js inputFile.html outputFile.html --disable "hyphenate,ligatures"
 ```
 
 CLI redirections:
-```js
+```shell
 $ cat index.html | typeset-js > outputFile.html
 ```
 
@@ -131,12 +129,10 @@ See the [LICENSE](LICENSE) file for details.
 
 ## To Do:
 
-* Develop a React, and Svelte plugins
-* Develop a client-side plugin
-* Add a build file
 * Remove recursion from eachTextNode.js
 * Feature to [avoid widows](https://github.com/davidmerfield/Typeset/issues/34).
 * Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
+* Develop extension plugins for React, Svelte, jQuery
 
 ## Who uses Typeset?
 
