@@ -11,7 +11,7 @@ Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty�
 
 Typeset does not re­quire any client-side JavaScript and uses less than a kilo­byte of CSS. Processed HTML & CSS works in Internet Explorer 5 and with­out any CSS. Typeset can be used man­u­ally or as a plu­gin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
 
-<img src="https://i.imgur.com/5dTsGkH.gif" width="80%">
+<img src="https://i.imgur.com/5dTsGkH.gif" width="600px">
 
 ---
 
