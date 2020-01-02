@@ -1,7 +1,5 @@
 # Typeset
 
-## Introduction
-
 Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in ﬁne print­ing which re­main un­avail­able to browser lay­out en­gines. Typeset's pro­cess­ing brings the fol­low­ing to your web­pages:
 
 - [Hang­ing punc­tu­a­tion](https://en.wikipedia.org/wiki/Hanging_punctuation)
@@ -11,9 +9,9 @@ Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty�
 - [Small caps](https://en.wikipedia.org/wiki/Small_caps)
 - [Soft hy­phen in­ser­tion](https://en.wikipedia.org/wiki/Soft_hyphen)
 
-![Typeset Demo](https://i.imgur.com/5dTsGkH.gif)
-
 Typeset does not re­quire any client-side JavaScript and uses less than a kilo­byte of CSS. Processed HTML & CSS works in Internet Explorer 5 and with­out any CSS. Typeset can be used man­u­ally or as a plu­gin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
+
+<img src="https://i.imgur.com/5dTsGkH.gif" width="80%">
 
 ---
 
