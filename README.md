@@ -11,7 +11,7 @@ Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty�
 - [Small caps](https://en.wikipedia.org/wiki/Small_caps)
 - [Soft hy­phen in­ser­tion](https://en.wikipedia.org/wiki/Soft_hyphen)
 
-![Typeset Demo](https://i.imgur.com/YKQWpA1.gif)
+![Typeset Demo](https://i.imgur.com/5dTsGkH.gif)
 
 Typeset does not re­quire any client-side JavaScript and uses less than a kilo­byte of CSS. Processed HTML & CSS works in Internet Explorer 5 and with­out any CSS. Typeset can be used man­u­ally or as a plu­gin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
 

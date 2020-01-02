@@ -59,8 +59,15 @@ blockquote {
   font-size: 1.15rem;
   font-weight: normal;
   line-height: 1.415;
-  margin: 1em 0;
-  padding: 0;
+  padding: 1rem;
+  margin: 0;
+  border: 1px solid;
+  border-top: 0px solid;
+  width: 100%;
+}
+
+blockquote p:last-child{
+  margin-bottom: 0;
 }
 
 a[href^='#tab-'] {
@@ -118,7 +125,9 @@ h2 {
   cursor: pointer;
   text-decoration: none;
 }
-
+.tabs a[data-active="false"]{
+  color: #999;
+}
 h1,
 h2,
 .tabs {
