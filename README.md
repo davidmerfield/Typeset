@@ -7,11 +7,11 @@ Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty�
 - [Hang­ing punc­tu­a­tion](https://en.wikipedia.org/wiki/Hanging_punctuation)
 - [Ligatures](https://en.wikipedia.org/wiki/Orthographic_ligature)
 - [Optical mar­gin align­ment](https://en.wikipedia.org/wiki/Optical_margin_alignment)
-- Punctuation sub­sti­tu­tion (Dashes, Ellipsis, NBSP)
+- [Punctuation sub­sti­tu­tion](src/punctuation.js)
 - [Small caps](https://en.wikipedia.org/wiki/Small_caps)
 - [Soft hy­phen in­ser­tion](https://en.wikipedia.org/wiki/Soft_hyphen)
 
-![Typeset Demo](https://i.imgur.com/Z9UqwJr.gif)
+![Typeset Demo](https://i.imgur.com/YKQWpA1.gif)
 
 Typeset does not re­quire any client-side JavaScript and uses less than a kilo­byte of CSS. Processed HTML & CSS works in Internet Explorer 5 and with­out any CSS. Typeset can be used man­u­ally or as a plu­gin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
 
