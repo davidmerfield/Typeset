@@ -1,24 +1,65 @@
 /* Small caps */
-/*.small-caps {font-variant: small-cap;}*/
+/*.small-caps {font-variant: small-caps;}*/
 
 /* Double quote (") marks */
-.pull-double{margin-left:-.46em}
-.push-double{margin-right:.46em}
+.pull-double {
+  margin-left: -.46em;
+}
+
+.push-double {
+  margin-right: .46em;
+}
 
 /* Single quote (') marks */
-.pull-single{margin-left:-.27em}
-.push-single{margin-right:.27em}
+.pull-single {
+  margin-left: -.27em;
+}
+
+.push-single {
+  margin-right: .27em;
+}
 
 /* Mid-paragraph push/pull spans */
-.pull-double, .push-double,
-.pull-single, .push-single {display: inline-block}
+.pull-double,
+.push-double,
+.pull-single,
+.push-single {
+  display: inline-block;
+}
 
 /* Optical margin alignment for particular letters */
-.pull-T, .pull-V, .pull-W, .pull-Y {margin-left: -0.07em}
-.push-T, .push-V, .push-W, .push-Y {margin-right: 0.07em}
+.pull-T,
+.pull-V,
+.pull-W,
+.pull-Y {
+  margin-left: -.07em;
+}
 
-.pull-O, .pull-C, .pull-o, .pull-c {margin-left: -0.04em}
-.push-O, .push-C, .push-o, .push-c {margin-right: 0.04em}
+.push-T,
+.push-V,
+.push-W,
+.push-Y {
+  margin-right: .07em;
+}
 
-.pull-A {margin-left: -0.03em}
-.push-A {margin-right: 0.03em}
+.pull-O,
+.pull-C,
+.pull-o,
+.pull-c {
+  margin-left: -.04em;
+}
+
+.push-O,
+.push-C,
+.push-o,
+.push-c {
+  margin-right: .04em;
+}
+
+.pull-A {
+  margin-left: -.03em;
+}
+
+.push-A {
+  margin-right: .03em;
+}
