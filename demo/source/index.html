@@ -1,365 +1,132 @@
-<!doctype html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet" type="text/css" href="/typeset.css">
-<title>Typeset</title>
-<meta name="Description" content="An HTML pre-proces­sor for web ty­pog­ra­phy which provides real hang­ing punc­tu­a­tion, optical mar­gin align­ment, small caps de­tec­tion, soft hy­phen in­ser­tion and punctuation sub­sti­tu­tion">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all" />
+    <meta name="url" content="https://typeset.lllllllllllllllll.com/">
 
-  <style type="text/css">
-  @font-face {
-    font-family: 'Plex Sans';
-    font-weight: 400;
-    font-style: normal;
-    src: url('/fonts/plex/sans/regular.eot');
-    /* IE9 Compat Modes */
-    src: url('/fonts/plex/sans/regular.eot?#iefix') format('embedded-opentype'),
-      /* IE6-IE8 */
-      url('/fonts/plex/sans/regular.woff') format('woff'),
-      /* Pretty Modern Browsers */
-      url('/fonts/plex/sans/regular.woff2') format('woff2');
-    /* Very modern */
-  }
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:400,400i,500,700|IBM+Plex+Serif:400,400i,500,700&display=swap" rel="stylesheet">
 
-    @font-face {
-    font-family: 'Plex Sans';
-    font-weight: 700;
-    font-style: normal;
-    src: url('/fonts/plex/sans/bold.eot');
-    /* IE9 Compat Modes */
-    src: url('/fonts/plex/sans/bold.eot?#iefix') format('embedded-opentype'),
-      /* IE6-IE8 */
-      url('/fonts/plex/sans/bold.woff') format('woff'),
-      /* Pretty Modern Browsers */
-      url('/fonts/plex/sans/bold.woff2') format('woff2');
-    /* Very modern */
-  }
+    <link href="https://typeset.lllllllllllllllll.com/" rel="home" />
+    <link href="https://typeset.lllllllllllllllll.com/" rel="canonical" />
 
-  @font-face {
-    font-family: 'Plex Mono';
-    font-weight: 400;
-    font-style: normal;
-    src: url('/fonts/plex/mono/regular.eot');
-    /* IE9 Compat Modes */
-    src: url('/fonts/plex/mono/regular.eot?#iefix') format('embedded-opentype'),
-      /* IE6-IE8 */
-      url('/fonts/plex/mono/regular.woff') format('woff'),
-      /* Pretty Modern Browsers */
-      url('/fonts/plex/mono/regular.woff2') format('woff2');
-    /* Very modern */
-  }
+    <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+    <link href="normalize-opentype.css" rel="stylesheet" type="text/css" />
+    <link href="typeset.css" rel="stylesheet" type="text/css" />
 
-  @font-face {
-    font-family: 'Plex Serif';
-    font-weight: 400;
-    font-style: normal;
-    src: url('/fonts/plex/serif/regular.eot');
-    /* IE9 Compat Modes */
-    src: url('/fonts/plex/serif/regular.eot?#iefix') format('embedded-opentype'),
-      /* IE6-IE8 */
-      url('/fonts/plex/serif/regular.woff') format('woff'),
-      /* Pretty Modern Browsers */
-      url('/fonts/plex/serif/regular.woff2') format('woff2');
-    /* Very modern */
-  }
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="62x62" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="208x208" href="/favicon.png">
 
-  pre {background: rgba(0,0,0,0.05)}
-  body {
-    font-family: 'Plex Sans';
-    line-height: 1.4;
-  }
+    <title>Typeset - An HTML pre-proces­sor for web ty­pog­ra­phy</title>
+    <meta name="Description" content="Typeset pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in fine print­ing which re­main un­avail­able to browser lay­out en­gines.">
 
-  demo content {font-size: 20px}
-  content {
-    display: block;
-    max-width: 40em;
-    margin: 0 auto
-  }
+    <meta property="og:title" content="Typeset - An HTML pre-proces­sor for web ty­pog­ra­phy"/>
+    <meta property="og:description" content="Typeset pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in fine print­ing which re­main un­avail­able to browser lay­out en­gines."/>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://typeset.lllllllllllllllll.com/">
+    <meta property="og:image" content="/typeset.gif">
 
-  code {
-    font-family: 'Plex Mono'
-  }
-
-  a {color: blue
-  }
-
-
-  pre, .button {
-        padding: 1em 1.4em;
-
-  }
-  .button {border: 1px solid;border-radius:2em;text-decoration: none;}
-  blockquote {
-    font-family: 'Plex Serif';
-    padding: 0;
-    margin: 1em 0
-  }
-
-  a[href^="#tab-"] {
-    display: inline-block;
-    padding: 0;
-    color: blue;
-    padding: 0.5em 1.4em;
-    text-decoration: underline;
-            border: 1px solid transparent;
-    margin-bottom: -1px;
-
-  }
-  
-  demo {
-    display: block;
-    padding: 1em 0;
-  }
-
-  a[href^="#tab-"][data-active="false"]:hover {
-  }
-
-  a[href^="#tab-"][data-active="true"] {
-    color: inherit;
-                border: 1px solid;
-    border-bottom: 1px solid #fff;                
-    text-decoration: none;
-  }
-
-  demo p:first-child {
-    margin-top: 0
-  }
-
-  h2 {font-size: 1em;margin: 2em 0 1em}
-  h1, h2 {font-weight: 400}
-  body {display: flex;padding:0;margin:0;}
-  .tabs {display: flex;}
-  .tabs > * {flex-basis:50%;max-width:12.5em;}
-  h1, .tabs, h2 {margin: 0;font-size: 1em;padding: 1em 0;border-bottom: 1px solid}
-  .tabs {padding-bottom: 0}
-  body > * {width:50%;padding:1.4em 2.8em 10em;box-sizing:border-box;min-width: 30em;flex-shrink:0;}
-  ul, li {padding: 0;margin:0;padding-left: 1.2em}
-  li {padding-left: 1em}
-
-  /*
-
-Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
-
-*/
-
-pre {     background: #f6f8fa;
-
-
-}
-/*
-
-Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
-
-*/
-.hljs {
-  display: block;
-  overflow-x: auto;
-  color: #333;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #998;
-  font-style: italic;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst {
-  color: #d73a49;
-}
-
-.hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag .hljs-attr {
-  color: #008080;
-}
-
-.hljs-string,
-.hljs-doctag {
-  color: #032f62;
-}
-
-.hljs-title,
-.hljs-section,
-.hljs-selector-id {
-  color: #900;
-  font-weight: bold;
-}
-
-.hljs-subst {
-  font-weight: normal;
-}
-
-.hljs-type,
-.hljs-class .hljs-title {
-  color: #458;
-  font-weight: bold;
-}
-
-.hljs-tag,
-.hljs-name,
-.hljs-attribute {
-  color: #000080;
-  font-weight: normal;
-}
-
-.hljs-regexp,
-.hljs-link {
-  color: #009926;
-}
-
-.hljs-symbol,
-.hljs-bullet {
-  color: #990073;
-}
-
-.hljs-built_in,
-.hljs-builtin-name {
-  color: #005cc5;
-}
-
-.hljs-meta {
-  color: #999;
-  font-weight: bold;
-}
-
-.hljs-deletion {
-  background: #fdd;
-}
-
-.hljs-addition {
-  background: #dfd;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-  </style>
-</head>
-<!-- 
-<ul>
-    <li>Hang­ing punc­tu­a­tion</li>
-    <li>Op­ti­cal mar­gin out­dents</li>
-    <li></li>
-    <li>Small-caps detection</li>
-    <li>Punctuation substitution and soft hy­phen in­ser­tion</li>
-  </ul>
-   -->
-<body>
-  <section style="">
-  <content>
-    <h1>Typeset</h1>
-    <p>An HTML pre-proces­sor for web ty­pog­ra­phy. Typeset provides typographic features used traditionally in fine printing which remain unavailable to browser layout engines. Typeset's processing brings the following to your webpages: </p>
-
-
-<ul>
-    <li>Real hang­ing punc­tu­a­tion</li>
-    <li>Optical mar­gin align­ment</li>
-    <li>Small caps de­tec­tion</li>
-    <li>Soft hy­phen in­ser­tion</li>
-    <li>Punctuation sub­sti­tu­tion</li>
-</ul>
-
-    <br><Br><br>
-    <p><a href="https://github.com/davidmerfield/typeset" style="" class="button">Get the code on GitHub &nbsp;&nbsp;&rarr;</a></p>
-    <br><BR><br><br>
-
-<h2>How?</h2>
-                <p>Typeset does not require any client-side JavaScript and uses less than a kilobyte of CSS. Processed HTML &amp; CSS <a href="/ie5.png">works in Internet Explorer 5</a> and <a href="/css.png">without any CSS</a>. Typeset can be used manually or as a plugin for <a href="https://github.com/mobinni/grunt-typeset">grunt</a> and <a href="https://github.com/lucasconstantino/gulp-typeset">gulp</a>.</p>
-
-
-    <p><pre><code>npm install typeset</code></pre></p>
-    <!-- <p>Typeset is an attempt to bring these features to the web.</p>
-    <p>Benefits:</p>
-
-    <ul>
-      <li>No client-side JavaScript required. Processsing should be done on the server</li>
-      <li></li>
-      <li>The entire source code is dedicated to the public domain under the CC0 license</li>
-    </ul> -->
-    
-
-    <h2>Usage</h2>
-    <pre><code>var typeset = require('typeset');
-var html = '<p>"Hello," said the world!</p>';
-
-html = typeset(html);</code></pre>
-<p>Then tweak <a href="/typeset.css">Typeset.css</a> to match the metrics of your font and include it on your page.</p>
-
-
-<h2>Options</h2>
-<p>Typeset accepts an optional second argument containing configuration:</p>
-<ul>
-  <li><b>ignore</b> <em>&lt;string&gt;</em><br> Typeset will not process elements matching this CSS selector. Example: <pre><code>typeset(html, { ignore: '.skip' });</code></pre>
-</li>
-  <li><b>only</b> <em>&lt;string&gt;</em><br> Typeset will only process elements matching this CSS selector. Example:  <pre><code>typeset(html, { only: '.typeset' });</code></pre></li>
-  <li><b>disable</b> <em>&lt;array&gt;</em><br> List of Typeset features to disable. The following features may be disabled:
-<ul>
-<li><code>quotes</code></li>
-<li><code>hyphenate</code></li>
-<li><code>ligatures</code></li>
-<li><code>smallCaps</code></li>
-<li><code>punctuation</code></li>
-<li><code>hangingPunctuation</code></li>
-<li><code>spaces</code></li>
-</ul>
-<p>Example: <pre><code>typeset(html, { disable: ['hyphenate'] });</code></pre></p>
-</li>
-</ul>
-<h2 id="cli-usage"><span class="small-caps">CLI</span></h2>
-<pre><code>npm install -g typeset</code></pre>
-<!-- <pre><code>Usage: typeset-js [options] [&lt;infile&gt; [&lt;outfile&gt;]]
-
-Options:
-
-  -h, --help      output usage information
-  -V, --version   output the version number
-  -i, --ignore    string of CSS selector(s) to ignore
-  -O, --only      string of CSS selector(s) to exclusively apply typeset to
-  --disable,      string of typeset feature(s) to disable, separated by commas</code></pre>
-<p>Examples:</p> -->
-<p>Compiles a file to stdout:</p>
-<pre><code>typeset-js input.html</code></pre>
-<p>Pass an output file as a second argument:</p>
-<pre><code>typeset-js input.html output.html</code></pre>
-<p>Use the <code>--ignore</code> option to ignore specific <span class="small-caps">CSS</span> selectors:</p>
-<pre><code>typeset-js input.html output.html --ignore ".skip"</code></pre>
-<h2>About</h2>
-<p>This project started as a collection of libraries I gathered for <a href="https://blot.im">Blot</a>. Typeset still runs there in production. This was made possible by the work of <a href="https://github.com/bramstein">Bram Stein</a> and <a href="http://leancrew.com/all-this/2010/11/smart-quotes-in-javascript/">Dr. Drang</a>. This page is set in the <a href="https://en.wikipedia.org/wiki/IBM_Plex">Plex</a> family by <a href="https://www.mikeabbink.com/">Mike Abbink</a>. Thanks to <a href="https://mbtype.com/bio.html">Matthew Butterick</a> and <a href="https://chriscoyier.net/">Chris Coyier</a> for their help and feedback.</p>
-<h2 id="license">License</h2>
-<p>This software is dedicated to the public domain and licensed under <a href="https://github.com/davidmerfield/Typeset/blob/master/LICENSE"><span class="small-caps">CC0</span></a>.</p>
-
-
-    
-    </content>
-  </section>
-    <demo>
-    <div class="tabs">
-    <a href="#tab-after" data-active="true">After</a> <a href="#tab-before" data-active="false">Before </a> 
-  </div>
-    <content style="max-width:25em;margin:0 0">
-      <blockquote id="tab-after" >
-        
-      </blockquote>
-      <blockquote id="tab-before" style="display:none">
-        <p><span>Y</span>jarni Sigurðardóttir spoke to the EFF from Iceland yesterday: "Light of my life, fire of my florins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"."</p>
-
-       <p>"She's faster than a 120' 4" whale." <em>Piña co­ladas</em> were widely consumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E... Then the <em>duplex</em> came forward. "Thrice the tower, he mounted the round gunrest, 'awaking' HTML. He can print a fixed num­ber of dots in a square inch (for in­stance, 600 × 600)."
+    <meta name="twitter:title" content="Typeset - An HTML pre-proces­sor for web ty­pog­ra­phy">
+    <meta name="twitter:description" content="Typeset pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in fine print­ing which re­main un­avail­able to browser lay­out en­gines.">
+    <meta name="twitter:url" content="https://typeset.lllllllllllllllll.com/">
+    <meta name="twitter:image" content="/typeset.gif">
+  </head>
+  <body>
+    <section>
+      <article>
+        <h1>Typeset</h1>
+        <p>Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in ﬁne print­ing which re­main un­avail­able to browser lay­out en­gines. Typeset's pro­cess­ing brings the fol­low­ing to your web­pages:
         </p>
-      </blockquote>
-    </content>
-  </demo>
+        <ul>
+          <li>Hang­ing punc­tu­a­tion</li>
+          <li>Ligatures</li>
+          <li>Optical mar­gin align­ment</li>
+          <li>Punctuation sub­sti­tu­tion</li>
+          <li>Small caps</li>
+          <li>Soft hy­phen in­ser­tion</li>
+        </ul>
 
-<script type="text/javascript">
-    // Tabs
+        <a href="https://github.com/davidmerfield/typeset" class="button">Get the code on GitHub &nbsp;&nbsp;&rarr;</a>
+
+
+        <h2>How?</h2>
+        <p>Typeset does not require any client-side JavaScript and uses less than a kilobyte of CSS. Processed HTML &amp; CSS works in Internet Explorer 5 and without any CSS.</p> 
+
+        <p>Typeset can be used manually or as a plugin for <a rel="nofollow" target="_blank" href="https://github.com/mobinni/grunt-typeset">Grunt</a> and <a rel="nofollow" target="_blank" href="https://github.com/lucasconstantino/gulp-typeset">gulp</a>.
+        </p>
+        <p><pre><code>npm i typeset</code></pre></p>
+        <h2>Usage</h2>
+    <pre><code>const typeset = require('typeset');
+let html = '<p>"Hello," said the fox.</p>';
+
+let output = typeset(html);</code></pre>
+        <p>Then tweak <a href="/typeset.css">Typeset.css</a> to match the metrics of your font and include it on your page.
+        </p>
+        <h2>Options</h2>
+        <p>Typeset accepts an optional second argument containing configuration:</p>
+        
+        <p><b>ignore</b> <em>&lt;string&gt;</em> - Typeset will not process elements matching this CSS selector.</p>
+
+        <h5>Example:</h5>
+        <pre><code>typeset(html, { ignore: '.skip' });</code></pre>
+        
+        <p><b>only</b> <em>&lt;string&gt;</em> - Typeset will only process elements matching this CSS selector.</p>
+        <h5>Example:</h5>
+        <pre><code>typeset(html, { only: '.typeset' });</code></pre>
+
+        <p><b>disable</b> <em>&lt;array&gt;</em> - List of Typeset features to disable. The following features may be disabled:</p>
+        <ul>
+          <li><code>quotes</code></li>
+          <li><code>hyphenate</code></li>
+          <li><code>ligatures</code></li>
+          <li><code>smallCaps</code></li>
+          <li><code>punctuation</code></li>
+          <li><code>hangingPunctuation</code></li>
+          <li><code>spaces</code></li>
+        </ul>
+
+        <h5>Example:</h5>
+        <pre><code>typeset(html, { disable: ['hyphenate'] });</code></pre>
+       
+        <h2 id="cli-usage"><span class="small-caps">CLI</span></h2>
+        <pre><code>npm install -g typeset</code></pre>
+        <p>Compiles a file to stdout:</p>
+        <pre><code>typeset-js input.html</code></pre>
+        <p>Pass an output file as a second argument:</p>
+<pre><code>typeset-js input.html output.html</code></pre>
+        <p>Use the <code>--ignore</code> option to ignore specific <span class="small-caps">CSS</span> selectors:
+        </p>
+<pre><code>typeset-js input.html output.html --ignore ".skip"</code></pre>
+        <h2>About</h2>
+        <p>This project started as a collection of libraries I gathered for <a target="_blank" href="https://blot.im">Blot</a>. Typeset still runs there in production. This was made possible by the work of <a target="_blank" href="https://github.com/bramstein">Bram Stein</a>, <a target="_blank" href="https://github.com/danielhaim1">Daniel Haim</a>, and <a target="_blank" href="http://leancrew.com/all-this/2010/11/smart-quotes-in-javascript/">Dr. Drang</a>. This page is set in the <a target="_blank" href="https://en.wikipedia.org/wiki/IBM_Plex">Plex</a> family by <a href="https://www.mikeabbink.com/">Mike Abbink</a>. Thanks to <a target="_blank" href="https://mbtype.com/bio.html">Matthew Butterick</a> and <a target="_blank" href="https://chriscoyier.net/">Chris Coyier</a> for their help and feedback.
+        </p>
+        <h2 id="license">License</h2>
+        <p>This software is dedicated to the public domain and licensed under <a target="_blank" href="https://github.com/davidmerfield/Typeset/blob/master/LICENSE"><span class="small-caps">CC0</span></a>.
+        </p>
+      </article>
+    </section>
+    <div class="demo">
+      <div class="tabs">
+        <a href="#tab-before" data-active="false">Before</a>
+        <a href="#tab-after" data-active="true">After</a>
+      </div>
+      <article style="max-width:25em;margin:0 0">
+        <blockquote id="tab-after" >
+        </blockquote>
+        <blockquote id="tab-before" style="display:none">
+          <p><span>Y</span>jarni Sigurðardóttir spoke to the EFF from Iceland yesterday: "Light of my life, fire of my florins -- my sin, my soul. The tip of the tongue taking a trip to 118° 19' 43.5"."
+          </p>
+          <p>"She's faster than a 120' 4" whale." <em>Piña co­ladas</em> were widely consumed in Götterdämmerung from 1880–1912. For the low price of $20 / year from Ex­hi­bits A–E... Then the <em>duplex</em> came forward. "Thrice the tower, he mounted the round gunrest, 'awaking' HTML. He can print a fixed num­ber of dots in a square inch (for in­stance, 600 × 600)."
+          </p>
+        </blockquote>
+      </article>
+    </div>
+<script>
     document
       .querySelectorAll('[href^="#tab-"]')
       .forEach(function(node) {
@@ -375,6 +142,5 @@ Options:
         }
       });
     </script>
-</body>
-
+  </body>
 </html>

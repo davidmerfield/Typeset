@@ -1,45 +1,54 @@
 # Typeset
 
-**[Typeset](https://typeset.lllllllllllllllll.com/)** is an HTML pre-proces­sor for web ty­pog­ra­phy, giving you hang­ing punc­tu­a­tion, soft hy­phen in­ser­tion, op­ti­cal mar­gin out­dents, small-caps con­ver­sion, and punctuation substitution.
+## Introduction
 
-Typeset.js is available as a plugin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
+Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in ﬁne print­ing which re­main un­avail­able to browser lay­out en­gines. Typeset's pro­cess­ing brings the fol­low­ing to your web­pages:
 
-[![Demo](http://i.imgur.com/adsiz94.gif)](https://typeset.lllllllllllllllll.com/)
+- [Hang­ing punc­tu­a­tion](https://en.wikipedia.org/wiki/Hanging_punctuation)
+- [Ligatures](https://en.wikipedia.org/wiki/Orthographic_ligature)
+- [Optical mar­gin align­ment](https://en.wikipedia.org/wiki/Optical_margin_alignment)
+- Punctuation sub­sti­tu­tion (Dashes, Ellipsis, NBSP)
+- [Small caps](https://en.wikipedia.org/wiki/Small_caps)
+- [Soft hy­phen in­ser­tion](https://en.wikipedia.org/wiki/Soft_hyphen)
 
-------------
+![Typeset Demo](https://i.imgur.com/Z9UqwJr.gif)
+
+Typeset does not re­quire any client-side JavaScript and uses less than a kilo­byte of CSS. Processed HTML & CSS works in Internet Explorer 5 and with­out any CSS. Typeset can be used man­u­ally or as a plu­gin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
+
+---
 
 ## Getting Started
+
+### Install
 
 ```shell
 $ npm i typeset
 ```
 
-## Use
+### Usage
 
 ```js
 const typeset = require('typeset');
-const html = '<p>"Hello," said the fox.</p>';
-const output = typeset(html);
+let html = '<p>"Hello," said the fox.</p>';
+let output = typeset(html);
 ```
 
+### CSS
 Then tweak the CSS to match the metrics of your font and include it on your page.
 
 ```css
-/* Small caps */
-/*.small-caps {font-variant: small-cap;}*/
+/*
+ Small Capitals
+ https://en.wikipedia.org/wiki/Small_caps 
+*/
 
-/* Double quote (") marks */
-.pull-double{margin-left:-.46em}
-.push-double{margin-right:.46em}
+.small-caps {font-variant: small-caps;}
 
-/* Single quote (') marks */
-.pull-single{margin-left:-.27em}
-.push-single{margin-right:.27em}
+/*
+ Optical margin alignment for particular letters 
+ https://en.wikipedia.org/wiki/Optical_margin_alignment
+*/
 
-.pull-double, .push-double,
-.pull-single, .push-single {display: inline-block}
-
-/* Optical margin alignment for particular letters */
 .pull-T, .pull-V, .pull-W, .pull-Y {margin-left: -0.07em}
 .push-T, .push-V, .push-W, .push-Y {margin-right: 0.07em}
 
@@ -48,30 +57,50 @@ Then tweak the CSS to match the metrics of your font and include it on your page
 
 .pull-A {margin-left: -0.03em}
 .push-A {margin-right: 0.03em}
+
+/* 
+ Quotation mark 
+ https://en.wikipedia.org/wiki/Quotation_mark) 
+*/
+
+/* Single quotation marks (') */
+.pull-single{margin-left:-.27em}
+.push-single{margin-right:.27em}
+
+.pull-double, .push-double,
+.pull-single, .push-single {display: inline-block}
+
+/* Double quotation marks (") */
+.pull-double{margin-left:-.46em}
+.push-double{margin-right:.46em}
 ```
 
-## Options
+---
+
+### Options
 
 You can pass an options object to influence how your HTML is typeset:
 
 ```js
 const options = {
-  ignore: '.skip, #anything, .which-matches', // string of a CSS selector to skip
-  only: '#only-typeset, .these-elements', // string of a CSS selector to only apply typeset
-  disable: ['hyphenate'] // array of features to disable
+  ignore: '.skip, #anything, .which-matches', // string of CSS selector(s) to ignore
+  only: '#only-typeset, .these-elements', // string of CSS selector(s) to exclusively apply typeset to
+  disable: ['hyphenate'] // array of typeset feature(s) to disable
 };
 ```
 
-### Disableable features
+#### Features
 The following features may be disabled:
 
-- `quotes`
 - `hyphenate`
-- `ligatures`
-- `smallCaps`
-- `punctuation`
 - `hangingPunctuation`
+- `ligatures`
+- `punctuation`
+- `quotes`
+- `smallCaps`
 - `spaces`
+
+---
 
 ## CLI Usage
 
@@ -79,7 +108,7 @@ The following features may be disabled:
 $ npm i -g typeset
 ```
 
-```
+```shell
 Usage: typeset-js [options] [<infile> [<outfile>]]
 
 Options:
@@ -90,6 +119,8 @@ Options:
   -O, --only      string of CSS selector(s) to exclusively apply typeset to
   --disable,      string of typeset feature(s) to disable, separated by commas
 ```
+
+---
 
 ### Examples:
 
@@ -118,23 +149,31 @@ CLI redirections:
 $ cat index.html | typeset-js > outputFile.html
 ```
 
-## Need help?
+---
 
-If you don't find the answer to your problem in our docs, ask us for help.
+## Plugins
+
+- [Grunt](https://github.com/mobinni/grunt-typeset)
+- [gulp](https://github.com/lucasconstantino/gulp-typeset).
+
+---
+
+## Support
+
+If you don't find the answer to your problem in our docs, or have a suggestion for improvements, submit your question [here](https://github.com/davidmerfield/Typeset/issues).
+
+---
 
 ## License
 
 This software is dedicated to the public domain and licensed under Creative Commons Zero.
 See the [LICENSE](LICENSE) file for details.
 
+---
+
 ## To Do:
 
-* Remove recursion from eachTextNode.js
-* Feature to [avoid widows](https://github.com/davidmerfield/Typeset/issues/34).
-* Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
-* Develop extension plugins for React, Svelte, jQuery
-
-## Who uses Typeset?
-
-* [**Blot**](https://blot.im/) - A blogging platform with no interface
-* **You?** Submit a pull request to add it here!
+- [Language options & support](https://github.com/davidmerfield/Typeset/issues/25)
+- [Widows & orphans](https://github.com/davidmerfield/Typeset/issues/34).
+- Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
+- Plugins for React, Angular, Svelte, jQuery

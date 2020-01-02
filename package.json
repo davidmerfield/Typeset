@@ -1,14 +1,14 @@
 {
   "name": "typeset",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Typesetting for the web",
   "keywords": [
-    "dropcap",
-    "hyphenation",
-    "smallcap",
-    "type",
     "typeset",
-    "typography"
+    "typography",
+    "hyphenation",
+    "ligatures",
+    "optical mar­gin align­ment",
+    "small caps"
   ],
   "homepage": "https://github.com/davidmerfield/Typeset.js",
   "bugs": {
@@ -49,8 +49,8 @@
     "cheerio": "0.22.0",
     "jshint": "2.10.2",
     "mocha": "6.2.2",
-    "terser-webpack-plugin": "2.2.1",
-    "webpack": "4.41.2",
+    "terser-webpack-plugin": "2.3.1",
+    "webpack": "4.41.5",
     "webpack-cli": "3.3.10"
   }
 }

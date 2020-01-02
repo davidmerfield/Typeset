@@ -69,7 +69,7 @@ function build_index (from, to) {
     $(this).html(newHTML);
   });
 
-  html = typeset($.html(), {ignore: '#tab-before, pre'});
+  html = typeset($.html(), {ignore: '#tab-before, pre', disable: 'ligatures'});
   html = minify(html, minifyOpts);
 
   fs.writeFileSync(to, html);
