@@ -1,6 +1,6 @@
 {
   "name": "typeset",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Typesetting for the web",
   "keywords": [
     "typeset",
@@ -48,7 +48,7 @@
     "jshint": "^2.11.0",
     "mocha": "^6.2.2",
     "terser-webpack-plugin": "^2.3.5",
-    "webpack": "^4.42.0",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "minimist": ">=1.2.2"
   }
