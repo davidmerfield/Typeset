@@ -22,7 +22,6 @@
   "author": "David Merfield",
   "contributors": {
     "name": "Daniel Haim",
-    "email": "danielhaim1@mac.com",
     "url": "https://danielhaim.com"
   },
   "main": "src/index.js",
