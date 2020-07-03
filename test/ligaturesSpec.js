@@ -5,7 +5,7 @@ const expect = require("chai").expect;
 
 function lig(html) {
   return typeset(html, {
-    enable: ["ligatures"]
+    enable: ["ligatures"],
   });
 }
 

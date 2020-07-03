@@ -5,7 +5,7 @@ const expect = require("chai").expect;
 
 function spaces(html) {
   return typeset(html, {
-    enable: ["spaces"]
+    enable: ["spaces"],
   });
 }
 
