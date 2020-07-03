@@ -4,11 +4,8 @@ let escape;
 
 if (typeof ENV !== "undefined" && ENV.browser) {
   jquery = require("jquery");
-  escape = text =>
-    text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+  escape = (text) =>
+    text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 } else {
   cheerio = require("cheerio");
 }
@@ -29,10 +26,10 @@ module.exports = (html, doThis, options) => {
   const $ =
     jquery ||
     cheerio.load(html, {
-      decodeEntities: false
+      decodeEntities: false,
     });
 
-  const processedText = $(only).each(function() {
+  const processedText = $(only).each(function () {
     findTextNodes(this);
   });
 
@@ -41,7 +38,7 @@ module.exports = (html, doThis, options) => {
 
     $(node)
       .contents()
-      .each(function() {
+      .each(function () {
         const childNode = this;
 
         if (childNode.nodeType === 3) {

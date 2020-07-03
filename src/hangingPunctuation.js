@@ -6,7 +6,6 @@ function push(className, content) {
   return '<span class="push-' + className + '">' + (content || "") + "</span>";
 }
 
-
 const doubleWidth = [
   "&quot;",
   '"',
@@ -23,18 +22,10 @@ const doubleWidth = [
   "&#8221;",
   "&ldquor;",
   "&bdquo;",
-  "&#8222;"
+  "&#8222;",
 ];
 
-const singleWidth = [
-  "'",
-  "&prime;",
-  "&apos;",
-  "&lsquo;",
-  "&rsquo;",
-  "‘",
-  "’"
-];
+const singleWidth = ["'", "&prime;", "&apos;", "&lsquo;", "&rsquo;", "‘", "’"];
 
 const diacriticMap = {
   A: /[\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F]/g,
@@ -47,7 +38,7 @@ const diacriticMap = {
   c: /[\u0063\u24D2\uFF43\u0107\u0109\u010B\u010D\u00E7\u1E09\u0188\u023C\uA73F\u2184]/g,
   o: /[\u006F\u24DE\uFF4F\u00F2\u00F3\u00F4\u1ED3\u1ED1\u1ED7\u1ED5\u00F5\u1E4D\u022D\u1E4F\u014D\u1E51\u1E53\u014F\u022F\u0231\u00F6\u022B\u1ECF\u0151\u01D2\u020D\u020F\u01A1\u1EDD\u1EDB\u1EE1\u1EDF\u1EE3\u1ECD\u1ED9\u01EB\u01ED\u00F8\u01FF\u0254\uA74B\uA74D\u0275]/g,
   v: /[\u0076\u24E5\uFF56\u1E7D\u1E7F\u028B\uA75F\u028C]/g,
-  w: /[\u0077\u24E6\uFF57\u1E81\u1E83\u0175\u1E87\u1E85\u1E98\u1E89\u2C73]/g
+  w: /[\u0077\u24E6\uFF57\u1E81\u1E83\u0175\u1E87\u1E85\u1E98\u1E89\u2C73]/g,
 };
 
 const alignMe = "CcOoYTAVvWw".split("");
@@ -57,13 +48,9 @@ module.exports = (text, node, $) => {
 
   // Remove consecutive double spaces then create
   // array of distinct words.
-  const words = text
-    .split(" ")
-    .join(" ")
-    .split(" ");
+  const words = text.split(" ").join(" ").split(" ");
 
   for (const i in words) {
-
     // This is the code to do
     // optical margin alignment.
     // It's disabled for now due to accessibility issues.
