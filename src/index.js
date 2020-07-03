@@ -5,7 +5,7 @@ const modules = {
   smallCaps: require("./smallCaps"),
   punctuation: require("./punctuation"),
   hangingPunctuation: require("./hangingPunctuation"),
-  spaces: require("./spaces")
+  spaces: require("./spaces"),
 };
 
 const eachTextNode = require("./eachTextNode");

@@ -5,7 +5,7 @@ const expect = require("chai").expect;
 
 function punc(html) {
   return typeset(html, {
-    enable: ["punctuation"]
+    enable: ["punctuation"],
   });
 }
 

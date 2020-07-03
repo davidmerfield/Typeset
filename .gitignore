@@ -42,13 +42,6 @@ vendor/bundle
 nbproject
 Thumbs.db
 
-# Komodo
-.komodotools
-*.komodoproject
-
-# grunt-contrib-sass cache
-.sass-cache
-
 # Folders to ignore
 bower_components
 node_modules

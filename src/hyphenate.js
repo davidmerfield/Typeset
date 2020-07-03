@@ -4,7 +4,7 @@ const Hypher = require("hypher");
 const english = require("./hypher-patterns/en-us");
 const h = new Hypher(english);
 
-module.exports = text => {
+module.exports = (text) => {
   const words = text.split(" ");
 
   for (const i in words) {
