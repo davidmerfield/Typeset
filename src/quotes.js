@@ -6,24 +6,16 @@ module.exports = (text, node, $) => {
   // this only works if replace does not modify the length
   // of the string it is passed. therefore the
   if (
-    $(node)
-      .parent()
-      .is("p, blockquote") &&
-    $(node)
-      .parent()
-      .text() !== text
+    $(node).parent().is("p, blockquote") &&
+    $(node).parent().text() !== text
   ) {
-    const parentText = replace(
-      $(node)
-        .parent()
-        .text()
-    );
+    const parentText = replace($(node).parent().text());
     let start = 0;
 
     $(node)
       .parent()
       .contents()
-      .each(function() {
+      .each(function () {
         if (this === node) return false;
 
         start += $(this).text().length;

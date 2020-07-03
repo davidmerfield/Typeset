@@ -1,5 +1,7 @@
 /* Small caps */
-.small-caps {font-variant: small-caps;}
+.small-caps {
+  font-variant: small-caps;
+}
 
 /* Double quote (") marks */
 .pull-double {

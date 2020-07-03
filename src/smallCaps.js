@@ -62,7 +62,7 @@ function removeCruft(word) {
   return [leading, word, trailing];
 }
 
-module.exports = text => {
+module.exports = (text) => {
   const wordList = text.split(" ");
 
   for (const i in wordList) {

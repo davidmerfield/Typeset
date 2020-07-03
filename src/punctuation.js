@@ -1,4 +1,4 @@
-module.exports = text => {
+module.exports = (text) => {
   // Dashes
   text = text.replace(/--/g, "–");
   text = text.replace(/ – /g, "&thinsp;&mdash;&thinsp;");

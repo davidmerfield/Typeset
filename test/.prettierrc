@@ -1,0 +1,16 @@
+{
+  "trailingComma": "es6",
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": false,
+  "printWidth": 80,
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": "*.js*",
+      "options": {
+        "prettier.printWidth": 80
+      }
+    }
+  ]
+}

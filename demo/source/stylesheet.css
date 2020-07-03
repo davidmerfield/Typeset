@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   line-height: 1.615;
   display: flex;
   margin: 0;
@@ -16,8 +16,7 @@ body {
   -webkit-text-size-adjust: 100%;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-  /* ! bug */
+  
   -ms-overflow-style: scrollbar;
   flex-wrap: wrap;
 }
@@ -33,48 +32,84 @@ pre {
 }
 
 code {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 a {
   color: blue;
 }
 
-pre,
-.button {
+pre {
   padding: 1em 1.4em;
 }
 
 .button {
   display: inline-block;
-  margin-top: 4rem;
-  margin-bottom: 6rem;
   text-decoration: none;
   border: 1px solid;
   border-radius: 2em;
+  height: 46px;
+  line-height: 44px;
+  font-size: 1rem;
+  padding: 0 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 992px) {
+  .button {
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+    padding: 0 1.2rem;
+    line-height: 54px;
+    height: 56px;
+  }
 }
 
 blockquote {
-  font-family: 'IBM Plex Serif', serif;
-  font-size: 1.15rem;
+  font-family: Georgia, Times, Times New Roman, serif;
+  font-size: 1rem;
   font-weight: normal;
-  line-height: 1.415;
+  line-height: 1.615;
   padding: 1rem;
   margin: 0;
   border: 1px solid;
   border-top: 0px solid;
   width: 100%;
+  position: relative;
 }
 
-blockquote p:last-child{
+blockquote:before,
+blockquote:after {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: calc(100% - 2rem);
+  background-color: rgba(0, 0, 255, 0.1);
+  position: absolute;
+  top: 1rem;
+  bottom: 0;
+  z-index: -1;
+}
+
+blockquote:before {
+  border-right: 1px solid blue;
+  left: 0;
+}
+blockquote:after {
+  border-left: 1px solid blue;
+  right: 0;
+}
+
+blockquote p:last-child {
   margin-bottom: 0;
 }
 
-a[href^='#tab-'] {
+a[href^="#tab-"] {
   display: inline-block;
   margin-bottom: -1px;
   padding: 0;
-  padding: .5em 1.4em;
+  padding: 0.5em 1.4em;
   text-decoration: underline;
   color: blue;
   border: 1px solid transparent;
@@ -90,7 +125,7 @@ a[href^='#tab-'] {
   }
 }
 
-a[href^='#tab-'][data-active='true'] {
+a[href^="#tab-"][data-active="true"] {
   text-decoration: none;
   color: inherit;
   border: 1px solid;
@@ -125,7 +160,7 @@ h2 {
   cursor: pointer;
   text-decoration: none;
 }
-.tabs a[data-active="false"]{
+.tabs a[data-active="false"] {
   color: #999;
 }
 h1,
@@ -178,14 +213,14 @@ li {
 }
 
 ul ul {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   padding-top: 1rem;
 }
 
 h5 {
   font-size: 13px;
   font-weight: bold;
-  margin: 1rem 0 .25rem;
+  margin: 1rem 0 0.25rem;
   text-transform: uppercase;
   color: grey;
 }
@@ -287,4 +322,17 @@ pre {
 
 .hljs-strong {
   font-weight: bold;
+}
+
+.d-none {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .d-md-none {
+    display: none;
+  }
+  .d-md-block {
+    display: block;
+  }
 }

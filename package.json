@@ -1,6 +1,6 @@
 {
   "name": "typeset",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Typesetting for the web",
   "keywords": [
     "typeset",
@@ -20,11 +20,9 @@
   },
   "license": "MIT",
   "author": "David Merfield",
-  "contributors": {
-    "name": "Daniel Haim",
-    "email": "danielhaim1@mac.com",
-    "url": "https://danielhaim.com"
-  },
+  "contributors": [
+    "Daniel Haim <daniel@rgbyk.com> (https://danielhaim.com)"
+  ],
   "main": "src/index.js",
   "bin": {
     "typeset-js": "src/cmd.js"
@@ -45,11 +43,11 @@
     "hypher": "^0.2.5",
     "cheerio": "^0.22.0",
     "chai": "^4.2.0",
-    "jshint": "^2.11.0",
+    "jshint": "^2.11.1",
     "mocha": "^7.1.2",
-    "terser-webpack-plugin": "^3.0.1",
+    "terser-webpack-plugin": "^3.0.6",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "minimist": ">=1.2.2"
   }
 }

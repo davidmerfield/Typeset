@@ -6,10 +6,13 @@ const typeset = require("./index.js");
 
 // Convert comma-separated string into an array of strings
 function list(val) {
-  return val.split(",").map(s => s.trim());
+  return val.split(",").map((s) => s.trim());
 }
 
-// CLI
+// ################################
+// Command Line Interface (CLI)
+// ################################
+
 program
   .version(require("../package.json").version)
   .usage("[options] [<infile> [<outfile>]]")
@@ -34,7 +37,7 @@ const outputFile = program.args[1] || null;
 const options = {
   ignore: program.ignore || "",
   only: program.only || "",
-  disable: program.disable || []
+  disable: program.disable || [],
 };
 
 if (inputFile) {
@@ -44,12 +47,12 @@ if (inputFile) {
     const outputHTML = typeset(data, options);
 
     if (outputFile) {
-      fs.writeFile(outputFile, outputHTML, err => {
+      fs.writeFile(outputFile, outputHTML, (err) => {
         if (err) throw err;
         process.exit(0);
       });
     } else {
-      // print output to stdout by default
+      // Print output to stdout by default
       console.log(outputHTML);
       process.exit(0);
     }
@@ -60,10 +63,10 @@ process.stdin.resume();
 process.stdin.setEncoding("utf8");
 
 // Process input from stdin
-process.stdin.on("data", data => {
+process.stdin.on("data", (data) => {
   process.stdout.write(typeset(data, options));
 });
 
-process.stdin.on("end", data => {
+process.stdin.on("end", (data) => {
   process.exit(0);
 });
