@@ -1,5 +1,3 @@
-"use strict";
-
 const typeset = require("../src/index");
 const expect = require("chai").expect;
 
