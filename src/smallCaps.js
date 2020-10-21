@@ -36,7 +36,7 @@ function removeCruft(word) {
   let leading = "";
 
   for (let i = 0; i < ignore.length; i++) {
-    var ignoreThis = ignore[i];
+    const ignoreThis = ignore[i];
     const endOfWord = word.slice(-ignoreThis.length);
 
     if (endOfWord === ignoreThis) {
@@ -48,7 +48,7 @@ function removeCruft(word) {
   }
 
   for (let j = 0; j < ignore.length; j++) {
-    var ignoreThat = ignore[j];
+    const ignoreThat = ignore[j];
     const startOfWord = word.slice(0, ignoreThat.length);
 
     if (startOfWord === ignoreThat) {
