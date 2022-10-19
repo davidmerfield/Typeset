@@ -1,12 +1,16 @@
 module.exports = (text) => {
-  // Dashes
+
+  // M Dash
+  // https://en.wikipedia.org/wiki/Dash
   text = text.replace(/--/g, "–");
   text = text.replace(/ – /g, "&thinsp;&mdash;&thinsp;");
 
-  // Elipses
-  text = text.replace(/\.\.\./g, "…");
+  // Ellipsis
+  // https://en.wikipedia.org/wiki/Ellipsis
+  text = text.replace(/\.\.\./g, "&hellip;");
 
-  // Nbsp for punc with spaces
+  // Non-breaking space
+  // https://en.wikipedia.org/wiki/Non-breaking_space
   const NBSP = "&nbsp;";
   const NBSP_PUNCTUATION_START = /([«¿¡]) /g;
   const NBSP_PUNCTUATION_END = / ([\!\?:;\.,‽»])/g;
