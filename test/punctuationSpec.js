@@ -13,16 +13,16 @@ describe("Punctuation", () => {
     expect(punc(html)).to.equal("<p>En un lugar de la mancha</p>");
   });
 
-  it("should replace three dots by elipses symbol", () => {
+  it("should replace three dots by ellipsis symbol", () => {
     const html = "<p>En un lugar de la mancha...</p>";
-    expect(punc(html)).to.equal("<p>En un lugar de la mancha…</p>");
+    expect(punc(html)).to.equal("<p>En un lugar de la mancha&hellip;</p>");
   });
 
-  it("should replace three dots by elipses symbol on texts with multiple matches", () => {
+  it("should replace three dots by ellipsis symbol on texts with multiple matches", () => {
     const html =
       "<p>En un lugar de la mancha... De cuyo nombre no quiero acordarme... no ha mucho tiempo que vivía...</p>";
     expect(punc(html)).to.equal(
-      "<p>En un lugar de la mancha… De cuyo nombre no quiero acordarme… no ha mucho tiempo que vivía…</p>"
+      "<p>En un lugar de la mancha&hellip; De cuyo nombre no quiero acordarme&hellip; no ha mucho tiempo que vivía&hellip;</p>"
     );
   });
 
