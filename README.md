@@ -1,15 +1,15 @@
 # Typeset
 
-Typeset is an HTML pre-proces­sor for web ty­pog­ra­phy which pro­vides ty­po­graphic fea­tures used tra­di­tion­ally in ﬁne print­ing which re­main un­avail­able to browser lay­out en­gines. Typeset's pro­cess­ing brings the fol­low­ing to your web­pages:
+Typeset is an HTML pre-processor for web typography which provides typographic features used traditionally in ﬁne printing which remain unavailable to browser layout engines. Typeset's processing brings the following to your webpages:
 
-- [Hang­ing punc­tu­a­tion](https://en.wikipedia.org/wiki/Hanging_punctuation)
+- [Hanging punctuation](https://en.wikipedia.org/wiki/Hanging_punctuation)
 - [Ligatures](https://en.wikipedia.org/wiki/Orthographic_ligature)
-- [Optical mar­gin align­ment](https://en.wikipedia.org/wiki/Optical_margin_alignment)
-- [Punctuation sub­sti­tu­tion](src/punctuation.js)
+- [Optical margin alignment](https://en.wikipedia.org/wiki/Optical_margin_alignment)
+- [Punctuation substitution](src/punctuation.js)
 - [Small caps](https://en.wikipedia.org/wiki/Small_caps)
-- [Soft hy­phen in­ser­tion](https://en.wikipedia.org/wiki/Soft_hyphen)
+- [Soft hyphen insertion](https://en.wikipedia.org/wiki/Soft_hyphen)
 
-Typeset does not re­quire any client-side JavaScript and uses less than a kilo­byte of CSS. Processed HTML & CSS works in Internet Explorer 5 and with­out any CSS. Typeset can be used man­u­ally or as a plu­gin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
+Typeset does not require any client-side JavaScript and uses less than a kilobyte of CSS. Processed HTML & CSS works in Internet Explorer 5 and without any CSS. Typeset can be used manually or as a plugin for [Grunt](https://github.com/mobinni/grunt-typeset) and [gulp](https://github.com/lucasconstantino/gulp-typeset).
 
 <img src="https://i.imgur.com/5dTsGkH.gif" width="600">
 
@@ -58,7 +58,7 @@ Then tweak the CSS to match the metrics of your font and include it on your page
 
 /* 
  Quotation mark 
- https://en.wikipedia.org/wiki/Quotation_mark) 
+ https://en.wikipedia.org/wiki/Quotation_mark
 */
 
 /* Single quotation marks (') */
@@ -174,4 +174,3 @@ See the [LICENSE](LICENSE) file for details.
 - [Language options & support](https://github.com/davidmerfield/Typeset/issues/25)
 - [Widows & orphans](https://github.com/davidmerfield/Typeset/issues/34).
 - Incorporate features from [Normalize Opentype](http://kennethormandy.com/journal/normalize-opentype-css)
-- Plugins for React, Angular, Svelte, jQuery
