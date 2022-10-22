@@ -3,7 +3,7 @@
   "author": "David Merfield",
   "license": "CC0",
   "dependencies": {
-    "cheerio": "^0.19.0",
+    "cheerio": "^0.22.0",
     "clean-css": "^4.2.3",
     "fs-extra": "^8.1.0",
     "highlight": "^0.2.3",
