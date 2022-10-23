@@ -10,6 +10,6 @@
     "highlight.js": "^9.17.1",
     "html-minifier": "^4.0.0",
     "typeset": "^0.2.9",
-    "uglify-js": "^3.10.0"
+    "uglify-js": "^3.17.2"
   }
 }
