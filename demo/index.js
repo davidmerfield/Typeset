@@ -1,82 +1,67 @@
-var typeset = require('typeset');
-var fs = require('fs-extra');
-var cheerio = require('cheerio');
-var hljs = require('highlight.js');
-var minify = require('html-minifier').minify;
-var minifyOpts = {removeComments: true,  removeAttributeQuotes: true};
-var join = require('path').join;
-var extname = require('path').extname;
-var CleanCSS = require('clean-css');
-var UglifyJS = require("uglify-js");
+const typeset = require('../src/index.js');
+const fs = require('fs-extra');
+const cheerio = require('cheerio');
+const hljs = require('highlight.js');
+const path = require('path');
+const CleanCSS = require('clean-css');
+const UglifyJS = require('uglify-js');
 
-var SOURCE = __dirname + '/source';
-var PUBLIC = __dirname + '/public';
+const SOURCE = path.join(__dirname, 'source');
+const PUBLIC = path.join(__dirname, 'public');
 
-function build () {
-
+function build() {
   // Copy library across
-
   fs.emptyDirSync(PUBLIC);
 
-  var source_files = fs.readdirSync(SOURCE);
+  const sourceFiles = fs.readdirSync(SOURCE);
 
-  source_files.forEach(function(name){
-
+  sourceFiles.forEach(function (name) {
     if (name[0] === '.') return;
 
-    var from = join(SOURCE, name);
-    var to = join(PUBLIC, name);
+    const from = path.join(SOURCE, name);
+    const to = path.join(PUBLIC, name);
 
-    if (extname(name) === '.css') return compress_css(from, to);
+    if (path.extname(name) === '.css') return compressCss(from, to);
 
-    if (extname(name) === '.js') return compress_js(from, to);
-    
-    if (name === 'index.html') return build_index(from, to);
+    if (path.extname(name) === '.js') return compressJs(from, to);
 
-    fs.copy(from, to);
+    if (name === 'index.html') return buildIndex(from, to);
+
+    fs.copySync(from, to);
   });
 }
 
-function compress_js (from, to) {
-  var file = fs.readFileSync(from, 'utf-8')  ;
-
+function compressJs(from, to) {
+  let file = fs.readFileSync(from, 'utf-8');
   file = UglifyJS.minify(file).code;
-
   fs.writeFileSync(to, file);
 }
 
-function compress_css (from, to) {
-  var file = fs.readFileSync(from, 'utf-8');
-
+function compressCss(from, to) {
+  let file = fs.readFileSync(from, 'utf-8');
   file = new CleanCSS({}).minify(file).styles;
-
   fs.writeFileSync(to, file);
 }
 
+function buildIndex(from, to) {
+  let html = fs.readFileSync(from, 'utf-8');
+  const $ = cheerio.load(html, { decodeEntities: false });
 
-function build_index (from, to) {
-
-  var html = fs.readFileSync(from, 'utf-8');
-  var $ = cheerio.load(html, {decodeEntities: false});
-  
   $('#tab-after').html($('#tab-before').html());
 
-  $('pre code').each(function(){
-
-    var newHTML = hljs.highlight('js', $(this).html()).value;
-
+  $('pre code').each(function () {
+    const newHTML = hljs.highlight('js', $(this).html()).value;
     $(this).attr('class', 'hljs');
     $(this).html(newHTML);
   });
 
-  html = typeset($.html(), {ignore: '#tab-before, pre', disable: 'ligatures'});
-  html = minify(html, minifyOpts);
+  html = typeset($.html(), { ignore: '#tab-before, pre', disable: 'ligatures' });
 
   fs.writeFileSync(to, html);
 }
 
 build();
-fs.watch(__dirname + '/source', function(){
+fs.watch(path.join(__dirname, 'source'), function () {
   console.log('Building site...');
   build();
-})
+});

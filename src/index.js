@@ -8,18 +8,24 @@ const modules = {
   spaces: require("./spaces"),
 };
 
-const eachTextNode = require("./eachTextNode");
+const applyModuleToText = require("./eachTextNode");
 
 module.exports = (html, options = {}) => {
-  for (const i in modules) {
-    // Check against enable list
-    if (options.enable && !options.enable.includes(i)) continue;
+  for (const moduleName in modules) {
+    const currentModule = modules[moduleName];
 
-    // Check against disable list
-    if (options.disable && options.disable.includes(i)) continue;
+    // Check if the module should be enabled based on options
+    if (options.enable && !options.enable.includes(moduleName)) {
+      continue;
+    }
 
-    // Pass the HTML to each module
-    html = eachTextNode(html, modules[i], options);
+    // Check if the module should be disabled based on options
+    if (options.disable && options.disable.includes(moduleName)) {
+      continue;
+    }
+
+    // Apply the module to the HTML
+    html = applyModuleToText(html, currentModule, options);
   }
 
   return html;

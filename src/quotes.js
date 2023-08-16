@@ -1,25 +1,13 @@
 module.exports = (text, node, $) => {
-  // This helps resolve substitution issues
-  // when a next node is adjacent to another text node,
-  // e.g. a link tag or emphasis tag.
-
-  // this only works if replace does not modify the length
-  // of the string it is passed. therefore the
-  if (
-    $(node).parent().is("p, blockquote") &&
-    $(node).parent().text() !== text
-  ) {
+  if ($(node).parent().is("p, blockquote") && $(node).parent().text() !== text) {
     const parentText = replace($(node).parent().text());
     let start = 0;
 
-    $(node)
-      .parent()
-      .contents()
-      .each(function () {
-        if (this === node) return false;
+    $(node).parent().contents().each(function () {
+      if (this === node) return false;
 
-        start += $(this).text().length;
-      });
+      start += $(this).text().length;
+    });
 
     return parentText.slice(start, start + text.length);
   }
@@ -28,9 +16,6 @@ module.exports = (text, node, $) => {
 };
 
 function replace(text) {
-  // Revert encoded chars so the regex mystery
-  // below works properly
-
   text = text
     .replace(/(\W|^)"([^\s\!\?:;\.,‽»])/g, "$1\u201c$2") // beginning "
     .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, "$1\u201d$2") // ending "
@@ -51,10 +36,11 @@ function replace(text) {
     .replace(/'/g, "\u2032");
 
   // Allow escaped quotes
-  text = text.replace(/\\“/, '"');
-  text = text.replace(/\\”/, '"');
-  text = text.replace(/\\’/, "'");
-  text = text.replace(/\\‘/, "'");
+  text = text
+    .replace(/\\“/g, '"')
+    .replace(/\\”/g, '"')
+    .replace(/\\’/g, "'")
+    .replace(/\\‘/g, "'");
 
   return text;
 }
