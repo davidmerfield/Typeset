@@ -34,7 +34,8 @@
     "clean": "rm -rf build/",
     "jshint": "jshint ./src",
     "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "watch": "mocha test -u bdd -R spec -t 500 --recursive --watch || true"
+    "watch": "mocha test -u bdd -R spec -t 500 --recursive --watch || true",
+    "release": "npm version patch && npm run build && git add package.json package-lock.json build/ && git commit -m 'Bump version and build package for release' && git push"
   },
   "dependencies": {
     "chai": "^4.3.6",
