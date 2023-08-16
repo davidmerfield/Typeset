@@ -1,17 +1,22 @@
 // User auto language detection if no option
 // specified https://github.com/richtr/guessLanguage.js
 const Hypher = require("hypher");
-const english = require("./hypher-patterns/en-us");
-const h = new Hypher(english);
+const englishHyphenationPatterns = require("./hypher-patterns/en-us"); // Assuming this is the correct path
+const hypher = new Hypher(englishHyphenationPatterns);
 
+// Hyphenates non-capitalized words in a text
 module.exports = (text) => {
   const words = text.split(" ");
 
-  for (const i in words) {
+  for (let i = 0; i < words.length; i++) {
     const word = words[i];
 
-    if (word.slice(0, 1).toUpperCase() === word.slice(0, 1)) continue;
-    words[i] = h.hyphenateText(word);
+    // Skip words that start with an uppercase letter
+    if (word.charAt(0).toUpperCase() === word.charAt(0)) {
+      continue;
+    }
+
+    words[i] = hypher.hyphenateText(word);
   }
 
   return words.join(" ");

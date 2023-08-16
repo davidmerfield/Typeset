@@ -5,29 +5,28 @@ const program = require("commander");
 const typeset = require("./index.js");
 
 // Convert comma-separated string into an array of strings
-function list(val) {
+function parseCommaSeparatedString(val) {
   return val.split(",").map((s) => s.trim());
 }
 
-// ################################
-// Command Line Interface (CLI)
-// ################################
-
+// Define the Command Line Interface (CLI) options
 program
   .version(require("../package.json").version)
   .usage("[options] [<infile> [<outfile>]]")
   .option(
-    "-i, --ignore <string containing selectors to ignore>",
-    "string of CSS selector(s) to ignore"
+    "-i, --ignore <selectors>",
+    "CSS selector(s) to ignore",
+    parseCommaSeparatedString
   )
   .option(
-    "-O, --only <string containing selectors to parse>",
-    "string of CSS selector(s) to exclusively apply typeset to"
+    "-O, --only <selectors>",
+    "CSS selector(s) to exclusively apply typeset to",
+    parseCommaSeparatedString
   )
   .option(
-    "--disable <list of typeset feature(s) to disable>",
-    "string of typeset feature(s) to disable, separated by commas",
-    list
+    "--disable <features>",
+    "Typeset feature(s) to disable (comma-separated)",
+    parseCommaSeparatedString
   )
   .parse(process.argv);
 
@@ -67,6 +66,6 @@ process.stdin.on("data", (data) => {
   process.stdout.write(typeset(data, options));
 });
 
-process.stdin.on("end", (data) => {
+process.stdin.on("end", () => {
   process.exit(0);
 });
