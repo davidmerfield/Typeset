@@ -1,6 +1,6 @@
 {
   "name": "typeset",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Typesetting for the web",
   "keywords": [
     "typeset",
@@ -34,7 +34,8 @@
     "clean": "rm -rf build/",
     "jshint": "jshint ./src",
     "test": "mocha -u bdd -R spec -t 500 --recursive",
-    "watch": "mocha test -u bdd -R spec -t 500 --recursive --watch || true"
+    "watch": "mocha test -u bdd -R spec -t 500 --recursive --watch || true",
+    "release": "npm version patch && npm run build && git add package.json package-lock.json build/ && git commit -m 'Bump version and build package for release' && git push"
   },
   "dependencies": {
     "chai": "^4.3.6",
@@ -43,11 +44,13 @@
     "html-entities": "^1.4.0",
     "html-minifier": "^4.0.0",
     "hypher": "^0.2.5",
+    "jsdom": "^22.1.0",
     "jshint": "^2.13.5",
     "minimist": "^1.2.6",
     "mocha": "^8.4.0",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.10.0",
+    "xmlserializer": "^0.6.1"
   }
 }

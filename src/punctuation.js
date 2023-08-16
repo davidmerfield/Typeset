@@ -1,22 +1,18 @@
 module.exports = (text) => {
-
-  // M Dash
-  // https://en.wikipedia.org/wiki/Dash
-  text = text.replace(/--/g, "–");
-  text = text.replace(/ – /g, "&thinsp;&mdash;&thinsp;");
+  // M Dash (En Dash and Em Dash)
+  text = text.replace(/--/g, "–"); // En Dash or Em Dash
+  text = text.replace(/ – /g, "&thinsp;&mdash;&thinsp;"); // En Dash surrounded by thin spaces
 
   // Ellipsis
-  // https://en.wikipedia.org/wiki/Ellipsis
-  text = text.replace(/\.\.\./g, "&hellip;");
+  text = text.replace(/\.\.\./g, "&hellip;"); // Ellipsis
 
-  // Non-breaking space
-  // https://en.wikipedia.org/wiki/Non-breaking_space
+  // Non-breaking space around punctuation
   const NBSP = "&nbsp;";
-  const NBSP_PUNCTUATION_START = /([«¿¡]) /g;
-  const NBSP_PUNCTUATION_END = / ([\!\?:;\.,‽»])/g;
+  const NBSP_PUNCTUATION_START = /([«¿¡]) /g; // Space after specific punctuation
+  const NBSP_PUNCTUATION_END = / ([\!\?:;\.,‽»])/g; // Space before specific punctuation
 
-  text = text.replace(NBSP_PUNCTUATION_START, "$1" + NBSP);
-  text = text.replace(NBSP_PUNCTUATION_END, NBSP + "$1");
+  text = text.replace(NBSP_PUNCTUATION_START, "$1" + NBSP); // Add non-breaking space after specific punctuation
+  text = text.replace(NBSP_PUNCTUATION_END, NBSP + "$1"); // Add non-breaking space before specific punctuation
 
   return text;
 };
