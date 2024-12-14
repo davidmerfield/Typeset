@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidmerfield/Typeset.js.git"
+    "url": "git+https://github.com/davidmerfield/Typeset.js.git"
   },
   "license": "MIT",
   "author": "David Merfield",
