@@ -38,19 +38,21 @@
     "release": "npm version patch && npm run build && git add package.json package-lock.json build/ && git commit -m 'Bump version and build package for release' && git push"
   },
   "dependencies": {
-    "chai": "^4.3.6",
     "cheerio": "^0.22.0",
     "commander": "^6.2.1",
     "html-entities": "^1.4.0",
     "html-minifier": "^4.0.0",
     "hypher": "^0.2.5",
     "jsdom": "^22.1.0",
-    "jshint": "^2.13.5",
     "minimist": "^1.2.6",
+    "xmlserializer": "^0.6.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "jshint": "^2.13.5",
     "mocha": "^8.4.0",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "xmlserializer": "^0.6.1"
+    "webpack-cli": "^5.1.4"
   }
 }
