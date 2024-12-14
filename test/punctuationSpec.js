@@ -36,9 +36,17 @@ describe("Punctuation", () => {
 
   it("should replace a dash between spaces ( – ) by (&thinsp;&mdash;&thinsp;)", () => {
     const html =
-      '<p>Use an "en" dash to con­nect num­bers in a range. It means "up to and includ­ing" when used like this: "During the years 1998 – 1999," and "peo­ple aged 55 – 63."</p>';
+      '<p>Traveling – that is, traveling by public transit – can be a relaxing activity if you bring music and reading material along with you.</p>';
     expect(punc(html)).to.equal(
-      '<p>Use an "en" dash to con­nect num­bers in a range. It means "up to and includ­ing" when used like this: "During the years 1998&thinsp;&mdash;&thinsp;1999," and "peo­ple aged 55&thinsp;&mdash;&thinsp;63."</p>'
+      '<p>Traveling&thinsp;&mdash;&thinsp;that is, traveling by public transit&thinsp;&mdash;&thinsp;can be a relaxing activity if you bring music and reading material along with you.</p>'
+    );
+  });
+
+  it("should replace a dash between numbers (10-20 or 10 - 20) by (&thinsp;&ndash;&thinsp;)", () => {
+    const html =
+      '<p>Students spend 1-2 hours per night reading. By Monday, they should have read pages 79 - 113.</p>';
+    expect(punc(html)).to.equal(
+      '<p>Students spend 1&thinsp;&ndash;&thinsp;2 hours per night reading. By Monday, they should have read pages 79&thinsp;&ndash;&thinsp;113.</p>'
     );
   });
 });
