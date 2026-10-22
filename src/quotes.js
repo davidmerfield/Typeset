@@ -1,15 +1,47 @@
-module.exports = (text, node, $) => {
-  if ($(node).parent().is("p, blockquote") && $(node).parent().text() !== text) {
-    const parentText = replace($(node).parent().text());
+// For each parent paragraph we compute the substituted text once, along with
+// the offset of each child node, rather than once per text node (which is
+// quadratic for a long paragraph full of inline tags). Keyed by parent node, so
+// the cache lives only as long as the parsed document of one typeset call.
+const cache = new WeakMap();
+
+// eachTextNode decodes these entities in a text node just before handing it to
+// us, so we do the same when measuring the text of its siblings.
+function decode(text) {
+  return text.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
+}
+
+function lookup(node, $) {
+  const parent = $(node).parent();
+  const key = parent[0];
+  let entry = cache.get(key);
+
+  if (!entry) {
+    const offsets = new Map();
     let start = 0;
 
-    $(node).parent().contents().each(function () {
-      if (this === node) return false;
-
-      start += $(this).text().length;
+    parent.contents().each(function () {
+      offsets.set(this, start);
+      start += decode($(this).text()).length;
     });
 
-    return parentText.slice(start, start + text.length);
+    entry = { text: decode(parent.text()), offsets, replaced: null };
+    cache.set(key, entry);
+  }
+
+  return entry;
+}
+
+module.exports = (text, node, $) => {
+  if ($(node).parent().is("p, blockquote")) {
+    const entry = lookup(node, $);
+
+    if (entry.text !== text) {
+      if (entry.replaced === null) entry.replaced = replace(entry.text);
+
+      const start = entry.offsets.get(node);
+
+      return entry.replaced.slice(start, start + text.length);
+    }
   }
 
   return replace(text);
