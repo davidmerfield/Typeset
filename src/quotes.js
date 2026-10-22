@@ -15,7 +15,10 @@ function lookup(node, $) {
   const key = parent[0];
   let entry = cache.get(key);
 
-  if (!entry) {
+  // In the browser the parent is a live DOM node, so it outlives one typeset
+  // call. A text node that isn't in the cached offsets means the paragraph was
+  // processed (and its text nodes replaced) by an earlier call: rebuild.
+  if (!entry || !entry.offsets.has(node)) {
     const offsets = new Map();
     let start = 0;
 

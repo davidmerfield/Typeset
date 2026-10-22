@@ -71,4 +71,30 @@ describe("Quotes", () => {
     // quadratic behaviour took seconds at this size
     expect(elapsed).to.be.below(500);
   });
+
+  it("should give the same result when run twice over the same document", () => {
+    const cheerio = require("cheerio");
+    const quotesModule = require("../src/quotes");
+    const $ = cheerio.load('<p>He said "see <a href="x">this</a> and it\'s" done.</p>', {
+      decodeEntities: false,
+    });
+
+    // Mimics the browser build, where the DOM (and so each parent node) persists
+    // between calls.
+    const pass = () => {
+      (function walk(node) {
+        $(node)
+          .contents()
+          .each(function () {
+            if (this.nodeType === 3) $(this).replaceWith(quotesModule(this.data, this, $));
+            else walk(this);
+          });
+      })($(":root")[0]);
+      return $("p").html();
+    };
+
+    const expected = 'He said “see <a href="x">this</a> and it’s” done.';
+    expect(pass()).to.equal(expected);
+    expect(pass()).to.equal(expected);
+  });
 });
