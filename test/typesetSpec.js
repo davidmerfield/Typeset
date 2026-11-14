@@ -24,4 +24,11 @@ describe("Typeset", () => {
       '<p>Yjarni Sigurðardóttir spoke to <span class="small-caps">NATO</span> from Iceland yes­ter­day:<span class="push-double"></span> <span class="pull-double">“</span>Light of my  life, ﬁre of my ﬂorins&thinsp;&mdash;&thinsp;my sin, my soul. The tip of the tongue tak­ing a trip to 118° 19′ 43.5″.”</p><p><span class="pull-double">“</span>She’s faster than a 120′ 4″ whale.” <em>Piña co­ladas</em> were widely con­sumed in Götterdämmerung from 1880&thinsp;&ndash;&thinsp;1912. For the low price of $20 / year from Ex­hi­bits A–E&hellip; Then the <em>du­plex</em> came for­ward.<span class="push-double"></span> <span class="pull-double">“</span>Thrice the tower, he mounted the round gun­rest,<span class="push-single"></span> <span class="pull-single">‘</span>awaking’ <span class="small-caps">HTML</span>. He can print a ﬁxed num­ber of dots in a square inch (for in­stance, 600 × 600).”</p>'
     );
   });
+  it("leaves fragments unwrapped and entities as written", () => {
+    const html = "<p>R&amp;D &copy; &unknown; <b>NASA</b></p>text outside";
+
+    expect(typeset(html, { disable: ["hyphenate", "ligatures"] })).to.equal(
+      '<p>R&amp;D &copy; &unknown; <b><span class="small-caps">NASA</span></b></p>text outside'
+    );
+  });
 });

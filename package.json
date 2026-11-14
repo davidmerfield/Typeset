@@ -38,14 +38,10 @@
     "release": "npm version patch && npm run build && git add package.json package-lock.json build/ && git commit -m 'Bump version and build package for release' && git push"
   },
   "dependencies": {
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.2.0",
     "commander": "^6.2.1",
     "html-entities": "^1.4.0",
-    "html-minifier": "^4.0.0",
-    "hypher": "^0.2.5",
-    "jsdom": "^22.1.0",
-    "minimist": "^1.2.6",
-    "xmlserializer": "^0.6.1"
+    "hypher": "^0.2.5"
   },
   "devDependencies": {
     "chai": "^4.3.6",
