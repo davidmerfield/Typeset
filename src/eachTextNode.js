@@ -26,7 +26,9 @@ module.exports = (html, doThis, options) => {
   const $ =
     jquery ||
     cheerio.load(html, {
-      decodeEntities: false,
+      // htmlparser2 in HTML mode, as cheerio 0.22 used, rather than parse5:
+      // it leaves fragments unwrapped and entities as they were written
+      xml: { xmlMode: false, decodeEntities: false },
     });
 
   // Apply the specified function to each text node
